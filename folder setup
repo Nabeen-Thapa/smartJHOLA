@@ -1,0 +1,7 @@
+-npm install -g pnpm
+-pnpm init
+-pnpm add express pg typeorm reflect-metadata bcrypt jsonwebtoken cors dotenv
+-pnpm add -D typescript ts-node nodemon @types/node @types/express @types/bcrypt @types/jsonwebtoken @types/cors
+-pnpm exec tsc --init
+//for folders
+-mkdir -p src/{controllers,entities,routes,services,database,utils}
