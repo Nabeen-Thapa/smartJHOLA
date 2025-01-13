@@ -1,1 +1,68 @@
 [22:40:05]:smart jhola server is running at 5500
+[13:48:24]:smart jhola server is running at 5500
+[13:48:24]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[13:51:16]:smart jhola server is running at 5500
+[13:51:16]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[13:53:11]:smart jhola server is running at 5500
+[13:53:11]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:02:02]:smart jhola server is running at 5500
+[14:02:02]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:05:33]:smart jhola server is running at 5500
+[14:05:33]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:06:18]:smart jhola server is running at 5500
+[14:06:18]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:07:42]:smart jhola server is running at 5500
+[14:07:43]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:09:11]:smart jhola server is running at 5500
+[14:09:11]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:09:35]:smart jhola server is running at 5500
+[14:09:35]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:10:02]:smart jhola server is running at 5500
+[14:10:02]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:15:15]:smart jhola server is running at 5500
+[14:15:15]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:15:48]:smart jhola server is running at 5500
+[14:15:48]:Error during Data Source initialization: Data type "number" in "smartUser.phone" is not supported by "postgres" database.
+[14:19:14]:smart jhola server is running at 5500
+[14:19:14]:Error during Data Source initialization: Data type "number" in "smartUser.phone" is not supported by "postgres" database.
+[14:19:25]:smart jhola server is running at 5500
+[14:19:25]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:19:48]:smart jhola server is running at 5500
+[14:19:48]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:19:59]:smart jhola server is running at 5500
+[14:19:59]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:20:28]:smart jhola server is running at 5500
+[14:20:29]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:20:57]:smart jhola server is running at 5500
+[14:20:57]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:21:06]:smart jhola server is running at 5500
+[14:21:06]:Error during Data Source initialization: password authentication failed for user "LENOVO"
+[14:21:23]:smart jhola server is running at 5500
+[14:21:23]:Error during Data Source initialization: Data type "number" in "smartUser.phone" is not supported by "postgres" database.
+[14:21:43]:smart jhola server is running at 5500
+[14:21:43]:Error during Data Source initialization: Data type "number" in "smartUser.phone" is not supported by "postgres" database.
+[14:24:07]:smart jhola server is running at 5500
+[14:24:08]:Database connected successfully!
+[14:26:26]:smart jhola server is running at 5500
+[14:26:26]:Database connected successfully!
+[14:28:27]:smart jhola server is running at 5500
+[14:28:27]:Database connected successfully!
+[14:28:34]:smart jhola server is running at 5500
+[14:28:34]:Database connected successfully!
+[14:28:57]:smart jhola server is running at 5500
+[14:28:57]:Database connected successfully!
+[14:33:03]:smart jhola server is running at 5500
+[14:33:04]:Database connected successfully!
+[14:34:11]:smart jhola server is running at 5500
+[14:34:12]:Database connected successfully!
+[14:35:12]:error duirng registration:  null value in column "gender" of relation "smartUsers" violates not-null constraint
+[14:37:08]:smart jhola server is running at 5500
+[14:37:08]:Database connected successfully!
+[14:38:12]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[14:38:52]:smart jhola server is running at 5500
+[14:38:52]:Database connected successfully!
+[14:39:30]:smart jhola server is running at 5500
+[14:39:30]:Database connected successfully!
+[15:33:35]:smart jhola server is running at 5500
+[15:33:35]:Database connected successfully!
+[15:36:21]:error duirng registration:  duplicate key value violates unique constraint "UQ_24e1fa1f9ce592c5988a361912e"

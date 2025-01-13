@@ -20,14 +20,14 @@ export class smartUser {
     @Column({type: "varchar"})
     email!:string;
 
-    @Column({type: "number"})
+    @Column({type: "bigint"})
     phone!:string;
 
     @Column({type: "varchar"})
     gender?:string;
 
     @Column({type: "varchar"})
-    age?:string;
+    age?:number;
     
     @Column({type: "varchar"})
     image?:string;
