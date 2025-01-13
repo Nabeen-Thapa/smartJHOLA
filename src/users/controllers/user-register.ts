@@ -27,18 +27,22 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
 
     if (!name && !username && !email && !phone) {
         res.status(StatusCodes.BAD_REQUEST).json({ message: "name, username, email phone number are required" });
+            return;
     }
     try {
         if (!isValidEmail(email)) {
             res.status(StatusCodes.BAD_REQUEST).json({ message: "email is not valid" });
+            return;
         }
         if (!isValidNumber(phone)) {
             res.status(StatusCodes.BAD_REQUEST).json({ message: "phone number is not valid" });
+            return;
         }
         const getdbUserDetails = smartConnection.getRepository(smartUser);
         const isExistUser = await getdbUserDetails.findOne({ where: { email, phone, username }, });
         if (isExistUser) {
             res.status(StatusCodes.CONFLICT).json({ message: "this user is laready exist" });
+            return;
         }
 
         const password = await generateUniquePwd();
@@ -48,7 +52,7 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
             await sendEmail({
                 to: email,
                 subject: "smartJHOLA password",
-                text: `Welcome to smartJHOLA .\n\n
+                text: `Welcome to smartJHOLA,buy our products get your products.\n\n
         Your username: ${username}
         Your password is: ${password}\n\n
         Please use this OTP to log in and  reset your password.\n`,
@@ -58,12 +62,13 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
                 // Check if the error is an instance of Error
                 logger.error("Email sending failed:", error.message);
                 res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+                return;
             } else {
                 // Handle non-Error cases (unlikely, but good practice)
                 logger.error("Unexpected email sending error:", error);
                 res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Unexpected error occurred while sending email." });
+                return;
             }
-            return;
         }
 
 
