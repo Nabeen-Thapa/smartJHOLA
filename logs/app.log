@@ -66,3 +66,11 @@
 [15:33:35]:smart jhola server is running at 5500
 [15:33:35]:Database connected successfully!
 [15:36:21]:error duirng registration:  duplicate key value violates unique constraint "UQ_24e1fa1f9ce592c5988a361912e"
+[16:53:56]:smart jhola server is running at 5500
+[16:53:58]:Database connected successfully!
+[17:01:54]:smart jhola server is running at 5500
+[17:01:55]:Database connected successfully!
+[17:02:06]:error duirng registration:  Cannot set headers after they are sent to the client
+[17:04:53]:smart jhola server is running at 5500
+[17:04:55]:Database connected successfully!
+[17:07:10]:error duirng registration:  duplicate key value violates unique constraint "UQ_24e1fa1f9ce592c5988a361912e"

@@ -7,6 +7,7 @@ import { isValidNumber } from "../../common/middleware/valid-phoneNumber";
 import { generateUniquePwd } from "../../common/utils/otp-generator";
 import bcrypt from "bcrypt";
 import logger from "../../common/utils/logger";
+import { sendEmail } from "../../common/utils/email-sender";
 
 const userRegister: Router = express.Router();
 
@@ -21,7 +22,7 @@ interface userTypes {
     gender: string,
     image: string
 }
-userRegister.post("/", async (req: Request, res: Response): Promise<void> => {
+userRegister.post("/register", async (req: Request, res: Response): Promise<void> => {
     const { name, username, password, email, phone, age, gender, image }: userTypes = req.body;
 
     if (!name && !username && !email && !phone) {
@@ -42,6 +43,29 @@ userRegister.post("/", async (req: Request, res: Response): Promise<void> => {
 
         const password = await generateUniquePwd();
         const hashedPassword = await bcrypt.hash(password, 10);
+        //send mail
+        try {
+            await sendEmail({
+                to: email,
+                subject: "smartJHOLA password",
+                text: `Welcome to smartJHOLA .\n\n
+        Your username: ${username}
+        Your password is: ${password}\n\n
+        Please use this OTP to log in and  reset your password.\n`,
+            });
+        } catch (error) {
+            if (error instanceof Error) {
+                // Check if the error is an instance of Error
+                logger.error("Email sending failed:", error.message);
+                res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+            } else {
+                // Handle non-Error cases (unlikely, but good practice)
+                logger.error("Unexpected email sending error:", error);
+                res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Unexpected error occurred while sending email." });
+            }
+            return;
+        }
+
 
         const addNewUser = getdbUserDetails.create({
             name,
@@ -57,7 +81,7 @@ userRegister.post("/", async (req: Request, res: Response): Promise<void> => {
 
         res.status(StatusCodes.CREATED).json({ message: "Registration successful check your eail for the password" });
     } catch (error) {
-        logger.error("error duirng registration: ",error);
+        logger.error("error duirng registration: ", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR);
     }
 })

@@ -19,7 +19,7 @@ smartConnection.initialize()
 
 
   //routes
-app.use("/smartjhola", userRoutes);
+app.use("/", userRoutes);
 
 
 const port = process.env.PORT ||5500;

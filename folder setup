@@ -5,3 +5,15 @@
 -pnpm exec tsc --init
 //for folders
 -mkdir -p src/{controllers,entities,routes,services,database,utils}
+
+
+register
+{
+  "name":"nabin",
+  "username":"nabin",
+  "email":"nabeen2058@gmail.com",
+  "phone":4576543213,
+  "gender":"Male",
+  "age":30,
+  "image":"img12"
+}
