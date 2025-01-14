@@ -1,13 +1,15 @@
 import express, { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import { smartConnection } from "../../common/db/db-connection-config";
-import { smartUser } from "../db/userDetails";
+import { smartUser } from "../entities/userDetails";
 import { isValidEmail } from "../../common/middleware/valid-email";
 import { isValidNumber } from "../../common/middleware/valid-phoneNumber";
 import { generateUniquePwd } from "../../common/utils/otp-generator";
 import bcrypt from "bcrypt";
 import logger from "../../common/utils/logger";
 import { sendEmail } from "../../common/utils/email-sender";
+import { userValidationSchema } from "../utils/user-register-validate";
+import { equal } from "joi";
 
 const userRegister: Router = express.Router();
 
@@ -28,6 +30,15 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
     if (!name && !username && !email && !phone) {
         res.status(StatusCodes.BAD_REQUEST).json({ message: "name, username, email phone number are required" });
             return;
+    }
+    
+    const {error } = userValidationSchema.validate(req.body);
+    if (error) {
+      res.status(StatusCodes.BAD_REQUEST).json({
+        message: "user registration Validation failed",
+        details: error.details.map((detail) => detail.message),
+      });
+      return;
     }
     try {
         if (!isValidEmail(email)) {

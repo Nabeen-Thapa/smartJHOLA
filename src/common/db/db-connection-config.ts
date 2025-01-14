@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 
 import dotnev from "dotenv";
-import { smartUser } from "../../users/db/userDetails";
+import { smartUser } from "../../users/entities/userDetails";
 dotnev.config();
 
 export const smartConnection = new DataSource({

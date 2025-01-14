@@ -1,4 +1,4 @@
-import { smartUser } from "../../users/db/userDetails";
+import { smartUser } from "../../users/entities/userDetails";
 import { smartConnection } from "../db/db-connection-config";
 import {authenticator} from "otplib";
 
