@@ -31,4 +31,7 @@ export class smartUser {
     
     @Column({type: "varchar"})
     image?:string;
+
+    @Column ({type: "varchar"})
+    status!:string;
 }
