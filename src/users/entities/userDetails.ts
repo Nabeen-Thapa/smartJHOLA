@@ -32,6 +32,6 @@ export class smartUser {
     @Column({type: "varchar"})
     image?:string;
 
-    @Column ({type: "varchar"})
-    status!:string;
+    @Column ({type: "varchar", default: "Deactive"})
+    status?:string;
 }

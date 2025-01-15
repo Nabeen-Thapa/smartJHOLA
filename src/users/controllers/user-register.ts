@@ -52,7 +52,7 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
         const getdbUserDetails = smartConnection.getRepository(smartUser);
         const isExistUser = await getdbUserDetails.findOne({ where: { email, phone, username }, });
         if (isExistUser) {
-            res.status(StatusCodes.CONFLICT).json({ message: "this user is laready exist" });
+            res.status(StatusCodes.CONFLICT).json({ message: "this user is already exist" });
             return;
         }
 
@@ -95,7 +95,7 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
         });
         await getdbUserDetails.save(addNewUser);
 
-        res.status(StatusCodes.CREATED).json({ message: "Registration successful check your eail for the password" });
+        res.status(StatusCodes.CREATED).json({ message: "Registration successful check your email for the password" });
     } catch (error) {
         logger.error("error duirng registration: ", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR);

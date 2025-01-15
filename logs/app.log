@@ -162,3 +162,28 @@
 [15:07:23]:Error during Data Source initialization: column "status" of relation "smartUsers" contains null values
 [15:08:05]:smart jhola server is running at 5500
 [15:08:05]:Error during Data Source initialization: column "status" of relation "smartUsers" contains null values
+[23:29:33]:smart jhola server is running at 5500
+[23:29:34]:Error during Data Source initialization: column "status" of relation "smartUsers" contains null values
+[23:32:59]:smart jhola server is running at 5500
+[23:32:59]:Error during Data Source initialization: column "status" of relation "smartUsers" contains null values
+[23:37:10]:smart jhola server is running at 5500
+[23:37:11]:Error during Data Source initialization: column "status" of relation "smartUsers" contains null values
+[23:37:36]:smart jhola server is running at 5500
+[23:37:36]:Error during Data Source initialization: column "status" of relation "smartUsers" contains null values
+[23:39:21]:smart jhola server is running at 5500
+[23:39:21]:Database connected successfully!
+[23:41:14]:smart jhola server is running at 5500
+[23:41:14]:Database connected successfully!
+[23:41:20]:Email sending failed:
+[23:41:43]:Email sending failed:
+[23:41:59]:smart jhola server is running at 5500
+[23:41:59]:Database connected successfully!
+[23:42:03]:Email sending failed:
+[23:49:47]:smart jhola server is running at 5500
+[23:49:47]:Database connected successfully!
+[23:50:42]:smart jhola server is running at 5500
+[23:50:42]:Database connected successfully!
+[23:51:41]:smart jhola server is running at 5500
+[23:51:41]:Database connected successfully!
+[23:54:03]:smart jhola server is running at 5500
+[23:54:03]:Database connected successfully!
