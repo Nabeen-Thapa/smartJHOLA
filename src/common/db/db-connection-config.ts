@@ -2,6 +2,7 @@ import { DataSource } from "typeorm";
 
 import dotnev from "dotenv";
 import { smartUser } from "../../users/entities/userDetails";
+import { smartToken } from "../../users/entities/smartUserToken";
 dotnev.config();
 
 export const smartConnection = new DataSource({
@@ -13,5 +14,5 @@ export const smartConnection = new DataSource({
     database : process.env.database,
     synchronize: true,
     logging: false,
-    entities : [smartUser],
+    entities : [smartUser, smartToken],
 })
