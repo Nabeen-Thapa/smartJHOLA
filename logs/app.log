@@ -206,3 +206,59 @@
 [13:48:22]:login error :  null value in column "password" of relation "smartTokens" violates not-null constraint
 [13:55:52]:smart jhola server is running at 5500
 [13:55:52]:Database connected successfully!
+[14:05:39]:smart jhola server is running at 5500
+[14:05:39]:Database connected successfully!
+[14:35:33]:smart jhola server is running at 5500
+[14:35:34]:Database connected successfully!
+[16:58:11]:smart jhola server is running at 5500
+[16:58:11]:Database connected successfully!
+[17:29:46]:smart jhola server is running at 5500
+[17:29:46]:Database connected successfully!
+[17:31:05]:smart jhola server is running at 5500
+[17:31:05]:Database connected successfully!
+[17:31:27]:smart jhola server is running at 5500
+[17:31:27]:Database connected successfully!
+[17:43:14]:smart jhola server is running at 5500
+[17:43:15]:Database connected successfully!
+[17:44:39]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:44:41]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:44:47]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:44:53]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:44:53]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:44:53]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:44:54]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:45:58]:Email sending failed:
+[17:46:00]:Email sending failed:
+[17:46:16]:Email sending failed:
+[17:46:16]:Email sending failed:
+[17:46:16]:Email sending failed:
+[17:46:16]:Email sending failed:
+[17:47:21]:smart jhola server is running at 5500
+[17:47:21]:Database connected successfully!
+[17:49:52]:Email sending failed:
+[17:51:30]:smart jhola server is running at 5500
+[17:51:30]:Database connected successfully!
+[17:52:18]:smart jhola server is running at 5500
+[17:52:18]:Database connected successfully!
+[17:52:25]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:52:57]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:55:36]:smart jhola server is running at 5500
+[17:55:36]:Database connected successfully!
+[17:56:41]:smart jhola server is running at 5500
+[17:56:42]:Database connected successfully!
+[17:56:49]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:57:24]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[17:59:02]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[18:01:07]:smart jhola server is running at 5500
+[18:01:08]:Database connected successfully!
+[18:01:15]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[18:01:15]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[18:01:15]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[18:01:17]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[18:01:17]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[18:03:15]:smart jhola server is running at 5500
+[18:03:15]:Database connected successfully!
+[18:12:11]:smart jhola server is running at 5500
+[18:12:12]:Database connected successfully!
+[18:14:40]:smart jhola server is running at 5500
+[18:14:40]:Database connected successfully!

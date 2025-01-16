@@ -6,13 +6,14 @@ import { isValidEmail } from "../../common/middleware/valid-email";
 import { isValidNumber } from "../../common/middleware/valid-phoneNumber";
 import { generateUniquePwd } from "../../common/utils/otp-generator";
 import bcrypt from "bcrypt";
+import multer from "multer";
 import logger from "../../common/utils/logger";
 import { sendEmail } from "../../common/utils/email-sender";
 import { userValidationSchema } from "../utils/user-register-validate";
 import { equal } from "joi";
 
 const userRegister: Router = express.Router();
-
+const upload = multer({ dest: '../uploads_images/' });
 //user inputes type
 interface userTypes {
     name: string,
@@ -24,10 +25,15 @@ interface userTypes {
     gender: string,
     image: string
 }
-userRegister.post("/register", async (req: Request, res: Response): Promise<void> => {
-    const { name, username, password, email, phone, age, gender, image }: userTypes = req.body;
+userRegister.post("/register",upload.single('image'), async (req: Request, res: Response): Promise<void> => {
+    const { name, username, password, email, phone, age, gender }: userTypes = req.body;
+    const image = req.file ? req.file.filename : null;  // Get the uploaded image filename
 
-    if (!name && !username && !email && !phone) {
+    if (!image) {
+        res.status(StatusCodes.BAD_REQUEST).json({ message: 'Image is required.' });
+        return;
+    }
+    if (!name || !username || !email || !phone) {
         res.status(StatusCodes.BAD_REQUEST).json({ message: "name, username, email phone number are required" });
             return;
     }
@@ -58,8 +64,23 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
 
         const password = await generateUniquePwd();
         const hashedPassword = await bcrypt.hash(password, 10);
-        //send mail
-        try {
+       
+        const addNewUser = getdbUserDetails.create({
+            name,
+            username,
+            password: hashedPassword,
+            email,
+            phone,
+            gender,
+            age,
+            image,
+        });
+        await getdbUserDetails.save(addNewUser);
+
+        res.status(StatusCodes.CREATED).json({ message: "Registration successful check your email for the password" });
+
+         //send mail
+         try {
             await sendEmail({
                 to: email,
                 subject: "smartJHOLA password",
@@ -81,21 +102,6 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
                 return;
             }
         }
-
-
-        const addNewUser = getdbUserDetails.create({
-            name,
-            username,
-            password: hashedPassword,
-            email,
-            phone,
-            gender,
-            age,
-            image,
-        });
-        await getdbUserDetails.save(addNewUser);
-
-        res.status(StatusCodes.CREATED).json({ message: "Registration successful check your email for the password" });
     } catch (error) {
         logger.error("error duirng registration: ", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR);

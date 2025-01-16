@@ -8,6 +8,6 @@ export const userValidationSchema =joi.object({
     phone: joi.alternatives().try(joi.string(), joi.number()).custom((value) => String(value)).required(),
     age: joi.number().integer().allow(null, " ").optional(),
     gender : joi.string().allow(null, " ").optional(),
-    image: joi.string().allow(null, " ").optional(),
+    image: joi.string().allow(null, "").optional(),
     status:joi.string().valid("active", "deactive").default("Deactive"),
 })
