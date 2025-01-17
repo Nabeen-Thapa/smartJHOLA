@@ -7,7 +7,16 @@ import logger from "../../common/utils/logger";
 const viewSmartUsers:Router = express.Router();
 
 viewSmartUsers.get('/viewUsers', async(req:Request, res:Response):Promise<void>=>{
-    
+    const {username, password} =req.body;
+    if(!username || !password){
+        res.status(StatusCodes.BAD_REQUEST).json({message : "enter username and password"});
+        return;
+    } 
+
+    if(username !== "admin" && password !=="admin12"){
+        res.status(StatusCodes.BAD_REQUEST).json({message :"username and password are not match"});
+        return;
+    }
     try {
         
     //accessing users form database
