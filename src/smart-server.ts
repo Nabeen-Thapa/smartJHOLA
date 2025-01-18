@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import logger from "./common/utils/logger";
 import userRoutes from "./users/routes/user-routes";
 import { smartConnection } from "./common/db/db-connection-config";
+import adminRoutes from "./admin/routes/admin-routes";
 dotenv.config();
 const app = express();
 
@@ -20,6 +21,7 @@ smartConnection.initialize()
 
   //routes
 app.use("/", userRoutes);
+app.use("/", adminRoutes);
 
 
 const port = process.env.PORT ||5500;
