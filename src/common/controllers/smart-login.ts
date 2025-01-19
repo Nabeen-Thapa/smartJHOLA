@@ -8,8 +8,16 @@ import jwt from "jsonwebtoken";
 import logger from "../utils/logger";
 import { smartToken } from "../../users/entities/smartUserToken";
 import { smartAdmin } from "../../admin/entities/adminDetails";
+//import sessionData from "../middleware/session-data-store";
+import session from "express-session";
 const smartUserLogin : Router = express.Router();
 
+smartUserLogin.use(session({
+    secret: process.env.SESSION_SECRET || 'sesson123', 
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // set to true in production with HTTPS
+  }));
 interface loginTypes{
     username:string,
     password:string,
@@ -46,7 +54,6 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
         return;
     }
 
-   
     let userId:any;
     let userEmail :any;
     if(userType === "admin"){
@@ -56,10 +63,7 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
          userId = isRegisteredUser.userId;
          userEmail = isRegisteredUser.email;
     }
-    if(!isPasswordMatch){
-        res.status(StatusCodes.BAD_REQUEST).json({Message : "invalid password"});
-        return;
-    }
+   
     const registeredPwd = isRegisteredUser.password;
     const smartJwtData = {
         username : username,userId:userId, password:password
@@ -84,6 +88,12 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
     }
     const newUserToken = await getdbToken.create(userTokens);
     await getdbToken.save(newUserToken);
+
+    // Store username and userId in session
+    req.session.username = username;
+    req.session.userId = userId;
+
+
     res.json({
         message: "login successfully",
         name : username,

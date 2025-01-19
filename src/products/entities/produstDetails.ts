@@ -20,18 +20,18 @@ export class smartProduct{
     price!:string;
 
     @Column({type:"varchar"})
+    productImage!:string;
+
+    @Column({type:"varchar"})
     brand!:string;
 
-    @Column({type:"number"})
-    stickQuanity!:number;
+    @Column({type:"integer"})
+    stockQuanity!:number;
     
     @Column({type:"varchar"})
     productDescription!:string;
 
     @Column({type:"varchar"})
     discount!:string;
-
-
-
    
 }

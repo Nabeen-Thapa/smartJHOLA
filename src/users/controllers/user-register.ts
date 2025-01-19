@@ -13,7 +13,7 @@ import { userValidationSchema } from "../utils/user-register-validate";
 import { equal } from "joi";
 
 const userRegister: Router = express.Router();
-const upload = multer({ dest: '../uploads_images/' });
+const upload = multer({ dest: 'uploads/' });
 //user inputes type
 interface userTypes {
     name: string,

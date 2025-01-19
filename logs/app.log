@@ -319,3 +319,15 @@
 [01:20:25]:login error :  null value in column "userId" of relation "smartTokens" violates not-null constraint
 [01:21:07]:smart jhola server is running at 5500
 [01:21:07]:Database connected successfully!
+[13:57:25]:smart jhola server is running at 5500
+[13:57:25]:Error during Data Source initialization: Data type "number" in "smartProduct.stockQuanity" is not supported by "postgres" database.
+[13:58:27]:smart jhola server is running at 5500
+[13:58:28]:Database connected successfully!
+[14:14:35]:smart jhola server is running at 5500
+[14:14:36]:Database connected successfully!
+[14:18:15]:smart jhola server is running at 5500
+[14:18:16]:Database connected successfully!
+[14:18:49]:smart jhola server is running at 5500
+[14:18:49]:Database connected successfully!
+[14:19:12]:smart jhola server is running at 5500
+[14:19:13]:Database connected successfully!
