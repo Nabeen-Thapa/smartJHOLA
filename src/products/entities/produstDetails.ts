@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ForeignKeyMetadata } from "typeorm/metadata/ForeignKeyMetadata";
-import { smartCategoy } from "./productsCategory";
+import { smartCategory } from "./productsCategory";
 
 
 @Entity("smartProducts")
@@ -10,7 +10,7 @@ export class smartProduct{
     @PrimaryGeneratedColumn()
     productId!:number;
 
-    @ManyToMany(()=>smartCategoy, (category)=>category.products, {onDelete :"CASCADE", onUpdate: "CASCADE"})
+    @ManyToMany(()=>smartCategory, (category)=>category.products, {onDelete :"CASCADE", onUpdate: "CASCADE", eager: true })
     category!:string;
 
     @Column({type:"varchar"})

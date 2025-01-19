@@ -6,12 +6,11 @@ import { smartConnection } from "../../common/db/db-connection-config";
 import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 import { smartProduct } from "../entities/produstDetails";
-import { smartCategoy } from "../entities/productsCategory";
+import { smartCategory } from "../entities/productsCategory";
 const addProduct: Router = express.Router();
 const productImageUpload = multer({ dest: '../product_images/' });
 
 interface addProductTypes {
-    username: string,
     category: string,
     productName: string,
     price: string,
@@ -21,33 +20,39 @@ interface addProductTypes {
     discount: string
 }
 addProduct.post("/add-product", productImageUpload.single('porductImage'), async (req: Request, res: Response): Promise<void> => {
-    const { username, category, productName, price, brand, stockQuanity, productDescription, discount }: addProductTypes = req.body;
+    const { category, productName, price, brand, stockQuanity, productDescription, discount }: addProductTypes = req.body;
 
     try {
         const getAdminRepo = smartConnection.getRepository(smartAdmin);
         const getProductRepo = smartConnection.getRepository(smartProduct);
-        const getCategoryRepo = smartConnection.getRepository(smartCategoy);
-
+        const getCategoryRepo = smartConnection.getRepository(smartCategory);
+        const username = req.session.username;
         const isAdminLoggedIn = await getAdminRepo.findOne({ where: { username }, });
         if (!isAdminLoggedIn) {
             res.status(StatusCodes.NOT_FOUND).json({ message: "user on this username is not logged in, log in first" });
             return;  
         }
-        const productCategory = await getProductRepo.findOne({where : {categoryId :category},});
+        const productCategory: smartCategory | null = await getCategoryRepo.findOne({
+            where: { categoryName: category },
+        });
+        
         if(!productCategory){
             res.status(StatusCodes.NOT_FOUND).json({message: "porduct category in not found"});
             return;
         }
-        const newProduct = getAdminRepo.create({
-            category: productCategory,
+        //const categoryId = productCategory.products;
+        const newProduct = getProductRepo.create({
+            category, 
             productName,
             price,
             brand,
             stockQuanity,
             productDescription,
             discount
-        })
-
+        });
+        
+        await getProductRepo.save(newProduct);
+        res.status(StatusCodes.ACCEPTED);
     } catch (error) {
         logger.error("add product error :", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "server error during adding products" });
