@@ -272,3 +272,50 @@
 [17:34:50]:Database connected successfully!
 [17:36:12]:smart jhola server is running at 5500
 [17:36:12]:Database connected successfully!
+[22:53:06]:smart jhola server is running at 5500
+[22:53:09]:Database connected successfully!
+[23:05:09]:smart jhola server is running at 5500
+[23:05:14]:Database connected successfully!
+[23:07:08]:smart jhola server is running at 5500
+[23:07:08]:Database connected successfully!
+[23:07:30]:error duirng registration:  null value in column "gender" of relation "smartUsers" violates not-null constraint
+[23:08:43]:smart jhola server is running at 5500
+[23:08:44]:Database connected successfully!
+[23:08:47]:error duirng registration:  null value in column "age" of relation "smartUsers" violates not-null constraint
+[23:10:06]:smart jhola server is running at 5500
+[23:10:07]:Database connected successfully!
+[23:10:16]:error duirng registration:  null value in column "image" of relation "smartUsers" violates not-null constraint
+[23:11:34]:smart jhola server is running at 5500
+[23:11:35]:Database connected successfully!
+[23:13:32]:smart jhola server is running at 5500
+[23:13:32]:Database connected successfully!
+[23:32:22]:smart jhola server is running at 5500
+[23:32:23]:Database connected successfully!
+[23:40:10]:smart jhola server is running at 5500
+[23:40:11]:Database connected successfully!
+[00:06:37]:smart jhola server is running at 5500
+[00:06:38]:Database connected successfully!
+[00:26:35]:smart jhola server is running at 5500
+[00:26:41]:Database connected successfully!
+[00:34:53]:smart jhola server is running at 5500
+[00:34:54]:Database connected successfully!
+[00:48:26]:smart jhola server is running at 5500
+[00:48:27]:Database connected successfully!
+[00:49:00]:smart jhola server is running at 5500
+[00:49:00]:Database connected successfully!
+[00:49:29]:smart jhola server is running at 5500
+[00:49:29]:Database connected successfully!
+[00:50:57]:smart jhola server is running at 5500
+[00:50:57]:Database connected successfully!
+[01:10:04]:smart jhola server is running at 5500
+[01:10:06]:Database connected successfully!
+[01:14:13]:smart jhola server is running at 5500
+[01:14:17]:Database connected successfully!
+[01:17:10]:smart jhola server is running at 5500
+[01:17:11]:Database connected successfully!
+[01:17:17]:login error :  null value in column "userId" of relation "smartTokens" violates not-null constraint
+[01:19:59]:smart jhola server is running at 5500
+[01:20:00]:Database connected successfully!
+[01:20:25]:login error :  null value in column "userId" of relation "smartTokens" violates not-null constraint
+[01:21:07]:smart jhola server is running at 5500
+[01:21:07]:Database connected successfully!

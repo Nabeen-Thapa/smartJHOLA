@@ -23,7 +23,7 @@ interface userTypes {
     phone: string,
     age: number,
     gender: string,
-    image: string
+    image?: string | null
 }
 userRegister.post("/register",upload.single('image'), async (req: Request, res: Response): Promise<void> => {
     const { name, username, password, email, phone, age, gender }: userTypes = req.body;
@@ -73,7 +73,7 @@ userRegister.post("/register",upload.single('image'), async (req: Request, res: 
             phone,
             gender,
             age,
-            image,
+            image :undefined,
         });
         await getdbUserDetails.save(addNewUser);
 

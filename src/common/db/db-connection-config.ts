@@ -3,6 +3,10 @@ import { DataSource } from "typeorm";
 import dotnev from "dotenv";
 import { smartUser } from "../../users/entities/userDetails";
 import { smartToken } from "../../users/entities/smartUserToken";
+import { smartAdmin } from "../../admin/entities/adminDetails";
+import { smartCategoy } from "../../products/entities/productsCategory";
+import { smartProduct } from "../../products/entities/produstDetails";
+
 dotnev.config();
 
 export const smartConnection = new DataSource({
@@ -14,5 +18,5 @@ export const smartConnection = new DataSource({
     database : process.env.database,
     synchronize: true,
     logging: false,
-    entities : [smartUser, smartToken],
+    entities : [smartUser, smartToken, smartAdmin, smartCategoy, smartProduct],
 })
