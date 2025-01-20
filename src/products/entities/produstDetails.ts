@@ -33,5 +33,9 @@ export class smartProduct{
 
     @Column({type:"varchar"})
     discount!:string;
+
+    @Column({type:"varchar"})
+    image!:string;
+
    
 }

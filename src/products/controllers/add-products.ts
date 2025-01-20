@@ -17,11 +17,18 @@ interface addProductTypes {
     brand: string,
     stockQuanity: number,
     productDescription: string,
-    discount: string
+    discount: string, 
+    product_image:string
 }
+
 addProduct.post("/add-product", productImageUpload.single('porductImage'), async (req: Request, res: Response): Promise<void> => {
     const {username, category, productName, price, brand, stockQuanity, productDescription, discount }: addProductTypes = req.body;
+    const image = req.file ? req.file.filename : null;  // Get the uploaded image filename
 
+    if (!image) {
+        res.status(StatusCodes.BAD_REQUEST).json({ message: 'Image is required.' });
+        return;
+    }
     try {
         const getAdminRepo = smartConnection.getRepository(smartAdmin);
         const getProductRepo = smartConnection.getRepository(smartProduct);
@@ -48,7 +55,8 @@ addProduct.post("/add-product", productImageUpload.single('porductImage'), async
             brand,
             stockQuanity,
             productDescription,
-            discount
+            discount,
+            image 
         });
         
         await getProductRepo.save(newProduct);
