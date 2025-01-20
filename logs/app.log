@@ -365,3 +365,10 @@
 [14:38:42]:Database connected successfully!
 [14:51:58]:smart jhola server is running at 5500
 [14:51:59]:Database connected successfully!
+[17:56:17]:smart jhola server is running at 5500
+[17:56:18]:Database connected successfully!
+[18:00:46]:smart jhola server is running at 5500
+[18:00:46]:Database connected successfully!
+[18:06:54]:add product error : null value in column "productImage" of relation "smartProducts" violates not-null constraint
+[18:09:11]:smart jhola server is running at 5500
+[18:09:11]:Database connected successfully!

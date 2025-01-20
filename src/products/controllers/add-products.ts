@@ -18,10 +18,10 @@ interface addProductTypes {
     stockQuanity: number,
     productDescription: string,
     discount: string, 
-    product_image:string
+    image:string
 }
 
-addProduct.post("/add-product", productImageUpload.single('porductImage'), async (req: Request, res: Response): Promise<void> => {
+addProduct.post("/add-product", productImageUpload.single('image'), async (req: Request, res: Response): Promise<void> => {
     const {username, category, productName, price, brand, stockQuanity, productDescription, discount }: addProductTypes = req.body;
     const image = req.file ? req.file.filename : null;  // Get the uploaded image filename
 

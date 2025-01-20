@@ -20,9 +20,6 @@ export class smartProduct{
     price!:string;
 
     @Column({type:"varchar"})
-    productImage!:string;
-
-    @Column({type:"varchar"})
     brand!:string;
 
     @Column({type:"integer"})
