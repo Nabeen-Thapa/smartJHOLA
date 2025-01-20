@@ -5,6 +5,7 @@ import userRoutes from "./users/routes/user-routes";
 import { smartConnection } from "./common/db/db-connection-config";
 import adminRoutes from "./admin/routes/admin-routes";
 import commonRoutes from "./common/routes/common-router";
+import productRoutes from "./products/routers/product-routes";
 dotenv.config();
 const app = express();
 
@@ -24,6 +25,7 @@ smartConnection.initialize()
 app.use("/", userRoutes);
 app.use("/", adminRoutes);
 app.use("/",commonRoutes);
+app.use("/",productRoutes);
 
 
 const port = process.env.PORT ||5500;
