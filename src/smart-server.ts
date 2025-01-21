@@ -28,7 +28,7 @@ app.use("/",commonRoutes);
 app.use("/",productRoutes);
 
 
-const port = process.env.PORT ||5500;
+const port = process.env.PORT || 5500;
 app.listen(port, ()=>{
     logger.info(`smart jhola server is running at ${port}`);
 });

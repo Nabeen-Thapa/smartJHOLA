@@ -10,14 +10,11 @@ import { smartToken } from "../../users/entities/smartUserToken";
 import { smartAdmin } from "../../admin/entities/adminDetails";
 //import sessionData from "../middleware/session-data-store";
 import session from "express-session";
+import sessionData from "../middleware/session-data-store";
+import { string } from "joi";
 const smartUserLogin : Router = express.Router();
 
-smartUserLogin.use(session({
-    secret: process.env.SESSION_SECRET || 'sesson123', 
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // set to true in production with HTTPS
-  }));
+smartUserLogin.use(sessionData);
 interface loginTypes{
     username:string,
     password:string,
@@ -35,7 +32,7 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
         if(userType === "admin"){
              getdbUserDetails = smartConnection.getRepository(smartAdmin);
         }else{
-             getdbUserDetails = smartConnection.getRepository(smartUser);
+            getdbUserDetails = smartConnection.getRepository(smartUser);
         }
     const isRegisteredUser = await getdbUserDetails.findOne({where : {username},});
 
@@ -47,7 +44,7 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
     if(userType === "admin"){
         isPasswordMatch = password === isRegisteredUser.password;
     }else{
-         isPasswordMatch = await bcrypt.compare(password, isRegisteredUser.password);
+        isPasswordMatch = await bcrypt.compare(password, isRegisteredUser.password);
     }
     if(!isPasswordMatch){
         res.status(StatusCodes.BAD_REQUEST).json({Message : "invalid password"});
@@ -89,10 +86,9 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
     const newUserToken = await getdbToken.create(userTokens);
     await getdbToken.save(newUserToken);
 
-    // Store username and userId in session
-    // req.session.username = username;
-    // req.session.userId = userId;
-
+    //Store username and userId in session
+    req.session.username = username;
+    req.session.userId = userId;
 
     res.json({
         message: "login successfully",

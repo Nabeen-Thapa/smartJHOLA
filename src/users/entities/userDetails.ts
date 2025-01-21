@@ -1,5 +1,6 @@
 import { NullableType } from "joi";
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { addToCart } from "../../products/entities/AddToCart";
 
 
 @Entity("smartUsers")
@@ -35,4 +36,7 @@ export class smartUser {
 
     @Column ({type: "varchar", default: "Deactive"})
     status?:string;
+
+    @OneToMany(()=> addToCart,(cartItems)=>cartItems.user)
+    cartItems!:addToCart;
 }

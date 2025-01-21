@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { ForeignKeyMetadata } from "typeorm/metadata/ForeignKeyMetadata";
 import { smartCategory } from "./productsCategory";
+import { addToCart } from "./AddToCart";
 
 
 @Entity("smartProducts")
@@ -34,5 +35,7 @@ export class smartProduct{
     @Column({type:"varchar"})
     image!:string;
 
+    @OneToMany(()=>addToCart, (cartItem)=>cartItem.product)
+    cartItems!:addToCart;
    
 }

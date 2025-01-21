@@ -29,6 +29,7 @@ addProduct.post("/add-product", productImageUpload.single('image'), async (req: 
         res.status(StatusCodes.BAD_REQUEST).json({ message: 'Image is required.' });
         return;
     }
+    
     try {
         const getAdminRepo = smartConnection.getRepository(smartAdmin);
         const getProductRepo = smartConnection.getRepository(smartProduct);
@@ -45,6 +46,13 @@ addProduct.post("/add-product", productImageUpload.single('image'), async (req: 
         
         if(!productCategory){
             res.status(StatusCodes.NOT_FOUND).json({message: "porduct category in not found"});
+            return;
+        }
+
+        //check the same porduct is exist or not 
+        const isProductExist = await getProductRepo.findOne({where : {productName, brand},});
+        if(isProductExist){
+            res.status(StatusCodes.CONFLICT).json({message : "this product is alrady exists"});
             return;
         }
         //const categoryId = productCategory.products;
@@ -65,9 +73,6 @@ addProduct.post("/add-product", productImageUpload.single('image'), async (req: 
         logger.error("add product error :", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "server error during adding products" });
     }
-
-
-
 });
 
 export default addProduct;
