@@ -393,3 +393,23 @@
 [14:23:24]:Database connected successfully!
 [14:24:06]:smart jhola server is running at 5500
 [14:24:06]:Database connected successfully!
+[23:02:59]:smart jhola server is running at 5500
+[23:02:59]:Error during Data Source initialization: Entity metadata for smartProduct#cartItems was not found. Check if you specified a correct entity object and if it's connected in the connection options.
+[23:04:12]:smart jhola server is running at 5500
+[23:04:12]:Error during Data Source initialization: Unique constraint contains column that is missing in the entity (addToCart): productId
+[23:05:10]:smart jhola server is running at 5500
+[23:05:10]:Error during Data Source initialization: Unique constraint contains column that is missing in the entity (addToCart): User
+[23:05:28]:smart jhola server is running at 5500
+[23:05:28]:Error during Data Source initialization: cannot use column reference in DEFAULT expression
+[23:05:57]:smart jhola server is running at 5500
+[23:05:57]:Error during Data Source initialization: cannot use column reference in DEFAULT expression
+[23:07:26]:smart jhola server is running at 5500
+[23:07:26]:Error during Data Source initialization: cannot use column reference in DEFAULT expression
+[23:08:46]:smart jhola server is running at 5500
+[23:08:46]:Database connected successfully!
+[23:08:51]:add to cart error: Property "0" was not found in "smartProduct". Make sure your query is correct.
+[23:12:17]:smart jhola server is running at 5500
+[23:12:18]:Database connected successfully!
+[23:12:22]:Add to cart error: Cannot read properties of undefined (reading 'tablePath')
+[23:12:48]:smart jhola server is running at 5500
+[23:12:48]:Database connected successfully!

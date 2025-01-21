@@ -4,7 +4,7 @@ import { smartProduct } from "./produstDetails";
 
 
 @Entity("addToCart")
-@Unique(["cartId","productId", "UserId",])
+@Unique(["cartId"])
 
 export class addToCart{
     @PrimaryGeneratedColumn()
@@ -27,9 +27,10 @@ export class addToCart{
     @Column({type : "decimal", precision:10, scale:2})
     total_price!:number;
 
-    @Column({type : "timestamp",default: ()=>"CURRENT_STAMP"})
-    added_at!:Date;
+    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+    added_at!: Date;
+   
 
-    @Column({type : "varchar", default:"not varified"})
+    @Column({type : "varchar", default:"unvarified"})
     status!:string;
 }

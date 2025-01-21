@@ -3,11 +3,20 @@ import { smartConnection } from "../../common/db/db-connection-config";
 import { addToCart } from "../entities/AddToCart";
 import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
+import { smartUser } from "../../users/entities/userDetails";
+import { smartProduct } from "../entities/produstDetails";
 
 const addToProductCart: Router = express.Router();
-
+interface AddToCartTypes {
+    user: smartUser;
+    product: smartProduct;
+    quantity: number;
+    price: number;
+    total_price: number;
+    added_at: Date;
+}
 addToProductCart.post("/add-to-cart", async (req: Request, res: Response): Promise<void> => {
-    const { user, product, qunatity, price, total_price, added_at } = req.body;
+    const { user, product, quantity, price, total_price, added_at }:AddToCartTypes = req.body;
 
     try {
         const getAddToCartRepo = smartConnection.getRepository(addToCart);
@@ -22,11 +31,13 @@ addToProductCart.post("/add-to-cart", async (req: Request, res: Response): Promi
     const newCartItem = await getAddToCartRepo.create({
         user,
         product,
-        qunatity,
+        quantity,
         price,
         total_price,
         added_at,
     });
+    await getAddToCartRepo.save(newCartItem);
+    res.status(StatusCodes.ACCEPTED);
     } catch (error) {
         logger.error("add to cart error:" , error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message :"add to cart error : ", error});

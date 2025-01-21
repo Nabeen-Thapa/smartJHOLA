@@ -87,8 +87,8 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
     await getdbToken.save(newUserToken);
 
     //Store username and userId in session
-    req.session.username = username;
-    req.session.userId = userId;
+    // req.session.username = username;
+    // req.session.userId = userId;
 
     res.json({
         message: "login successfully",
