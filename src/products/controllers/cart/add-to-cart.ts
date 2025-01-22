@@ -1,10 +1,10 @@
 import express, { Request, Response, Router } from "express";
-import { smartConnection } from "../../common/db/db-connection-config";
-import { addToCart } from "../entities/AddToCart";
+import { smartConnection } from "../../../common/db/db-connection-config";
+import { addToCart } from "../../entities/AddToCart";
 import { StatusCodes } from "http-status-codes";
-import logger from "../../common/utils/logger";
-import { smartUser } from "../../users/entities/userDetails";
-import { smartProduct } from "../entities/produstDetails";
+import logger from "../../../common/utils/logger";
+import { smartUser } from "../../../users/entities/userDetails";
+import { smartProduct } from "../../entities/produstDetails";
 
 const addToProductCart: Router = express.Router();
 interface AddToCartTypes {
@@ -20,8 +20,14 @@ addToProductCart.post("/add-to-cart", async (req: Request, res: Response): Promi
 
     try {
         const getAddToCartRepo = smartConnection.getRepository(addToCart);
-    const isProductExistOfSameUser = await getAddToCartRepo.findOne({ where: { user, product }, })
+        const getuserRepo = smartConnection.getRepository(smartUser);
+        //const isUserLoggedIn = getuserRepo.findOne({where : {userId :user}})
+        // if(!isUserLoggedIn){
+        //     res.status(StatusCodes.NOT_FOUND).json({message: "you are not logged in, login first"});
+        //     return;
+        // }
 
+    const isProductExistOfSameUser = await getAddToCartRepo.findOne({ where: { user, product }, })
     if (isProductExistOfSameUser) {
         res.status(StatusCodes.CONFLICT).json({ message: "you already have add this item" });
         return;
