@@ -36,7 +36,7 @@ updateCategory.patch("/update-category", async(req:Request, res:Response):Promis
             categoryName,
             categoryDescription
        }
-       await getCategoryRepo.save(updateCategoryRepo);
+       await getCategoryRepo.update({categoryId},updateCategoryRepo);
     } catch (error) {
         logger.error("update category error :" , error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message : "update category error :" , error});
