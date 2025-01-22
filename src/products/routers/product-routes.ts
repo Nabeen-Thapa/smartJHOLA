@@ -9,6 +9,8 @@ import updateCategory from "../controllers/category/update-category";
 import updateProduct from "../controllers/product/update-product";
 import deleteCategory from "../controllers/category/delete-category";
 import deleteProduct from "../controllers/product/delete-product";
+import acceptCartItem from "../controllers/cart/accept-cart-item";
+import rejectCartItem from "../controllers/cart/reject-cart-item";
 
 const productRoutes:Router = express.Router();
 
@@ -22,6 +24,8 @@ productRoutes.use("/smartjhola",updateProduct);
 productRoutes.use("/smartjhola",updateCategory);
 productRoutes.use("/smartjhola",deleteCategory);
 productRoutes.use("/smartjhola",deleteProduct);
+productRoutes.use("/smartjhola",acceptCartItem);
+productRoutes.use("/smartjhola",rejectCartItem);
 
 
 export default productRoutes;
