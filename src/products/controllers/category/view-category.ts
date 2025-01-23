@@ -1,8 +1,8 @@
 import express, { Request, Response, Router } from "express";
-import { smartConnection } from "../../common/db/db-connection-config";
+import { smartConnection } from "../../../common/db/db-connection-config";
 import { StatusCodes } from "http-status-codes";
-import logger from "../../common/utils/logger";
-import { smartCategory } from "../entities/productsCategory";
+import logger from "../../../common/utils/logger";
+import { smartCategory } from "../../entities/productsCategory";
 
 const viewCategory:Router = express.Router();
 
