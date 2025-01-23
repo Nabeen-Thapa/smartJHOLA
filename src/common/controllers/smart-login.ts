@@ -11,7 +11,6 @@ import { smartAdmin } from "../../admin/entities/adminDetails";
 //import sessionData from "../middleware/session-data-store";
 import session from "express-session";
 import sessionData from "../middleware/session-data-store";
-import { string } from "joi";
 const smartUserLogin : Router = express.Router();
 
 smartUserLogin.use(sessionData);
@@ -51,19 +50,14 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
         return;
     }
 
-    let userId:any;
-    let userEmail :any;
-    if(userType === "admin"){
-         userId = isRegisteredUser.adminId;
-     userEmail = isRegisteredUser.email;
-    }else{
-         userId = isRegisteredUser.userId;
-         userEmail = isRegisteredUser.email;
-    }
+    const userId = userType === "admin" ? isRegisteredUser.adminId : isRegisteredUser.userId;
+    const userEmail = isRegisteredUser.email;
    
     const registeredPwd = isRegisteredUser.password;
     const smartJwtData = {
-        username : username,userId:userId, password:password
+        username,
+        userId, 
+        password
     }
     const accessToken = generateAccessToken(smartJwtData);
     const envRefreshToken :any = process.env.REFRESH_KEY;
@@ -86,9 +80,14 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
     const newUserToken = await getdbToken.create(userTokens);
     await getdbToken.save(newUserToken);
 
-    //Store username and userId in session
-    // req.session.username = username;
-    // req.session.userId = userId;
+   // Store username and userId in session
+   req.session.username = username;
+   req.session.userId = userId;
+   //set cookie
+   res.cookie("username", username, {
+     httpOnly: true,
+     maxAge: 24 * 60 * 60 * 1000, // 1 day
+   });
 
     res.json({
         message: "login successfully",
