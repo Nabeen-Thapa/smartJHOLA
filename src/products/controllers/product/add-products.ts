@@ -1,11 +1,11 @@
 import express, { Request, Response, Router } from "express";
 import multer from "multer";
-import { smartAdmin } from "../../admin/entities/adminDetails";
-import { smartConnection } from "../../common/db/db-connection-config";
+import { smartAdmin } from "../../../admin/entities/adminDetails";
+import { smartConnection } from "../../../common/db/db-connection-config";
 import { StatusCodes } from "http-status-codes";
-import logger from "../../common/utils/logger";
-import { smartProduct } from "../entities/produstDetails";
-import { smartCategory } from "../entities/productsCategory";
+import logger from "../../../common/utils/logger";
+import { smartProduct } from "../../entities/produstDetails";
+import { smartCategory } from "../../entities/productsCategory";
 const addProduct: Router = express.Router();
 const productImageUpload = multer({ dest: '../product_images/' });
 

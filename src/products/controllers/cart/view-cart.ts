@@ -18,12 +18,13 @@ viewCart.get("/view-cart", async(req:Request, res:Response):Promise<void>=>{
             res.status(StatusCodes.NOT_FOUND).json({message : "you are not logged in"});
             return
         }
+        //get cart items
         const cartItems =await getProductRepo.find();
         if (cartItems.length === 0) {
             res.status(StatusCodes.NO_CONTENT).json({message: "No catagories found"});
             return;
         }
-
+        //view items
         res.status(200).json({
             success: true,
             data:cartItems
