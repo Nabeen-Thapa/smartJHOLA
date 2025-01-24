@@ -10,3 +10,5 @@ export const userValidationSchema =joi.object({
     image: joi.string().allow(null, "").optional(),
     status:joi.string().valid("active", "deactive").default("Deactive"),
 })
+
+   

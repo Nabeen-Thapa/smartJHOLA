@@ -31,7 +31,7 @@ viewAdmin.get("/view-admin", async(req:Request, res:Response):Promise<void>=>{
         const adminDetail = await getAdminRepo.find();
         res.status(StatusCodes.OK).json({
             success:true,
-            data :adminDetail;
+            data :adminDetail
         });
 
     } catch (error) {

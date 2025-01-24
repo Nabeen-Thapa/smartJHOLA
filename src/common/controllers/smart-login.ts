@@ -25,7 +25,6 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
         res.status(StatusCodes.BAD_REQUEST).json({message : "username and password required"});
         return;
     }
-    
     try {
         let getdbUserDetails:any;
         if(userType === "admin"){
@@ -81,13 +80,13 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
     await getdbToken.save(newUserToken);
 
    // Store username and userId in session
-   req.session.username = username;
-   req.session.userId = userId;
-   //set cookie
-   res.cookie("username", username, {
-     httpOnly: true,
-     maxAge: 24 * 60 * 60 * 1000, // 1 day
-   });
+//    req.session.username = username;
+//    req.session.userId = userId;
+//    //set cookie
+//    res.cookie("username", username, {
+//      httpOnly: true,
+//      maxAge: 24 * 60 * 60 * 1000, // 1 day
+//    });
 
     res.json({
         message: "login successfully",
