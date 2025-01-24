@@ -3,12 +3,10 @@ import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 import { smartConnection } from "../../common/db/db-connection-config";
 import { smartAdmin } from "../entities/adminDetails";
-import { generateUniquePwd } from "../../common/utils/otp-generator";
-import { sendEmail } from "../../common/utils/email-sender";
 import bcrypt from "bcrypt";
 const forgetPassword:Router = express.Router();
 
-forgetPassword.post("/forgetpwd", async(req:Request, res:Response):Promise<void>=>{
+forgetPassword.post("/changepwd", async(req:Request, res:Response):Promise<void>=>{
     const {email, oldPassword, newPassword, confirmPassword} = req.body;
 
     if(!email || !oldPassword || !newPassword || !confirmPassword){
