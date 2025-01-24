@@ -38,7 +38,6 @@ viewAdmin.get("/view-admin", async(req:Request, res:Response):Promise<void>=>{
         logger.error("error duirng view admin: ", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR);
     }
-
 });
 
 export default viewAdmin;
