@@ -7,12 +7,12 @@ import updateUser from "../controllers/update-user";
 import deleteUser from "../controllers/delete-user";
 const userRoutes:Router = express.Router();
 
-userRoutes.use("/smartjhola", userRegister);
-userRoutes.use("/smartjhola", smartUserLogin);
-userRoutes.use("/smartjhola", smartUserLogout);
-userRoutes.use("/smartjhola", viewSmartUsers);
-userRoutes.use("/smartjhola", updateUser);
-userRoutes.use("/smartjhola", deleteUser);
+userRoutes.use("/user", userRegister);
+userRoutes.use("/user", smartUserLogin);
+userRoutes.use("/user", smartUserLogout);
+userRoutes.use("/user", viewSmartUsers);
+userRoutes.use("/user", updateUser);
+userRoutes.use("/user", deleteUser);
 
 export default userRoutes;
 

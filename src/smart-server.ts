@@ -22,10 +22,10 @@ smartConnection.initialize()
 
 
   //routes
-app.use("/", userRoutes);
-app.use("/", adminRoutes);
-app.use("/",commonRoutes);
-app.use("/",productRoutes);
+app.use("/smartjhola", userRoutes);
+app.use("/smartjhola", adminRoutes);
+app.use("/smartjhola",commonRoutes);
+app.use("/smartjhola",productRoutes);
 
 
 const port = process.env.PORT || 5500;

@@ -23,6 +23,6 @@ export class smartAdmin {
     @Column({type: "bigint"})
     phone!:string;
 
-    @Column ({type: "varchar", default: "Deactive"})
+    @Column ({type: "varchar", default: "active"})
     status?:string;
 }

@@ -6,7 +6,7 @@ import logger from "../../common/utils/logger";
 
 const viewSmartUsers:Router = express.Router();
 
-viewSmartUsers.get('/viewUsers', async(req:Request, res:Response):Promise<void>=>{
+viewSmartUsers.get('/view', async(req:Request, res:Response):Promise<void>=>{
     const {username, password} =req.body;
     if(!username || !password){
         res.status(StatusCodes.BAD_REQUEST).json({message : "enter username and password"});

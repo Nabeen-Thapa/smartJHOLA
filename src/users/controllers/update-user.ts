@@ -9,7 +9,7 @@ import { userValidationSchema } from "../utils/user-register-validate";
 
 const updateUser :Router = express.Router();
 
-updateUser.patch("/update-user", async(req:Request, res:Response):Promise<void>=>{
+updateUser.patch("/update", async(req:Request, res:Response):Promise<void>=>{
     const { name, username, password, email, phone, age, gender } = req.body;
     const image = req.file ? req.file.filename : null;  // Get the uploaded image filename
 

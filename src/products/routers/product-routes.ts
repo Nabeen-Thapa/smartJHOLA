@@ -14,18 +14,18 @@ import rejectCartItem from "../controllers/cart/reject-cart-item";
 
 const productRoutes:Router = express.Router();
 
-productRoutes.use("/smartjhola",addCategory);
-productRoutes.use("/smartjhola",addProduct);
-productRoutes.use("/smartjhola",viewCategory);
-productRoutes.use("/smartjhola",viewProduct);
-productRoutes.use("/smartjhola",addToProductCart);
-productRoutes.use("/smartjhola",viewCart);
-productRoutes.use("/smartjhola",updateProduct);
-productRoutes.use("/smartjhola",updateCategory);
-productRoutes.use("/smartjhola",deleteCategory);
-productRoutes.use("/smartjhola",deleteProduct);
-productRoutes.use("/smartjhola",acceptCartItem);
-productRoutes.use("/smartjhola",rejectCartItem);
+productRoutes.use("/product",addCategory);
+productRoutes.use("/product",addProduct);
+productRoutes.use("/product",viewCategory);
+productRoutes.use("/product",viewProduct);
+productRoutes.use("/product",addToProductCart);
+productRoutes.use("/product",viewCart);
+productRoutes.use("/product",updateProduct);
+productRoutes.use("/product",updateCategory);
+productRoutes.use("/product",deleteCategory);
+productRoutes.use("/product",deleteProduct);
+productRoutes.use("/product",acceptCartItem);
+productRoutes.use("/product",rejectCartItem);
 
 
 export default productRoutes;

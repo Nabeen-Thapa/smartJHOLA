@@ -3,6 +3,6 @@ import smartUserLogin from "../controllers/smart-login";
 
 const commonRoutes : Router = express.Router();
 
-commonRoutes.use("/", smartUserLogin);
+commonRoutes.use("/common", smartUserLogin);
 
 export default commonRoutes;
