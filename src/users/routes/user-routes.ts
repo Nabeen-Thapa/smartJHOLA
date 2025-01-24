@@ -1,8 +1,8 @@
 import express, {Router} from "express";
 import userRegister from "../controllers/user-register";
 import smartUserLogin from "../../common/controllers/smart-login";
-import smartUserLogout from "../controllers/smart-logout";
-import viewSmartUsers from "../../admin/controllers/view-users";
+import smartUserLogout from "../../common/controllers/smart-logout";
+import viewSmartUsers from "../controllers/view-users";
 import updateUser from "../controllers/update-user";
 import deleteUser from "../controllers/delete-user";
 const userRoutes:Router = express.Router();

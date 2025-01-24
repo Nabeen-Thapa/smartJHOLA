@@ -1,6 +1,6 @@
 import express, { Request, Response, Router } from "express";
 import { smartConnection } from "../../common/db/db-connection-config";
-import { smartUser } from "../../users/entities/userDetails";
+import { smartUser } from "../entities/userDetails";
 import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 

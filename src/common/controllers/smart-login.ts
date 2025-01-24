@@ -77,7 +77,7 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
         res.status(StatusCodes.CONFLICT).json({Message : "user is already logged in"});
         return;
     }
-    const newUserToken = await getdbToken.create(userTokens);
+    const newUserToken = getdbToken.create(userTokens);
     await getdbToken.save(newUserToken);
 
    // Store username and userId in session
