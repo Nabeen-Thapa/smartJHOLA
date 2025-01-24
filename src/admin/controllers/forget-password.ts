@@ -3,7 +3,6 @@ import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 import { smartConnection } from "../../common/db/db-connection-config";
 import { smartAdmin } from "../entities/adminDetails";
-import { getMaxListeners } from "events";
 import { generateUniquePwd } from "../../common/utils/otp-generator";
 import { sendEmail } from "../../common/utils/email-sender";
 import bcrypt from "bcrypt";
