@@ -3,6 +3,9 @@ import { smartConnection } from "../../common/db/db-connection-config";
 import { smartUser } from "../entities/userDetails";
 import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
+import { smartAdmin } from "../../admin/entities/adminDetails";
+import { isLoggedIn } from "../../common/middleware/check-login";
+import { isRegister } from "../../common/middleware/check-registration";
 
 const viewSmartUsers:Router = express.Router();
 
@@ -13,12 +16,17 @@ viewSmartUsers.get('/view', async(req:Request, res:Response):Promise<void>=>{
         return;
     } 
 
-    if(username !== "admin" && password !=="admin12"){
+   
+    try {
+       const getAdminRepo = smartConnection.getRepository(smartAdmin);
+       isRegister(username, res);
+       isLoggedIn(username, res);
+
+       const admin = await getAdminRepo.findOne({where : {username, password}})
+       if(username !== admin?.username && password !==admin?.password){
         res.status(StatusCodes.BAD_REQUEST).json({message :"username and password are not match"});
         return;
     }
-    try {
-        
     //accessing users form database
     const userRepositery = smartConnection.getRepository(smartUser);
     const users =await userRepositery.find();
@@ -38,5 +46,4 @@ viewSmartUsers.get('/view', async(req:Request, res:Response):Promise<void>=>{
     }
 
 });
-
 export default viewSmartUsers;
