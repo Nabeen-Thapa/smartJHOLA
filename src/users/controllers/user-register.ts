@@ -55,6 +55,7 @@ userRegister.post("/register",upload.single('image'), async (req: Request, res: 
             res.status(StatusCodes.BAD_REQUEST).json({ message: "phone number is not valid" });
             return;
         }
+        
         const getdbUserDetails = smartConnection.getRepository(smartUser);
         const isExistUser = await getdbUserDetails.findOne({ where: { email, phone, username }, });
         if (isExistUser) {

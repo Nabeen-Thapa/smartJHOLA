@@ -5,6 +5,7 @@ import { StatusCodes } from "http-status-codes";
 import logger from "../utils/logger";
 
 
+
 const smartUserLogout :Router = express.Router();
 
 smartUserLogout.post("/logout", async(req:Request, res:Response):Promise<void>=>{

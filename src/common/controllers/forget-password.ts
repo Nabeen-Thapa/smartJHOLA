@@ -2,10 +2,10 @@ import express, { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 import { smartConnection } from "../../common/db/db-connection-config";
-import { smartAdmin } from "../entities/adminDetails";
 import { generateUniquePwd } from "../../common/utils/otp-generator";
 import { sendEmail } from "../../common/utils/email-sender";
 import bcrypt from "bcrypt";
+import { smartAdmin } from "../../admin/entities/adminDetails";
 const forgetPassword:Router = express.Router();
 
 forgetPassword.post("/forgetpwd", async(req:Request, res:Response):Promise<void>=>{
@@ -61,4 +61,6 @@ forgetPassword.post("/forgetpwd", async(req:Request, res:Response):Promise<void>
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: "forget password"});
     }
 
-})
+});
+
+export default forgetPassword;

@@ -11,6 +11,8 @@ import { smartAdmin } from "../../admin/entities/adminDetails";
 //import sessionData from "../middleware/session-data-store";
 import session from "express-session";
 import sessionData from "../middleware/session-data-store";
+import { isRegister } from "../middleware/check-registration";
+import { isLoggedIn } from "../middleware/check-login";
 const smartUserLogin : Router = express.Router();
 
 smartUserLogin.use(sessionData);
@@ -26,6 +28,7 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
         return;
     }
     try {
+        
         let getdbUserDetails:any;
         if(userType === "admin"){
              getdbUserDetails = smartConnection.getRepository(smartAdmin);
@@ -33,11 +36,11 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
             getdbUserDetails = smartConnection.getRepository(smartUser);
         }
     const isRegisteredUser = await getdbUserDetails.findOne({where : {username},});
-
-    if(!isRegisteredUser){
-        res.status(StatusCodes.CONFLICT).json({message : "invalid username or password"});
-        return;
-    }
+    // const isRegisteredUser = isRegister(username, res);
+    // if(!isRegisteredUser){
+    //     res.status(StatusCodes.CONFLICT).json({message : "invalid username or password"});
+    //     return;
+    // }
     let isPasswordMatch: boolean;
     if(userType === "admin"){
         isPasswordMatch = password === isRegisteredUser.password;
@@ -48,10 +51,12 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
         res.status(StatusCodes.BAD_REQUEST).json({Message : "invalid password"});
         return;
     }
-
+   
     const userId = userType === "admin" ? isRegisteredUser.adminId : isRegisteredUser.userId;
     const userEmail = isRegisteredUser.email;
-   
+    //check logged in
+    isLoggedIn(username, res);
+    
     const registeredPwd = isRegisteredUser.password;
     const smartJwtData = {
         username,

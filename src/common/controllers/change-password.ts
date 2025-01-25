@@ -2,11 +2,12 @@ import express, { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 import { smartConnection } from "../../common/db/db-connection-config";
-import { smartAdmin } from "../entities/adminDetails";
 import bcrypt from "bcrypt";
-const forgetPassword:Router = express.Router();
+import { isRegister } from "../../common/middleware/check-registration";
+import { smartAdmin } from "../../admin/entities/adminDetails";
+const changePassword:Router = express.Router();
 
-forgetPassword.post("/changepwd", async(req:Request, res:Response):Promise<void>=>{
+changePassword.post("/changepwd", async(req:Request, res:Response):Promise<void>=>{
     const {email, oldPassword, newPassword, confirmPassword} = req.body;
 
     if(!email || !oldPassword || !newPassword || !confirmPassword){
@@ -37,11 +38,13 @@ forgetPassword.post("/changepwd", async(req:Request, res:Response):Promise<void>
 
 
 
-        res.status(StatusCodes.OK).json({ message: "successfully forget password check your gmail for password and login to continue" });
+        res.status(StatusCodes.OK).json({ message: "successfully change password check your gmail for password and login to continue" });
         return;
     } catch (error) {
-        logger.error("forget password error : ", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: "forget password"});
+        logger.error("change password error : ", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: "change password"});
     }
 
 })
+
+export default changePassword;
