@@ -417,3 +417,19 @@
 [23:02:00]:Database connected successfully!
 [23:05:42]:smart jhola server is running at 5500
 [23:05:43]:Database connected successfully!
+[17:32:13]:smart jhola server is running at 5500
+[17:32:13]:Database connected successfully!
+[17:32:31]:error duirng login chacking:  Cannot set headers after they are sent to the client
+[17:32:31]:error duirng register chacking:  Cannot set headers after they are sent to the client
+[17:32:45]:error duirng login chacking:  Cannot set headers after they are sent to the client
+[17:32:45]:error duirng view admin:  Cannot set headers after they are sent to the client
+[17:32:58]:error duirng view admin:  Cannot set headers after they are sent to the client
+[17:32:58]:error duirng register chacking:  Cannot set headers after they are sent to the client
+[17:33:27]:smart jhola server is running at 5500
+[17:33:27]:Database connected successfully!
+[17:34:02]:smart jhola server is running at 5500
+[17:34:02]:Database connected successfully!
+[17:34:15]:smart jhola server is running at 5500
+[17:34:15]:Database connected successfully!
+[17:35:17]:smart jhola server is running at 5500
+[17:35:17]:Database connected successfully!

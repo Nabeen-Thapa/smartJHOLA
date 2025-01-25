@@ -3,7 +3,8 @@ import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 import { smartConnection } from "../../common/db/db-connection-config";
 import { smartAdmin } from "../entities/adminDetails";
-import { smartToken } from "../../users/entities/smartUserToken";
+import { isLoggedIn } from "../../common/middleware/check-login";
+import { isRegister } from "../../common/middleware/check-registration";
 
 const viewAdmin: Router = express.Router();
 
@@ -15,19 +16,11 @@ viewAdmin.get("/view-admin", async(req:Request, res:Response):Promise<void>=>{
         return;
     }
     try {
-        const getAdminRepo = smartConnection.getRepository(smartAdmin);
-        const getTokenRepo = smartConnection.getRepository(smartToken);
-        const isAdminRegistered = await getAdminRepo.findOne({where : {username}});
-        if(!isAdminRegistered){
-            res.status(StatusCodes.NOT_FOUND);
-            return;
-        }
+         const getAdminRepo = smartConnection.getRepository(smartAdmin);
+       
+        isRegister(username, res); //check register or not
+        isLoggedIn(username, res); //check logged or not
 
-        const isAdminLoggedIn = await getTokenRepo.find({where: {username}});
-        if(!isAdminLoggedIn){
-            res.status(StatusCodes.NOT_FOUND).json({Message: "you are not logged in"});
-            return;
-        }
         const adminDetail = await getAdminRepo.find();
         res.status(StatusCodes.OK).json({
             success:true,
