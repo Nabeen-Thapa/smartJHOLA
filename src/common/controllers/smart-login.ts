@@ -13,6 +13,8 @@ import session from "express-session";
 import sessionData from "../middleware/session-data-store";
 import { isRegister } from "../middleware/check-registration";
 import { isLoggedIn } from "../middleware/check-login";
+import { uploadLoggedInDataInRedis } from "../utils/update-data-in-redis";
+import redisClient from "../db/redisClient";
 const smartUserLogin : Router = express.Router();
 
 smartUserLogin.use(sessionData);
@@ -29,6 +31,14 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
     }
     try {
         
+        const isUserLoggedInRedis = await uploadLoggedInDataInRedis(username);
+        if (isUserLoggedInRedis) {
+            res.status(StatusCodes.BAD_REQUEST).json({ message: "This user is not logged in." });
+            return;
+        }
+        isLoggedIn(username, res);
+        await isRegister(username, res);
+        
         let getdbUserDetails:any;
         if(userType === "admin"){
              getdbUserDetails = smartConnection.getRepository(smartAdmin);
@@ -42,10 +52,12 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
     //     return;
     // }
     let isPasswordMatch: boolean;
+    let id:number;
     if(userType === "admin"){
         isPasswordMatch = password === isRegisteredUser.password;
     }else{
         isPasswordMatch = await bcrypt.compare(password, isRegisteredUser.password);
+        
     }
     if(!isPasswordMatch){
         res.status(StatusCodes.BAD_REQUEST).json({Message : "invalid password"});
@@ -74,6 +86,15 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
         accessToken: accessToken,
         refreshToken: refreshToken
     }
+    //store user data in redis
+    await redisClient.set(`username:${username}`, JSON.stringify({
+        userId: userId,
+        userEmail: userEmail,
+        username: username,
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+    }), { EX: 60 * 60 * 24 * 10 });
+
 
     const getdbToken = smartConnection.getRepository(smartToken);
     const isUserLoggedIn = await getdbToken.findOne({where: {userId, username}});

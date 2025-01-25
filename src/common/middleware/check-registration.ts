@@ -10,10 +10,10 @@ export const isRegister = async (username: string, res: Response): Promise<void>
         const getAdminRepo = smartConnection.getRepository(smartAdmin);
         const getUserRepo = smartConnection.getRepository(smartUser);
 
-        const isAdminExist = await getAdminRepo.findOne({ where: { username } });
-        if (!isAdminExist) {
-            const isUserExist = await getUserRepo.findOne({ where: { username } });
-            if (!isUserExist) {
+        let isExist = await getAdminRepo.findOne({ where: { username } });
+        if (!isExist) {
+            let isExist = await getUserRepo.findOne({ where: { username } });
+            if (!isExist) {
                 res.status(StatusCodes.NOT_FOUND).json({message :"you are not registered"});;
                 return;
             }
@@ -22,5 +22,6 @@ export const isRegister = async (username: string, res: Response): Promise<void>
     } catch (error) {
         logger.error("error duirng register chacking: ", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+        return;
     }
 }

@@ -3,17 +3,7 @@
 -pnpm add express pg typeorm reflect-metadata bcrypt jsonwebtoken cors dotenv
 -pnpm add -D typescript ts-node nodemon @types/node @types/express @types/bcrypt @types/jsonwebtoken @types/cors
 -pnpm exec tsc --init
-//for folders
--mkdir -p src/{controllers,entities,routes,services,database,utils}
+-pnpm add redis
+-pnpm add -D @types/redis
 
-
-register
-{
-  "name":"nabin",
-  "username":"nabin",
-  "email":"nabeen2058@gmail.com",
-  "phone":4576543213,
-  "gender":"Male",
-  "age":30,
-  "image":"img12"
-}
+-mkdir -p src/{admin,user,products,common}
