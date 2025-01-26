@@ -6,30 +6,32 @@ import { generateUniquePwd } from "../../common/utils/otp-generator";
 import { sendEmail } from "../../common/utils/email-sender";
 import bcrypt from "bcrypt";
 import { smartAdmin } from "../../admin/entities/adminDetails";
-const forgetPassword:Router = express.Router();
+import { findAndDeleteKey } from "../utils/delete-from-redis";
+import { smartToken } from "../../users/entities/smartUserToken";
+const forgetPassword: Router = express.Router();
 
-forgetPassword.post("/forgetpwd", async(req:Request, res:Response):Promise<void>=>{
-    const {email} = req.body;
+forgetPassword.post("/forgetpwd", async (req: Request, res: Response): Promise<void> => {
+    const { email } = req.body;
 
-    if(!email){
-        res.status(StatusCodes.NO_CONTENT).json({message :"enter email"});
+    if (!email) {
+        res.status(StatusCodes.NO_CONTENT).json({ message: "enter email" });
         return;
     }
     try {
         const getAdminRepo = smartConnection.getRepository(smartAdmin);
-        const isEmailExist = await getAdminRepo.findOne({where : {email}});
-        if(!isEmailExist){
-            res.status(StatusCodes.NOT_FOUND).json({message :"emai is not exist"});
+        const isEmailExist = await getAdminRepo.findOne({ where: { email } });
+        if (!isEmailExist) {
+            res.status(StatusCodes.NOT_FOUND).json({ message: "emai is not exist" });
             return;
         }
         const username = isEmailExist.username;
 
-        const otp =await generateUniquePwd();
+        const otp = await generateUniquePwd();
         try {
             await sendEmail({
-                to:email,
-                subject:"Password Reset",
-            text: `The password for your Typescript API account.\n\n
+                to: email,
+                subject: "Password Reset",
+                text: `The password for your Typescript API account.\n\n
             Your username: ${username}\n
             Your OTP is: ${otp}\n\n
             Please use this OTP to log in or reset your password.\n`,
@@ -39,26 +41,30 @@ forgetPassword.post("/forgetpwd", async(req:Request, res:Response):Promise<void>
                 // Check if the error is an instance of Error
                 logger.error("Email sending failed:", error.message);
                 res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
-              } else {
+            } else {
                 // Handle non-Error cases (unlikely, but good practice)
                 logger.error("Unexpected email sending error:", error);
                 res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Unexpected error occurred while sending email." });
-              }
-              return;
+            }
+            return;
         }
         const hashedOtp = await bcrypt.hash(otp, 10);
         await getAdminRepo.update({ email }, { password: hashedOtp });
 
         //delete form readis
-
-
-
+        const deleteRedisKey = await findAndDeleteKey(username);
+        const getTokenTable = await smartConnection.getRepository(smartToken);
+        const isLoggedIn = await getTokenTable.findOne({ where: { username } });
+        if (isLoggedIn) {
+            const userId = isLoggedIn.userId;
+            await getTokenTable.delete({ userId });
+        }
 
         res.status(StatusCodes.OK).json({ message: "successfully forget password check your gmail for password and login to continue" });
         return;
     } catch (error) {
         logger.error("forget password error : ", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: "forget password"});
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "forget password" });
     }
 
 });
