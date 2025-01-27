@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.smartProduct = void 0;
 const typeorm_1 = require("typeorm");
 const productsCategory_1 = require("./productsCategory");
+const AddToCart_1 = require("./AddToCart");
 let smartProduct = class smartProduct {
 };
 exports.smartProduct = smartProduct;
@@ -51,6 +52,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: "varchar" }),
     __metadata("design:type", String)
 ], smartProduct.prototype, "image", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => AddToCart_1.addToCart, (cartItem) => cartItem.product),
+    __metadata("design:type", AddToCart_1.addToCart)
+], smartProduct.prototype, "cartItems", void 0);
 exports.smartProduct = smartProduct = __decorate([
     (0, typeorm_1.Entity)("smartProducts"),
     (0, typeorm_1.Unique)(["productId"])

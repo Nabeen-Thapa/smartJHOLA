@@ -1,8 +1,10 @@
-import "express-session";
+import { Session } from 'express-session';
 
-declare module "express-session" {
-  interface SessionData {
-    username?: string;
-    userId?: string;
+declare global {
+  namespace Express {
+    interface Session {
+      username?: string;
+      userId?: number;
+    }
   }
 }

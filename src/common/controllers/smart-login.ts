@@ -2,35 +2,35 @@ import express, { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import { smartConnection } from "../db/db-connection-config";
 import { smartUser } from "../../users/entities/userDetails";
-import {generateAccessToken} from "../../users/utils/accressTokenGenerator"
+
+import { generateAccessToken } from "../../users/utils/accressTokenGenerator"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import logger from "../utils/logger";
 import { smartToken } from "../../users/entities/smartUserToken";
 import { smartAdmin } from "../../admin/entities/adminDetails";
+import  { Session } from "express-session";
 //import sessionData from "../middleware/session-data-store";
-import session from "express-session";
-import sessionData from "../middleware/session-data-store";
 import { isRegister } from "../middleware/check-registration";
 import { isLoggedIn } from "../middleware/check-login";
 import { uploadLoggedInDataInRedis } from "../utils/update-data-in-redis";
 import redisClient from "../db/redisClient";
-const smartUserLogin : Router = express.Router();
+const smartUserLogin: Router = express.Router();
 
-smartUserLogin.use(sessionData);
-interface loginTypes{
-    username:string,
-    password:string,
-    userType:string
+//smartUserLogin.use(sessionData);
+interface loginTypes {
+    username: string,
+    password: string,
+    userType: string
 }
-smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
-    const {username, password, userType}:loginTypes = req.body; 
-    if(!username || !password || !userType){
-        res.status(StatusCodes.BAD_REQUEST).json({message : "username and password required"});
+smartUserLogin.post("/login", async (req: Request, res: Response): Promise<void> => {
+    const { username, password, userType }: loginTypes = req.body;
+    if (!username || !password || !userType) {
+        res.status(StatusCodes.BAD_REQUEST).json({ message: "username and password required" });
         return;
     }
     try {
-        
+
         const isUserLoggedInRedis = await uploadLoggedInDataInRedis(username);
         if (isUserLoggedInRedis) {
             res.status(StatusCodes.BAD_REQUEST).json({ message: "This user is not logged in." });
@@ -38,88 +38,83 @@ smartUserLogin.post("/login", async(req: Request, res:Response):Promise<void>=>{
         }
         isLoggedIn(username, res);
         await isRegister(username, res);
-        
-        let getdbUserDetails:any;
-        if(userType === "admin"){
-             getdbUserDetails = smartConnection.getRepository(smartAdmin);
-        }else{
+
+        let getdbUserDetails: any;
+        if (userType === "admin") {
+            getdbUserDetails = smartConnection.getRepository(smartAdmin);
+        } else {
             getdbUserDetails = smartConnection.getRepository(smartUser);
         }
-    const isRegisteredUser = await getdbUserDetails.findOne({where : {username},});
-    // const isRegisteredUser = isRegister(username, res);
-    // if(!isRegisteredUser){
-    //     res.status(StatusCodes.CONFLICT).json({message : "invalid username or password"});
-    //     return;
-    // }
-    let isPasswordMatch: boolean;
-    let id:number;
-    if(userType === "admin"){
-        isPasswordMatch = password === isRegisteredUser.password;
-    }else{
-        isPasswordMatch = await bcrypt.compare(password, isRegisteredUser.password);
+        const isRegisteredUser = await getdbUserDetails.findOne({ where: { username }, });
         
-    }
-    if(!isPasswordMatch){
-        res.status(StatusCodes.BAD_REQUEST).json({Message : "invalid password"});
-        return;
-    }
-   
-    const userId = userType === "admin" ? isRegisteredUser.adminId : isRegisteredUser.userId;
-    const userEmail = isRegisteredUser.email;
-    //check logged in
-    isLoggedIn(username, res);
+        let isPasswordMatch: boolean;
+        let id: number;
+        if (userType === "admin") {
+            isPasswordMatch = password === isRegisteredUser.password;
+        } else {
+            isPasswordMatch = await bcrypt.compare(password, isRegisteredUser.password);
+
+        }
+        if (!isPasswordMatch) {
+            res.status(StatusCodes.BAD_REQUEST).json({ Message: "invalid password" });
+            return;
+        }
+
+        const userId = userType === "admin" ? isRegisteredUser.adminId : isRegisteredUser.userId;
+        const userEmail = isRegisteredUser.email;
+        //check logged in
+        isLoggedIn(username, res);
+
+        const registeredPwd = isRegisteredUser.password;
+        const smartJwtData = {
+            username,
+            userId,
+            password
+        }
+        const accessToken = generateAccessToken(smartJwtData);
+        const envRefreshToken: any = process.env.REFRESH_KEY;
+        const refreshToken = jwt.sign(smartJwtData, envRefreshToken);
+        const userTokens = {
+            userId: userId,
+            username: username,
+            password: registeredPwd,
+            userEmail: userEmail,
+            accessToken: accessToken,
+            refreshToken: refreshToken
+        }
+        //store user data in redis
+        await redisClient.set(`username:${username}`, JSON.stringify({
+            userId: userId,
+            userEmail: userEmail,
+            username: username,
+            accessToken: accessToken,
+            refreshToken: refreshToken,
+        }), { EX: 60 * 60 * 24 * 10 });
+
+
+        const getdbToken = smartConnection.getRepository(smartToken);
+        const isUserLoggedIn = await getdbToken.findOne({ where: { userId, username } });
+        if (isUserLoggedIn) {
+            res.status(StatusCodes.CONFLICT).json({ Message: "user is already logged in" });
+            return;
+        }
+        const newUserToken = getdbToken.create(userTokens);
+        await getdbToken.save(newUserToken);
+
+        res.json({
+            message: "login successfully",
+            name: username,
+            accessToken: accessToken,
+            refreshToken: refreshToken
+        });
+
+        // const session = req.session as Session;
+        // session.username = username;
+        // session.userId = userId;
     
-    const registeredPwd = isRegisteredUser.password;
-    const smartJwtData = {
-        username,
-        userId, 
-        password
-    }
-    const accessToken = generateAccessToken(smartJwtData);
-    const envRefreshToken :any = process.env.REFRESH_KEY;
-    const refreshToken = jwt.sign(smartJwtData, envRefreshToken);
-    const userTokens ={
-        userId: userId,
-        username:username,
-        password:registeredPwd,
-        userEmail: userEmail,
-        accessToken: accessToken,
-        refreshToken: refreshToken
-    }
-    //store user data in redis
-    await redisClient.set(`username:${username}`, JSON.stringify({
-        userId: userId,
-        userEmail: userEmail,
-        username: username,
-        accessToken: accessToken,
-        refreshToken: refreshToken,
-    }), { EX: 60 * 60 * 24 * 10 });
-
-
-    const getdbToken = smartConnection.getRepository(smartToken);
-    const isUserLoggedIn = await getdbToken.findOne({where: {userId, username}});
-    if(isUserLoggedIn){
-        res.status(StatusCodes.CONFLICT).json({Message : "user is already logged in"});
-        return;
-    }
-    const newUserToken = getdbToken.create(userTokens);
-    await getdbToken.save(newUserToken);
-
-   // Store username and userId in session
-//    req.session.username = username;
-//    req.session.userId = userId;
-//    //set cookie
-//    res.cookie("username", username, {
-//      httpOnly: true,
-//      maxAge: 24 * 60 * 60 * 1000, // 1 day
-//    });
-
-    res.json({
-        message: "login successfully",
-        name : username,
-        accessToken: accessToken,
-        refreshToken: refreshToken
-    });
+        // Store session data in cookies
+        res.cookie('username', username, { httpOnly: true, maxAge: 3600000 });
+        res.cookie('userId', userId, { httpOnly: true, maxAge: 3600000 });
     } catch (error) {
         logger.error("login error : ", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "An error occurred during login." });

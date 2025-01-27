@@ -10,15 +10,17 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const isProduction = process.env.NODE_ENV === "production";
 const sessionData = express_1.default.Router();
+// Middleware for parsing cookies
 sessionData.use((0, cookie_parser_1.default)());
+// Middleware for managing sessions
 sessionData.use((0, express_session_1.default)({
-    secret: process.env.SESSION_SECRET || 'sesson123',
-    resave: false,
-    saveUninitialized: true,
+    secret: process.env.SESSION_SECRET || "session123", // Use a strong, unique secret in production
+    resave: false, // Avoid unnecessary session saving
+    saveUninitialized: false, // Don't save empty sessions
     cookie: {
-        secure: isProduction, // Set to true in production (requires HTTPS)
-        httpOnly: true, // Prevent access from JavaScript
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        secure: isProduction, // Use HTTPS in production
+        httpOnly: true, // Prevent JavaScript access
+        maxAge: 24 * 60 * 60 * 1000, // 1 day expiration
     },
 }));
 exports.default = sessionData;

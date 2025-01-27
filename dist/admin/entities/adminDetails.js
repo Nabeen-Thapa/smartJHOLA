@@ -39,7 +39,7 @@ __decorate([
     __metadata("design:type", String)
 ], smartAdmin.prototype, "phone", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", default: "Deactive" }),
+    (0, typeorm_1.Column)({ type: "varchar", default: "active" }),
     __metadata("design:type", String)
 ], smartAdmin.prototype, "status", void 0);
 exports.smartAdmin = smartAdmin = __decorate([

@@ -11,6 +11,7 @@ import deleteCategory from "../controllers/category/delete-category";
 import deleteProduct from "../controllers/product/delete-product";
 import acceptCartItem from "../controllers/cart/accept-cart-item";
 import rejectCartItem from "../controllers/cart/reject-cart-item";
+import payment from "../controllers/payment/create-payment";
 
 const productRoutes:Router = express.Router();
 
@@ -26,6 +27,7 @@ productRoutes.use("/product",deleteCategory);
 productRoutes.use("/product",deleteProduct);
 productRoutes.use("/product",acceptCartItem);
 productRoutes.use("/product",rejectCartItem);
+productRoutes.use("/product",payment);
 
 
 export default productRoutes;

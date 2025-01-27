@@ -1,4 +1,4 @@
-import { NullableType } from "joi";
+
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { addToCart } from "../../products/entities/AddToCart";
 

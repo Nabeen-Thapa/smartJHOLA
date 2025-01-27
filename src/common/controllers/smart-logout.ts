@@ -21,6 +21,16 @@ smartUserLogout.post("/logout", async(req:Request, res:Response):Promise<void>=>
         res.status(StatusCodes.NOT_FOUND).json({message : "you are not logged in"});
         return;
     }
+
+    //destroy from session
+    req.session.destroy((err) => {
+        if (err) {
+          return res.status(500).send('Could not log out');
+        }
+        res.clearCookie('username');  // Clear the cookie
+        res.send('Logged out successfully');
+      });
+
     const userId = isTokenExists.userId;
     await getdbToken.delete(userId);
     res.status(StatusCodes.NO_CONTENT).json({message : "delete success"})

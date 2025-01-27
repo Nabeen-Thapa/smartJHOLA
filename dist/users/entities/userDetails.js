@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.smartUser = void 0;
 const typeorm_1 = require("typeorm");
+const AddToCart_1 = require("../../products/entities/AddToCart");
 let smartUser = class smartUser {
 };
 exports.smartUser = smartUser;
@@ -54,6 +55,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: "varchar", default: "Deactive" }),
     __metadata("design:type", String)
 ], smartUser.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => AddToCart_1.addToCart, (cartItems) => cartItems.user),
+    __metadata("design:type", AddToCart_1.addToCart)
+], smartUser.prototype, "cartItems", void 0);
 exports.smartUser = smartUser = __decorate([
     (0, typeorm_1.Entity)("smartUsers"),
     (0, typeorm_1.Unique)(["email", "username", "phone"])

@@ -11,6 +11,7 @@ const smartUserToken_1 = require("../../users/entities/smartUserToken");
 const adminDetails_1 = require("../../admin/entities/adminDetails");
 const productsCategory_1 = require("../../products/entities/productsCategory");
 const produstDetails_1 = require("../../products/entities/produstDetails");
+const AddToCart_1 = require("../../products/entities/AddToCart");
 dotenv_1.default.config();
 exports.smartConnection = new typeorm_1.DataSource({
     type: "postgres",
@@ -21,5 +22,5 @@ exports.smartConnection = new typeorm_1.DataSource({
     database: process.env.database,
     synchronize: true,
     logging: false,
-    entities: [userDetails_1.smartUser, smartUserToken_1.smartToken, adminDetails_1.smartAdmin, productsCategory_1.smartCategory, produstDetails_1.smartProduct],
+    entities: [userDetails_1.smartUser, smartUserToken_1.smartToken, adminDetails_1.smartAdmin, productsCategory_1.smartCategory, produstDetails_1.smartProduct, AddToCart_1.addToCart],
 });
