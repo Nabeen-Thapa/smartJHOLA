@@ -8,7 +8,7 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/register" element={<Registration />} />
-        <Route path="/addProduct" element={<AddProductForm />} />  {/* Corrected component name */}
+        <Route path="/addProduct" element={<AddProductForm />} />
       </Routes>
     </Router>
   );
