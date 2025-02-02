@@ -8,7 +8,6 @@ export const generateUniquePwd = async ():Promise<string>=>{
 
     //chekc in db
     const smartUserRepo = smartConnection.getRepository(smartUser);
-
     do{
         password = authenticator.generateSecret().slice(0,6); //for 6 characater
         userWithSameOtp = await smartUserRepo.findOne({
