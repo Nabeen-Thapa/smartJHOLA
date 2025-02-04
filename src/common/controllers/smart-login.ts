@@ -33,11 +33,11 @@ smartUserLogin.post("/login", async (req: Request, res: Response): Promise<void>
     try {
         const isUserLoggedInRedis = await uploadLoggedInDataInRedis(username);
         if (isUserLoggedInRedis) {
-            res.status(StatusCodes.BAD_REQUEST).json({ message: "This user is already logged in." });
+            res.status(StatusCodes.BAD_REQUEST).json({ message: "This user is already logged in" });
             return;
         }
 
-        isLoggedIn(username, res);
+        //isLoggedIn(username, res);
         await isRegister(username, res);
 
         let getdbUserDetails: any;

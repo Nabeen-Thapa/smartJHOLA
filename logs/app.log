@@ -617,3 +617,65 @@
 [17:31:38]:smart jhola server is running at 5500
 [17:31:38]:connected to redis
 [17:31:39]:Database connected successfully!
+[23:25:47]:smart jhola server is running at 5500
+[23:25:47]:connected to redis
+[23:25:47]:Database connected successfully!
+[23:26:52]:smart jhola server is running at 5500
+[23:26:52]:connected to redis
+[23:26:52]:Database connected successfully!
+[23:27:09]:smart jhola server is running at 5500
+[23:27:09]:connected to redis
+[23:27:10]:Database connected successfully!
+[23:27:36]:smart jhola server is running at 5500
+[23:27:37]:connected to redis
+[23:27:37]:Database connected successfully!
+[23:27:51]:smart jhola server is running at 5500
+[23:27:51]:connected to redis
+[23:27:51]:Database connected successfully!
+[23:27:53]:Login error:  MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.
+[23:28:28]:smart jhola server is running at 5500
+[23:28:28]:connected to redis
+[23:28:28]:Database connected successfully!
+[23:31:52]:smart jhola server is running at 5500
+[23:31:52]:connected to redis
+[23:31:52]:Database connected successfully!
+[11:42:02]:smart jhola server is running at 5500
+[11:42:02]:connected to redis
+[11:42:02]:Database connected successfully!
+[11:43:26]:smart jhola server is running at 5500
+[11:43:26]:connected to redis
+[11:43:26]:Database connected successfully!
+[11:43:38]:smart jhola server is running at 5500
+[11:43:38]:connected to redis
+[11:43:38]:Database connected successfully!
+[11:43:40]:Login error:  Cannot set headers after they are sent to the client
+[11:45:18]:smart jhola server is running at 5500
+[11:45:18]:connected to redis
+[11:45:18]:Database connected successfully!
+[11:47:44]:smart jhola server is running at 5500
+[11:47:44]:connected to redis
+[11:47:44]:Database connected successfully!
+[11:50:25]:Login error:  Cannot set headers after they are sent to the client
+[11:51:05]:smart jhola server is running at 5500
+[11:51:05]:connected to redis
+[11:51:05]:Database connected successfully!
+[11:52:14]:smart jhola server is running at 5500
+[11:52:14]:connected to redis
+[11:52:15]:Database connected successfully!
+[11:52:19]:Login error:  Cannot set headers after they are sent to the client
+[11:54:16]:smart jhola server is running at 5500
+[11:54:16]:connected to redis
+[11:54:16]:Database connected successfully!
+[11:54:21]:Login error:  MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.
+[13:44:21]:smart jhola server is running at 5500
+[13:44:21]:connected to redis
+[13:44:22]:Database connected successfully!
+[13:44:47]:smart jhola server is running at 5500
+[13:44:47]:connected to redis
+[13:44:47]:Database connected successfully!
+[13:45:44]:smart jhola server is running at 5500
+[13:45:44]:connected to redis
+[13:45:45]:Database connected successfully!
+[13:49:11]:smart jhola server is running at 5500
+[13:49:11]:connected to redis
+[13:49:11]:Database connected successfully!
