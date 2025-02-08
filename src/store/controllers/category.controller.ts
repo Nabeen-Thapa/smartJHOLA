@@ -14,4 +14,3 @@ export const createCategory = async(req:Request, res:Response)=>{
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
 }
-
