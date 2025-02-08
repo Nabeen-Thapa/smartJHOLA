@@ -127,7 +127,7 @@
     "forceConsistentCasingInFileNames": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./src/types"  // Make sure this is pointing to where your custom type definitions are
+      "src1/types"  // Make sure this is pointing to where your custom type definitions are
     ],
     
     "outDir": "./dist",
@@ -135,6 +135,6 @@
     "emitDecoratorMetadata": true
   },
   "include": [
-    "src/**/*.ts"
+    "src1/**/*.ts"
   ],
 }

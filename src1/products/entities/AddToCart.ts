@@ -3,10 +3,10 @@ import { smartUser } from "../../users/entities/userDetails";
 import { smartProduct } from "./produstDetails";
 
 
-@Entity("Cart")
+@Entity("addToCart")
 @Unique(["cartId"])
 
-export class Cart{
+export class addToCart{
     @PrimaryGeneratedColumn()
     cartId!:number;
 
