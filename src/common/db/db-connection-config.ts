@@ -6,7 +6,7 @@ import { smartToken } from "../../users/entities/smartUserToken";
 import { smartAdmin } from "../../admin/entities/adminDetails";
 import { smartCategory } from "../../products/entities/productsCategory";
 import { smartProduct } from "../../products/entities/produstDetails";
-import { addToCart } from "../../products/entities/AddToCart";
+import { Cart } from "../../products/entities/";
 
 dotnev.config();
 
@@ -19,5 +19,5 @@ export const smartConnection = new DataSource({
     database : process.env.database,
     synchronize: true,
     logging: false,
-    entities : [smartUser, smartToken, smartAdmin, smartCategory, smartProduct, addToCart],
+    entities : [smartUser, smartToken, smartAdmin, smartCategory, smartProduct, Cart],
 })

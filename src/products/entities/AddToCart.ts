@@ -6,7 +6,7 @@ import { smartProduct } from "./produstDetails";
 @Entity("Cart")
 @Unique(["cartId"])
 
-export class Cart{
+export class smartCart{
     @PrimaryGeneratedColumn()
     cartId!:number;
 

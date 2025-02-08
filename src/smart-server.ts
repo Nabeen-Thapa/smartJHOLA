@@ -8,15 +8,16 @@ import commonRoutes from "./common/routes/common-router";
 import productRoutes from "./products/routers/product-routes";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import categoryRouter from "./store/routes/category.routers";
 dotenv.config();
 const app = express();
 
-app.use(express.json()); // For JSON payloads
+
 app.use(express.urlencoded({ extended: true })); // For form data (URL-encoded)
 app.use(cookieParser());
 app.use(express.json());
 
-// Set up session middleware
+
 
 smartConnection.initialize()
   .then(() => {
@@ -45,6 +46,8 @@ app.use("/smartjhola", adminRoutes);
 app.use("/smartjhola",commonRoutes);
 app.use("/smartjhola",productRoutes);
 
+
+app.use("smartjhola/store/category", categoryRouter)
 
 const port = process.env.PORT || 5500;
 app.listen(port, ()=>{

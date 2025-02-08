@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { addCategory } from "../services/category.services";
+import { addCategory, viewCategory } from "../services/category.services";
 import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 
@@ -13,4 +13,19 @@ export const createCategory = async(req:Request, res:Response)=>{
         logger.error("Error during add category:", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
+}
+
+
+export const readCategory = async(req:Request, res:Response)=>{
+    const {categoryId} =req.body;
+   try {
+    const category = await viewCategory(categoryId);
+    res.status(StatusCodes.OK).json({
+        success :true,
+        category : category
+    })
+   } catch (error) {
+    logger.error("Error during view category:", error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+   }
 }
