@@ -23,8 +23,7 @@ export const addCategory = async (categoryName: string, categoryDescription: str
 
 //view catogory
 export const viewCategory = async (categoryId: Number) => {
-    const categoryRepositery = smartConnection.getRepository(smartCategory);
-    const categories = await categoryRepositery.find();
+    const categories = await getCategoryRepo.find();
     if (categories.length === 0) {
         throw new error("No catagories found");
     }
@@ -33,5 +32,25 @@ export const viewCategory = async (categoryId: Number) => {
         data: categories
     };
 }
+
+//update category
+export const updateCategory = async (categoryId: number,categoryName?: string,categoryDescription?: string) => {
+    const isCategoryExist = await getCategoryRepo.findOne({ where: { categoryId } });
+    if (!isCategoryExist) {
+        throw new Error("Category does not exist");
+    }
+
+    // Prepare the update object
+    const updateData: Partial<smartCategory> = {};
+    if (categoryName) updateData.categoryName = categoryName;
+    if (categoryDescription) updateData.categoryDescription = categoryDescription;
+
+    // Update the category
+    await getCategoryRepo.update({ categoryId }, updateData);
+
+    // Fetch the updated category
+    const updatedCategory = await getCategoryRepo.findOne({ where: { categoryId } });
+    return { message: "Category updated successfully", category: updatedCategory };
+};
 
 
