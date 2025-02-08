@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { addCategory, viewCategory,updateCategory } from "../services/category.services";
+import { addCategory, viewCategory,updateCategory, deleteCategory } from "../services/category.services";
 import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 
@@ -40,6 +40,18 @@ export const updatedCategord = async(req:Request, res:Response)=>{
     })
    } catch (error) {
     logger.error("Error during view category:", error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+   }
+}
+
+
+export const deletedCategord = async(req:Request, res:Response)=>{
+    const {categoryId, categoryName, categoryDescription} =req.body;
+   try {
+    const category = await deleteCategory(categoryId);
+    res.status(StatusCodes.OK).json({message : "category dleted successfully"})
+   } catch (error) {
+    logger.error("Error during delete category:", error);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
    }
 }
