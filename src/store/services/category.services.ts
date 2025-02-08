@@ -44,8 +44,7 @@ export const updateCategory = async (categoryId: number,categoryName?: string,ca
     const updateData: Partial<smartCategory> = {};
     if (categoryName) updateData.categoryName = categoryName;
     if (categoryDescription) updateData.categoryDescription = categoryDescription;
-
-    // Update the category
+    
     await getCategoryRepo.update({ categoryId }, updateData);
 
     // Fetch the updated category
@@ -53,4 +52,12 @@ export const updateCategory = async (categoryId: number,categoryName?: string,ca
     return { message: "Category updated successfully", category: updatedCategory };
 };
 
+export const deleteCategory = async(categoryId:number)=>{
+    const isCategoryExist = await getCategoryRepo.findOne({ where: { categoryId } });
+    if (!isCategoryExist) {
+        throw new Error("Category does not exist");
+    }
+    await getCategoryRepo.delete({categoryId});
 
+    return { message: "Category updated successfully" };
+}
