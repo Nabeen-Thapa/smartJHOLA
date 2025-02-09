@@ -7,7 +7,7 @@ import { smartCategory } from "../../products/entities/productsCategory";
 
 
 //add Product
-export const addProduct = async (category: string, productName: string,
+export const addProduct = async (category:number, productName: string,
     price: string, brand: string, stockQuanity: number, productDescription: string,
     discount: string, image: string) => {
 

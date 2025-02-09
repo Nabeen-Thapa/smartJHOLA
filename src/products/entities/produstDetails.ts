@@ -12,7 +12,7 @@ export class smartProduct{
     productId!:number;
 
     @ManyToMany(()=>smartCategory, (category)=>category.products, {onDelete :"CASCADE", onUpdate: "CASCADE", eager: true })
-    category!:string;
+    category?: smartProduct;
 
     @Column({type:"varchar"})
     productName!:string;
