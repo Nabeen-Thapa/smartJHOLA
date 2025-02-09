@@ -82,3 +82,24 @@ export const updateProduct = async (adminId: number, productId: number, productN
 
     return { message: "Product updated successfully", updatedData: updateFields };
 }
+
+
+//delete product
+export const deleteProduct =async (adminId: number, productId: number) => {
+    const getAdminRepo = smartConnection.getRepository(smartAdmin);
+    const getProductRepo = smartConnection.getRepository(smartProduct);
+
+    const isAdminLoggedIn = await getAdminRepo.findOne({ where: { adminId } });
+
+    if (!isAdminLoggedIn) {
+        throw new error("you are not logged in, login first" );
+        return;
+    }
+    const isproductExist = await getProductRepo.findOne({ where: { productId} });
+
+    if (!isproductExist) {
+        throw new error("product is not exist");
+    }
+    await getProductRepo.delete({ productId });
+    return { message: "product delete successfully" };
+}
