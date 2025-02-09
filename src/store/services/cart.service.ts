@@ -1,16 +1,16 @@
 import exp from "constants";
 import { smartConnection } from "../../common/db/db-connection-config";
-import { smartCart } from "../../products/entities/AddToCart";
-import { smartProduct } from "../../products/entities/produstDetails";
 import { smartToken } from "../../users/entities/smartUserToken";
 import { smartUser } from "../../users/entities/userDetails";
+import { smartCart } from "../entities/AddToCart";
+import { smartProduct } from "../entities/produstDetails";
 
 //add to cart
 export const AddToCart = async (user: smartUser, product: smartProduct, quantity: number, price: number, total_price: number, added_at: Date) => {
 
     const getAddToCartRepo = smartConnection.getRepository(smartCart);
     const getuserRepo = smartConnection.getRepository(smartUser);
-    const isUserLoggedIn = getuserRepo.findOne({where : {userId :user}})
+    const isUserLoggedIn = getuserRepo.findOne({where : {userId :user.userId}})
     if(!isUserLoggedIn){
        throw new Error("you are not logged in, login first");
         return;
@@ -36,10 +36,10 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
 
 
 //view cart
-export const viewCart = async (userId: number) => {
+export const viewCart = async (user: smartUser) => {
     const getProductRepo = smartConnection.getRepository(smartProduct);
     const getTokenRepo = smartConnection.getRepository(smartToken);
-    const isUserLoggedIn =await  getTokenRepo.findOne({ where: { userId} });
+    const isUserLoggedIn = await getTokenRepo.findOne({ where: { userId:user.userId } });
     if (!isUserLoggedIn) {
         throw new Error("you are not logged in");
     }
@@ -56,11 +56,11 @@ export const viewCart = async (userId: number) => {
 }
 
 //remove item form cart
-export const removeItemFromCart = async (productId: number, userId: number) => {
+export const removeItemFromCart = async (productId: number, user: smartUser) => {
     const getUserRepo = smartConnection.getRepository(smartUser);
     const getCartRepo = smartConnection.getRepository(smartCart);
 
-    const isUserLoggedIn = await getUserRepo.findOne({ where: { userId } });
+    const isUserLoggedIn = await getUserRepo.findOne({ where: { userId :user.userId} });
     if (!isUserLoggedIn) {
         throw new Error("You are not logged in. Please log in first.");
     }
