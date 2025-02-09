@@ -30,7 +30,7 @@ export class smartProduct{
     productDescription!:string;
 
     @Column({type:"float", nullable:true, default:})
-    discount?:number;
+    discount?:Number;
 
     @Column({type:"varchar"})
     image!:string;
