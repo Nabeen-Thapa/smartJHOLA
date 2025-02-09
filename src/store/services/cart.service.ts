@@ -1,3 +1,4 @@
+import exp from "constants";
 import { smartConnection } from "../../common/db/db-connection-config";
 import { smartCart } from "../../products/entities/AddToCart";
 import { smartProduct } from "../../products/entities/produstDetails";
@@ -36,7 +37,6 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
 
 //view cart
 export const viewCart = async (userId: number) => {
-
     const getProductRepo = smartConnection.getRepository(smartProduct);
     const getTokenRepo = smartConnection.getRepository(smartToken);
     const isUserLoggedIn =await  getTokenRepo.findOne({ where: { userId} });
@@ -54,3 +54,23 @@ export const viewCart = async (userId: number) => {
         data: cartItems
     };
 }
+
+//remove item form cart
+export const removeItemFromCart = async (productId: number, userId: number) => {
+    const getUserRepo = smartConnection.getRepository(smartUser);
+    const getCartRepo = smartConnection.getRepository(smartCart);
+
+    const isUserLoggedIn = await getUserRepo.findOne({ where: { userId } });
+    if (!isUserLoggedIn) {
+        throw new Error("You are not logged in. Please log in first.");
+    }
+
+    const isProductExist = await getCartRepo.findOne({
+        where: { product: { productId } },});
+
+    if (!isProductExist) {
+        throw new Error("Product does not exist in the cart.");
+    }
+    await getCartRepo.delete({ product: { productId } }); 
+    return { message: "Product removed from cart successfully." };
+};
