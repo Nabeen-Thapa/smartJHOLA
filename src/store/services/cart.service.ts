@@ -1,6 +1,7 @@
 import { smartConnection } from "../../common/db/db-connection-config";
 import { smartCart } from "../../products/entities/AddToCart";
 import { smartProduct } from "../../products/entities/produstDetails";
+import { smartToken } from "../../users/entities/smartUserToken";
 import { smartUser } from "../../users/entities/userDetails";
 
 //add to cart
@@ -8,15 +9,15 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
 
     const getAddToCartRepo = smartConnection.getRepository(smartCart);
     const getuserRepo = smartConnection.getRepository(smartUser);
-    //const isUserLoggedIn = getuserRepo.findOne({where : {userId :user}})
-    // if(!isUserLoggedIn){
-    //     res.status(StatusCodes.NOT_FOUND).json({message: "you are not logged in, login first"});
-    //     return;
-    // }
+    const isUserLoggedIn = getuserRepo.findOne({where : {userId :user}})
+    if(!isUserLoggedIn){
+       throw new Error("you are not logged in, login first");
+        return;
+    }
 
     const isProductExistOfSameUser = await getAddToCartRepo.findOne({ where: { user, product }, })
     if (isProductExistOfSameUser) {
-       throw new Error("you already have add this item" );
+        throw new Error("you already have add this item");
     }
 
     // add to caddToCart table
@@ -29,5 +30,27 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
         added_at,
     });
     await getAddToCartRepo.save(newCartItem);
-    return {message :"product is added to cart successfully"};
+    return { message: "product is added to cart successfully" };
+}
+
+
+//view cart
+export const viewCart = async (userId: number) => {
+
+    const getProductRepo = smartConnection.getRepository(smartProduct);
+    const getTokenRepo = smartConnection.getRepository(smartToken);
+    const isUserLoggedIn =await  getTokenRepo.findOne({ where: { userId} });
+    if (!isUserLoggedIn) {
+        throw new Error("you are not logged in");
+    }
+    //get cart items
+    const cartItems = await getProductRepo.find();
+    if (cartItems.length === 0) {
+       throw new Error("No catagories found");
+    }
+    //view items
+    return {
+        success: true,
+        data: cartItems
+    };
 }
