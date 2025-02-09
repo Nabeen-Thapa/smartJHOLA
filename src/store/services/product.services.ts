@@ -7,15 +7,21 @@ import { smartCategory } from "../../products/entities/productsCategory";
 
 
 //add Product
-export const addProduct = async (category:number, productName: string,
+export const addProduct = async (category:smartCategory, productName: string,
     price: string, brand: string, stockQuanity: number, productDescription: string,
     discount: string, image: string) => {
 
     if (!category || !productName || !productDescription || !price || !brand) {
         throw new Error("Product category, Product name, price, brand description are required");
     }
+    const getCategoryRepo = smartConnection.getRepository(smartCategory);
     const getProductRepo = smartConnection.getRepository(smartProduct);
     const categoryRepo = smartConnection.getRepository(smartCategory);
+
+    const isCategoryExist = await getCategoryRepo.findOne({where : {categoryId :category.categoryId}});
+    if (!isCategoryExist) {
+        throw new Error("catregory is not exist");
+    }
     const isProductExist = await getProductRepo.findOne({ where: { productName }, });
     if (isProductExist) {
         throw new Error("Product with this name already exists");
