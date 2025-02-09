@@ -17,20 +17,20 @@ export class smartProduct{
     @Column({type:"varchar"})
     productName!:string;
 
-    @Column({type:"varchar"})
-    price!:string;
+    @Column({type:"int"})
+    price!:number;
 
     @Column({type:"varchar"})
     brand!:string;
 
-    @Column({type:"integer"})
+    @Column({type:"int"})
     stockQuanity!:number;
     
     @Column({type:"varchar"})
     productDescription!:string;
 
     @Column({type:"float", nullable:true, default:})
-    discount?:Number;
+    discount?:number;
 
     @Column({type:"varchar"})
     image!:string;

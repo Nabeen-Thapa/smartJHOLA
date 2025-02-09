@@ -1,39 +1,42 @@
 import { create } from "domain";
 import { smartConnection } from "../../common/db/db-connection-config";
 import { smartProduct } from "../../products/entities/produstDetails";
-import { StatusCodes } from "http-status-codes";
+import { smartAdmin } from "../../admin/entities/adminDetails";
+import { error } from "console";
+import { smartCategory } from "../../products/entities/productsCategory";
 
 
 //add Product
-
-export const addProduct = async (ProductCategory: string, productName: string,
+export const addProduct = async (category: string, productName: string,
     price: string, brand: string, stockQuanity: number, productDescription: string,
     discount: string, image: string) => {
 
-    if (!ProductCategory || !productName || !productDescription || !price || !brand) {
-        throw new Error("ProductCategory, Product name, price, brand description are required");
+    if (!category || !productName || !productDescription || !price || !brand) {
+        throw new Error("Product category, Product name, price, brand description are required");
     }
     const getProductRepo = smartConnection.getRepository(smartProduct);
+    const categoryRepo = smartConnection.getRepository(smartCategory);
     const isProductExist = await getProductRepo.findOne({ where: { productName }, });
     if (isProductExist) {
         throw new Error("Product with this name already exists");
     }
+
     const newProduct = getProductRepo.create({
-        category: ProductCategory,
+        category,
         productName,
         price,
         brand,
         stockQuanity,
         productDescription,
-        discount: discount ? Number(discount) : undefined,
+        discount,
         image
     });
+
     await getProductRepo.save(newProduct);
     return { message: "Product added successfully", Product: newProduct };
 };
 
 //view product
-
 export const viewProduct = async () => {
     const getProductRepo = smartConnection.getRepository(smartProduct);
     const products = await getProductRepo.find();
@@ -45,4 +48,37 @@ export const viewProduct = async () => {
         success: true,
         data: products
     };
+}
+
+//update product
+export const updateProduct = async (adminId: number, productId: number, productName?: string, price?: number, brand?: string, stockQuanity?: number, productDescription?: string, discount?: number) => {
+
+    const getAdminRepo = smartConnection.getRepository(smartAdmin);
+    const isAdminLoggedIn = await getAdminRepo.findOne({ where: { adminId }, });
+
+    if (!isAdminLoggedIn) {
+        throw new Error("you are not logged in, login first");
+        return;
+    }
+    const getProductRepo = smartConnection.getRepository(smartProduct);
+    const isProductExist = await getProductRepo.findOne({ where: { productId, productName } });
+
+    if (!isProductExist) {
+        throw new error("product is not exist");
+        return;
+    }
+
+    //update product on db
+    const updateFields: Partial<smartProduct> = {};
+    if (productName) updateFields.productName = productName;
+    if (price) updateFields.price = price;
+    if (brand) updateFields.brand = brand;
+    if (stockQuanity) updateFields.stockQuanity = stockQuanity;
+    if (productDescription) updateFields.productDescription = productDescription;
+    if (discount) updateFields.discount = discount;
+
+    // Update product in the database
+    await getProductRepo.update({ productId }, updateFields);
+
+    return { message: "Product updated successfully", updatedData: updateFields };
 }
