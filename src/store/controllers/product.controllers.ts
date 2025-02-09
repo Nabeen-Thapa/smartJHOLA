@@ -32,7 +32,8 @@ export const viewProductController =async(req:Request,  res:Response)=>{
 export const updateProductController =async (req:Request, res:Response)=>{
     const {adminId, productId, productName, price, brand, stockQuanity, productDescription, discount} = req.body;
     try {
-        const updateProductResult =  await updateProduct(adminId, productId, productName, price, brand, stockQuanity, productDescription, discount)
+        const updateProductResult =  await updateProduct(adminId, productId, productName, price, brand, stockQuanity, productDescription, discount);
+        res.status(StatusCodes.OK).json(updateProductResult);
     } catch (error) {
         logger.error("Error during view product:", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
