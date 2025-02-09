@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { addProduct, updateProduct, viewProduct } from "../services/product.services";
+import { addProduct, deleteProduct, updateProduct, viewProduct } from "../services/product.services";
 import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 
@@ -15,3 +15,37 @@ export const addProductController = async(req:Request, res:Response)=>{
     }
 }
 
+//view product
+export const viewProductController =async(req:Request,  res:Response)=>{
+   
+    try {
+        const viewProductResult = await viewProduct();
+        res.status(StatusCodes.OK).json(viewProductResult);
+    } catch (error) {
+        logger.error("Error during view product:", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+    }
+}
+
+
+//update 
+export const updateProductController =async (req:Request, res:Response)=>{
+    const {adminId, productId, productName, price, brand, stockQuanity, productDescription, discount} = req.body;
+    try {
+        const updateProductResult =  await updateProduct(adminId, productId, productName, price, brand, stockQuanity, productDescription, discount)
+    } catch (error) {
+        logger.error("Error during view product:", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+    }
+}
+
+//delete
+export const deleteProductController = async(req:Request, res:Response)=>{
+    const {adminId,produtId}= req.body;
+    try {
+        const deleteProductResult = await deleteProduct(adminId,produtId);
+    } catch (error) {
+        logger.error("Error during view product:", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+    }
+}
