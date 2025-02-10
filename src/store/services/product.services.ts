@@ -8,8 +8,7 @@ import { smartCategory } from "../../products/entities/productsCategory";
 
 //add Product
 export const addProduct = async (category:smartCategory, productName: string,
-    price: string, brand: string, stockQuanity: number, productDescription: string,
-    discount: string, image: string) => {
+    price: string, brand: string, stockQuanity: number, productDescription: string,discount: string, image: string) => {
 
     if (!category || !productName || !productDescription || !price || !brand) {
         throw new Error("Product category, Product name, price, brand description are required");

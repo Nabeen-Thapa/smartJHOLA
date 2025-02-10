@@ -7,7 +7,7 @@ import { smartProduct } from "./produstDetails";
 @Unique(["cartId"])
 
 export class smartCart{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn
     cartId!:number;
 
     @ManyToOne(()=>smartUser, (user)=>user.cartItems)
@@ -19,7 +19,7 @@ export class smartCart{
    product! :smartProduct;
 
     @Column({type : "integer"})
-    quantity!:number;
+    quantity?:number;
 
     @Column({type : "decimal", precision:10, scale:2})
     price!:number;
