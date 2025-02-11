@@ -7,6 +7,10 @@ import { CategoryServiceClass } from "../services/category.services";
 export class CategoryControllerClass {
     
     CatogoryServices : CategoryServiceClass
+    constructor(CatogoryServices: CategoryServiceClass) {
+        this.CatogoryServices = CatogoryServices;
+    }
+
  createCategory = async(req:Request, res:Response)=>{
     const { categoryName, categoryDescription } = req.body;
     try {

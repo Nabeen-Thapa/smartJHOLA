@@ -1,14 +1,17 @@
 import express, { Router } from "express";
-import { createCategory, deletedCategory, readCategory, updatedCategord } from "../controllers/category.controller";
+//import { createCategory, deletedCategory, readCategory, updatedCategord } from "../controllers/category.controller";
+import { CategoryServiceClass } from "../services/category.services";
+import { CategoryControllerClass } from "../controllers/category.controller";
 
 
 
 const categoryRouter :Router = express.Router();
-
-categoryRouter.post("/create", createCategory);
-categoryRouter.get("/view", readCategory);
-categoryRouter.put("/update", updatedCategord);
-categoryRouter.delete("/delete", deletedCategory);
+const categoryServices = new CategoryServiceClass();
+const categroyController = new CategoryControllerClass(categoryServices);
+categoryRouter.post("/create", categroyController.createCategory);
+categoryRouter.get("/view", categroyController.readCategory);
+categoryRouter.put("/update", categroyController.updatedCategord);
+categoryRouter.delete("/delete", categroyController.deletedCategory);
 
 
 
