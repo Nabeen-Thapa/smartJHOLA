@@ -5,7 +5,7 @@ import userRoutes from "./users/routes/user-routes";
 import { smartConnection } from "./common/db/db-connection-config";
 import adminRoutes from "./admin/routes/admin-routes";
 import commonRoutes from "./common/routes/common-router";
-import productRoutes from "./products/routers/product-routes";
+// import productRoutes from "./products/routers/product-routes";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import categoryRouter from "./store/routes/category.routers";
@@ -44,10 +44,10 @@ smartConnection.initialize()
 app.use("/smartjhola", userRoutes);
 app.use("/smartjhola", adminRoutes);
 app.use("/smartjhola",commonRoutes);
-app.use("/smartjhola",productRoutes);
+//app.use("/smartjhola",productRoutes);
 
 
-app.use("smartjhola/store/category", categoryRouter)
+app.use("/smartjhola/store/category", categoryRouter);
 
 const port = process.env.PORT || 5500;
 app.listen(port, ()=>{

@@ -45,8 +45,8 @@ __decorate([
     __metadata("design:type", String)
 ], smartProduct.prototype, "productDescription", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar" }),
-    __metadata("design:type", String)
+    (0, typeorm_1.Column)({ type: "float", nullable: true, default:  }),
+    __metadata("design:type", Number)
 ], smartProduct.prototype, "discount", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "varchar" }),

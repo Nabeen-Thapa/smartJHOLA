@@ -119,10 +119,13 @@
 // }
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "target": "ES6",
     "module": "commonjs",
-    "strict": true,
     "esModuleInterop": true,
+    "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": [
@@ -130,9 +133,7 @@
       "src1/types"  // Make sure this is pointing to where your custom type definitions are
     ],
     
-    "outDir": "./dist",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "outDir": "./dist"   
   },
   "include": [
     "src1/**/*.ts"

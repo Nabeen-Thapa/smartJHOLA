@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -12,7 +21,7 @@ const valid_phoneNumber_1 = require("../../common/middleware/valid-phoneNumber")
 const valid_email_1 = require("../../common/middleware/valid-email");
 const user_register_validate_1 = require("../utils/user-register-validate");
 const updateUser = express_1.default.Router();
-updateUser.patch("/update", async (req, res) => {
+updateUser.patch("/update", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, username, password, email, phone, age, gender } = req.body;
     const image = req.file ? req.file.filename : null; // Get the uploaded image filename
     if (!image) {
@@ -41,7 +50,7 @@ updateUser.patch("/update", async (req, res) => {
             return;
         }
         const getdbUserDetails = db_connection_config_1.smartConnection.getRepository(userDetails_1.smartUser);
-        const isExistUser = await getdbUserDetails.findOne({ where: { username }, });
+        const isExistUser = yield getdbUserDetails.findOne({ where: { username }, });
         if (isExistUser) {
             res.status(http_status_codes_1.StatusCodes.CONFLICT).json({ message: "this user is already exist" });
             return;
@@ -56,12 +65,12 @@ updateUser.patch("/update", async (req, res) => {
             age,
             image: undefined,
         });
-        await getdbUserDetails.save(addNewUser);
+        yield getdbUserDetails.save(addNewUser);
         res.status(http_status_codes_1.StatusCodes.CREATED).json({ message: "update successful check your email for the password" });
     }
     catch (error) {
         logger_1.default.error("error duirng user update: ", error);
         res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR);
     }
-});
+}));
 exports.default = updateUser;

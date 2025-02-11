@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { AddToCart, viewCart } from "../services/cart.service";
+import { AddToCart, removeItemFromCart, viewCart } from "../services/cart.service";
+import { StatusCodes } from "http-status-codes";
 
 
-const addToCartController =async(req:Request, res:Response)=>{
+export const addToCartController =async(req:Request, res:Response)=>{
     const{user, product, quantity, price, total_price, added_at}=req.body;
     try {
        const  addToCartResult = await AddToCart(user, product, quantity, price, total_price, added_at);
@@ -12,7 +13,7 @@ const addToCartController =async(req:Request, res:Response)=>{
     }
 }
 
-const viewCartController = async(req:Request, res:Response)=>{
+export const viewCartController = async(req:Request, res:Response)=>{
     const {user}= req.body;
     try {
         const viewCartresult = await viewCart(user);
@@ -20,3 +21,15 @@ const viewCartController = async(req:Request, res:Response)=>{
         
     }
 }
+
+export const removeCartItemController = async(req: Request, res: Response)=>{
+    const {productId, user} =req.body;
+    try {
+        const removeCartItemResult =  await removeItemFromCart(productId, user);
+        res.status(StatusCodes.FORBIDDEN).json({message:"cart item deeleted"})
+    } catch (error) {
+        console.log("cart item remove error :", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+

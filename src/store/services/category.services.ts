@@ -1,6 +1,7 @@
 import { error } from "console";
 import { smartConnection } from "../../common/db/db-connection-config";
-import { smartCategory } from "../../products/entities/productsCategory";
+import { smartCategory } from "../entities/productsCategory";
+
 
 //add category
 const getCategoryRepo = smartConnection.getRepository(smartCategory);
@@ -25,7 +26,7 @@ export const addCategory = async (categoryName: string, categoryDescription: str
 export const viewCategory = async (categoryId: Number) => {
     const categories = await getCategoryRepo.find();
     if (categories.length === 0) {
-        throw new error("No catagories found");
+        throw new Error("No catagories found");
     }
     return {
         success: true,

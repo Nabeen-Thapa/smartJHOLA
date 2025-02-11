@@ -11,7 +11,7 @@ export const createCategory = async(req:Request, res:Response)=>{
         res.status(StatusCodes.CREATED).json(categoryAddResult);
     } catch (error) {
         logger.error("Error during add category:", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
     }
 }
 
@@ -26,7 +26,7 @@ export const readCategory = async(req:Request, res:Response)=>{
     })
    } catch (error) {
     logger.error("Error during view category:", error);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
    }
 }
 
@@ -40,18 +40,18 @@ export const updatedCategord = async(req:Request, res:Response)=>{
     })
    } catch (error) {
     logger.error("Error during view category:", error);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error});
    }
 }
 
 
-export const deletedCategord = async(req:Request, res:Response)=>{
+export const deletedCategory= async(req:Request, res:Response)=>{
     const {categoryId, categoryName, categoryDescription} =req.body;
    try {
     const category = await deleteCategory(categoryId);
     res.status(StatusCodes.OK).json({message : "category dleted successfully"})
    } catch (error) {
     logger.error("Error during delete category:", error);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error});
    }
 }

@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -10,7 +19,7 @@ const db_connection_config_1 = require("../../../common/db/db-connection-config"
 const adminDetails_1 = require("../../../admin/entities/adminDetails");
 const productsCategory_1 = require("../../entities/productsCategory");
 const updateCategory = express_1.default.Router();
-updateCategory.patch("/update-category", async (req, res) => {
+updateCategory.patch("/update-category", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { adminId, username, categoryId, categoryName, categoryDescription } = req.body;
     if (!username || !categoryName) {
         res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json({ message: "all data are required" });
@@ -19,12 +28,12 @@ updateCategory.patch("/update-category", async (req, res) => {
     try {
         const getAdminRepo = db_connection_config_1.smartConnection.getRepository(adminDetails_1.smartAdmin);
         const getCategoryRepo = db_connection_config_1.smartConnection.getRepository(productsCategory_1.smartCategory);
-        const isAdminLoggedIn = await getAdminRepo.findOne({ where: { username, adminId } });
+        const isAdminLoggedIn = yield getAdminRepo.findOne({ where: { username, adminId } });
         if (!isAdminLoggedIn) {
             res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({ message: "you are not logged in, login first" });
             return;
         }
-        const isCategoryExist = await getCategoryRepo.findOne({ where: { categoryId, categoryName } });
+        const isCategoryExist = yield getCategoryRepo.findOne({ where: { categoryId, categoryName } });
         if (!isCategoryExist) {
             res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({ message: "category is not exist" });
             return;
@@ -34,11 +43,11 @@ updateCategory.patch("/update-category", async (req, res) => {
             categoryName,
             categoryDescription
         };
-        await getCategoryRepo.update({ categoryId }, updateCategoryRepo);
+        yield getCategoryRepo.update({ categoryId }, updateCategoryRepo);
     }
     catch (error) {
         logger_1.default.error("update category error :", error);
         res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "update category error :", error });
     }
-});
+}));
 exports.default = updateCategory;

@@ -688,3 +688,137 @@
 [16:34:49]:smart jhola server is running at 5500
 [16:34:49]:connected to redis
 [16:34:49]:Database connected successfully!
+[17:51:36]:smart jhola server is running at 5500
+[17:51:36]:connected to redis
+[17:51:36]:Error during Data Source initialization: column "price" of relation "smartProducts" contains null values
+[17:52:41]:smart jhola server is running at 5500
+[17:52:41]:connected to redis
+[17:52:41]:Error during Data Source initialization: column "price" of relation "smartProducts" contains null values
+[17:57:56]:smart jhola server is running at 5500
+[17:57:56]:connected to redis
+[17:57:56]:Error during Data Source initialization: column "discount" of relation "smartProducts" contains null values
+[17:58:38]:smart jhola server is running at 5500
+[17:58:38]:connected to redis
+[17:58:38]:Database connected successfully!
+[18:04:39]:smart jhola server is running at 5500
+[18:04:39]:connected to redis
+[18:04:39]:Database connected successfully!
+[22:37:56]:smart jhola server is running at 5500
+[22:37:56]:connected to redis
+[22:37:56]:Database connected successfully!
+[23:03:56]:smart jhola server is running at 5500
+[23:03:56]:connected to redis
+[23:03:56]:Database connected successfully!
+[23:04:09]:smart jhola server is running at 5500
+[23:04:09]:connected to redis
+[23:04:10]:Database connected successfully!
+[23:04:47]:smart jhola server is running at 5500
+[23:04:47]:connected to redis
+[23:04:47]:Database connected successfully!
+[23:05:48]:smart jhola server is running at 5500
+[23:05:48]:connected to redis
+[23:05:48]:Database connected successfully!
+[23:07:04]:smart jhola server is running at 5500
+[23:07:04]:connected to redis
+[23:07:21]:smart jhola server is running at 5500
+[23:07:21]:connected to redis
+[23:07:21]:Database connected successfully!
+[23:07:35]:smart jhola server is running at 5500
+[23:07:35]:connected to redis
+[23:07:35]:Database connected successfully!
+[23:07:49]:smart jhola server is running at 5500
+[23:07:49]:connected to redis
+[23:07:49]:Database connected successfully!
+[23:08:08]:smart jhola server is running at 5500
+[23:08:08]:connected to redis
+[23:08:09]:Database connected successfully!
+[23:08:45]:smart jhola server is running at 5500
+[23:08:45]:connected to redis
+[23:08:45]:Database connected successfully!
+[23:09:17]:smart jhola server is running at 5500
+[23:09:17]:connected to redis
+[23:09:17]:Database connected successfully!
+[23:10:20]:smart jhola server is running at 5500
+[23:10:20]:connected to redis
+[23:10:20]:Database connected successfully!
+[23:11:01]:smart jhola server is running at 5500
+[23:11:01]:connected to redis
+[23:11:02]:Database connected successfully!
+[23:12:40]:smart jhola server is running at 5500
+[23:12:40]:connected to redis
+[23:12:40]:Database connected successfully!
+[23:13:09]:smart jhola server is running at 5500
+[23:13:09]:connected to redis
+[23:13:09]:Database connected successfully!
+[23:13:26]:smart jhola server is running at 5500
+[23:13:26]:connected to redis
+[23:13:26]:Database connected successfully!
+[23:13:41]:smart jhola server is running at 5500
+[23:13:41]:connected to redis
+[23:13:41]:Database connected successfully!
+[23:14:08]:smart jhola server is running at 5500
+[23:14:08]:connected to redis
+[23:14:08]:Database connected successfully!
+[23:14:46]:smart jhola server is running at 5500
+[23:14:46]:connected to redis
+[23:14:47]:Database connected successfully!
+[23:15:14]:smart jhola server is running at 5500
+[23:15:14]:connected to redis
+[23:15:14]:Database connected successfully!
+[23:15:59]:smart jhola server is running at 5500
+[23:15:59]:connected to redis
+[23:16:00]:Database connected successfully!
+[23:16:16]:smart jhola server is running at 5500
+[23:16:16]:connected to redis
+[23:16:16]:Database connected successfully!
+[23:16:25]:smart jhola server is running at 5500
+[23:16:25]:connected to redis
+[23:16:25]:Database connected successfully!
+[23:16:38]:smart jhola server is running at 5500
+[23:16:38]:connected to redis
+[23:16:38]:Database connected successfully!
+[23:20:01]:smart jhola server is running at 5500
+[23:20:01]:connected to redis
+[23:20:01]:Database connected successfully!
+[23:20:24]:smart jhola server is running at 5500
+[23:20:24]:connected to redis
+[23:20:24]:Database connected successfully!
+[23:21:01]:smart jhola server is running at 5500
+[23:21:01]:connected to redis
+[23:21:01]:Database connected successfully!
+[23:22:20]:smart jhola server is running at 5500
+[23:22:20]:connected to redis
+[23:22:20]:Database connected successfully!
+[23:22:49]:smart jhola server is running at 5500
+[23:22:49]:connected to redis
+[23:22:49]:Database connected successfully!
+[23:23:12]:smart jhola server is running at 5500
+[23:23:12]:connected to redis
+[23:23:12]:Database connected successfully!
+[23:23:46]:smart jhola server is running at 5500
+[23:23:46]:connected to redis
+[23:23:46]:Database connected successfully!
+[23:24:08]:smart jhola server is running at 5500
+[23:24:08]:connected to redis
+[23:24:08]:Database connected successfully!
+[16:21:05]:smart jhola server is running at 5500
+[16:21:05]:connected to redis
+[16:21:06]:Database connected successfully!
+[16:22:05]:smart jhola server is running at 5500
+[16:22:05]:connected to redis
+[16:22:05]:Database connected successfully!
+[16:33:40]:smart jhola server is running at 5500
+[16:33:40]:connected to redis
+[16:33:40]:Database connected successfully!
+[16:37:39]:smart jhola server is running at 5500
+[16:37:39]:connected to redis
+[16:37:39]:Database connected successfully!
+[16:37:55]:smart jhola server is running at 5500
+[16:37:55]:connected to redis
+[16:37:55]:Database connected successfully!
+[16:44:36]:smart jhola server is running at 5500
+[16:44:36]:connected to redis
+[16:44:36]:Database connected successfully!
+[16:45:37]:smart jhola server is running at 5500
+[16:45:37]:connected to redis
+[16:45:37]:Database connected successfully!

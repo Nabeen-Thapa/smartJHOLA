@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,7 +26,7 @@ const email_sender_1 = require("../../common/utils/email-sender");
 const user_register_validate_1 = require("../utils/user-register-validate");
 const userRegister = express_1.default.Router();
 const upload = (0, multer_1.default)({ dest: 'uploads/' });
-userRegister.post("/register", upload.single('image'), async (req, res) => {
+userRegister.post("/register", upload.single('image'), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, username, password, email, phone, age, gender } = req.body;
     const image = req.file ? req.file.filename : null; // Get the uploaded image filename
     if (!image) {
@@ -46,13 +55,13 @@ userRegister.post("/register", upload.single('image'), async (req, res) => {
             return;
         }
         const getdbUserDetails = db_connection_config_1.smartConnection.getRepository(userDetails_1.smartUser);
-        const isExistUser = await getdbUserDetails.findOne({ where: { email, phone, username }, });
+        const isExistUser = yield getdbUserDetails.findOne({ where: { email, phone, username }, });
         if (isExistUser) {
             res.status(http_status_codes_1.StatusCodes.CONFLICT).json({ message: "this user is already exist" });
             return;
         }
-        const password = await (0, otp_generator_1.generateUniquePwd)();
-        const hashedPassword = await bcrypt_1.default.hash(password, 10);
+        const password = yield (0, otp_generator_1.generateUniquePwd)();
+        const hashedPassword = yield bcrypt_1.default.hash(password, 10);
         const addNewUser = getdbUserDetails.create({
             name,
             username,
@@ -63,11 +72,11 @@ userRegister.post("/register", upload.single('image'), async (req, res) => {
             age,
             image: undefined,
         });
-        await getdbUserDetails.save(addNewUser);
+        yield getdbUserDetails.save(addNewUser);
         res.status(http_status_codes_1.StatusCodes.CREATED).json({ message: "Registration successful check your email for the password" });
         //send mail
         try {
-            await (0, email_sender_1.sendEmail)({
+            yield (0, email_sender_1.sendEmail)({
                 to: email,
                 subject: "smartJHOLA password",
                 text: `Welcome to smartJHOLA,buy our products get your products.\n\n
@@ -95,5 +104,5 @@ userRegister.post("/register", upload.single('image'), async (req, res) => {
         logger_1.default.error("error duirng registration: ", error);
         res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR);
     }
-});
+}));
 exports.default = userRegister;

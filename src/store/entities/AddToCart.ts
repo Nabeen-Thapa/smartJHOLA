@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Unique } from "typeorm";
 import { smartUser } from "../../users/entities/userDetails";
 import { smartProduct } from "./produstDetails";
 
@@ -7,7 +7,7 @@ import { smartProduct } from "./produstDetails";
 @Unique(["cartId"])
 
 export class smartCart{
-    @PrimaryGeneratedColumn
+    @PrimaryGeneratedColumn()
     cartId!:number;
 
     @ManyToOne(()=>smartUser, (user)=>user.cartItems)
@@ -18,11 +18,12 @@ export class smartCart{
    @JoinColumn({name : "productId"})
    product! :smartProduct;
 
-    @Column({type : "integer"})
+    @Column({type : "int"})
     quantity?:number;
 
-    @Column({type : "decimal", precision:10, scale:2})
-    price!:number;
+    @Column({ type: "decimal", precision: 10, scale: 2 })
+    price!: number;
+
 
     @Column({type : "decimal", precision:10, scale:2})
     total_price!:number;

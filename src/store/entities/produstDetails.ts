@@ -1,5 +1,4 @@
 import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { ForeignKeyMetadata } from "typeorm/metadata/ForeignKeyMetadata";
 import { smartCategory } from "./productsCategory";
 import { smartCart } from "./AddToCart";
 
@@ -17,8 +16,8 @@ export class smartProduct{
     @Column({type:"varchar"})
     productName!:string;
 
-    @Column({type:"int"})
-    price!:number;
+    @Column({ type: "int", nullable: false, default: "0" })
+    price!: number;
 
     @Column({type:"varchar"})
     brand!:string;
@@ -29,7 +28,7 @@ export class smartProduct{
     @Column({type:"varchar"})
     productDescription!:string;
 
-    @Column({type:"float", nullable:true, default:})
+    @Column({type:"float",  nullable: true, default: 0 })
     discount?:number;
 
     @Column({type:"varchar"})

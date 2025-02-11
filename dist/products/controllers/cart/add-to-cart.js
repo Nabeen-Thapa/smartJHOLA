@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -10,7 +19,7 @@ const http_status_codes_1 = require("http-status-codes");
 const logger_1 = __importDefault(require("../../../common/utils/logger"));
 const userDetails_1 = require("../../../users/entities/userDetails");
 const addToProductCart = express_1.default.Router();
-addToProductCart.post("/add-to-cart", async (req, res) => {
+addToProductCart.post("/add-to-cart", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { user, product, quantity, price, total_price, added_at } = req.body;
     try {
         const getAddToCartRepo = db_connection_config_1.smartConnection.getRepository(AddToCart_1.addToCart);
@@ -20,13 +29,13 @@ addToProductCart.post("/add-to-cart", async (req, res) => {
         //     res.status(StatusCodes.NOT_FOUND).json({message: "you are not logged in, login first"});
         //     return;
         // }
-        const isProductExistOfSameUser = await getAddToCartRepo.findOne({ where: { user, product }, });
+        const isProductExistOfSameUser = yield getAddToCartRepo.findOne({ where: { user, product }, });
         if (isProductExistOfSameUser) {
             res.status(http_status_codes_1.StatusCodes.CONFLICT).json({ message: "you already have add this item" });
             return;
         }
         // add to caddToCart table
-        const newCartItem = await getAddToCartRepo.create({
+        const newCartItem = yield getAddToCartRepo.create({
             user,
             product,
             quantity,
@@ -34,12 +43,12 @@ addToProductCart.post("/add-to-cart", async (req, res) => {
             total_price,
             added_at,
         });
-        await getAddToCartRepo.save(newCartItem);
+        yield getAddToCartRepo.save(newCartItem);
         res.status(http_status_codes_1.StatusCodes.ACCEPTED);
     }
     catch (error) {
         logger_1.default.error("add to cart error:", error);
         res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "add to cart error : ", error });
     }
-});
+}));
 exports.default = addToProductCart;

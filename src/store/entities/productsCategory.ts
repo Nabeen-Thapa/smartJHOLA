@@ -2,20 +2,18 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeo
 import { smartProduct } from "./produstDetails";
 
 
-@Entity("smartCategoy")
+@Entity("smartCategory")
 @Unique(["categoryId", "categoryName"])
-
-export class smartCategory{
+export class smartCategory {
     @PrimaryGeneratedColumn()
-    categoryId!:number;
+    categoryId: number;
 
-    @Column({type:"varchar"})
-    categoryName!:string;
+    @Column({ type: "varchar"})
+    categoryName: string;
 
-    @Column({type:"varchar"})
-    categoryDescription!:string;
+    @Column({ type: "varchar"})
+    categoryDescription: string;
 
     @OneToMany(() => smartProduct, (product) => product.category)
-    products!: smartProduct[];
-
+    products: smartProduct[];
 }

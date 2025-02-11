@@ -1,6 +1,6 @@
 
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { addToCart } from "../../products/entities/AddToCart";
+import { smartCart } from "../../store/entities/AddToCart";
 
 
 @Entity("smartUsers")
@@ -37,6 +37,6 @@ export class smartUser {
     @Column ({type: "varchar", default: "Deactive"})
     status?:string;
 
-    @OneToMany(()=> addToCart,(cartItems)=>cartItems.user)
-    cartItems!:addToCart;
+    @OneToMany(()=> smartCart,(cartItems)=>cartItems.user)
+    cartItems!:smartCart;
 }

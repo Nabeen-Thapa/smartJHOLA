@@ -1,9 +1,10 @@
 import { create } from "domain";
 import { smartConnection } from "../../common/db/db-connection-config";
-import { smartProduct } from "../../products/entities/produstDetails";
 import { smartAdmin } from "../../admin/entities/adminDetails";
 import { error } from "console";
-import { smartCategory } from "../../products/entities/productsCategory";
+import { smartCategory } from "../entities/productsCategory";
+import { smartProduct } from "../entities/produstDetails";
+
 
 
 //add Product
