@@ -4,27 +4,28 @@ import { smartCategory } from "../entities/productsCategory";
 
 
 //add category
-const getCategoryRepo = smartConnection.getRepository(smartCategory);
-export const addCategory = async (categoryName: string, categoryDescription: string) => {
+export class CategoryServiceClass {
+     getCategoryRepo = smartConnection.getRepository(smartCategory);
+ addCategory = async (categoryName: string, categoryDescription: string) => {
     if (!categoryName || !categoryDescription) {
         throw new Error("Category name and description are required");
     }
-    const isCategoryExist = await getCategoryRepo.findOne({ where: { categoryName }, });
+    const isCategoryExist = await this.getCategoryRepo.findOne({ where: { categoryName }, });
     if (isCategoryExist) {
         throw new Error("Category already exists");
     }
-    const newCategory = getCategoryRepo.create({
+    const newCategory = this.getCategoryRepo.create({
         categoryName,
         categoryDescription
     });
-    await getCategoryRepo.save(newCategory);
+    await this.getCategoryRepo.save(newCategory);
     return { message: "Category added successfully", category: newCategory };
 };
 
 
 //view catogory
-export const viewCategory = async (categoryId: Number) => {
-    const categories = await getCategoryRepo.find();
+ viewCategory = async (categoryId: Number) => {
+    const categories = await this.getCategoryRepo.find();
     if (categories.length === 0) {
         throw new Error("No catagories found");
     }
@@ -35,8 +36,8 @@ export const viewCategory = async (categoryId: Number) => {
 }
 
 //update category
-export const updateCategory = async (categoryId: number,categoryName?: string,categoryDescription?: string) => {
-    const isCategoryExist = await getCategoryRepo.findOne({ where: { categoryId } });
+ updateCategory = async (categoryId: number,categoryName?: string,categoryDescription?: string) => {
+    const isCategoryExist = await this.getCategoryRepo.findOne({ where: { categoryId } });
     if (!isCategoryExist) {
         throw new Error("Category does not exist");
     }
@@ -46,19 +47,21 @@ export const updateCategory = async (categoryId: number,categoryName?: string,ca
     if (categoryName) updateData.categoryName = categoryName;
     if (categoryDescription) updateData.categoryDescription = categoryDescription;
     
-    await getCategoryRepo.update({ categoryId }, updateData);
+    await this.getCategoryRepo.update({ categoryId }, updateData);
 
     // Fetch the updated category
-    const updatedCategory = await getCategoryRepo.findOne({ where: { categoryId } });
+    const updatedCategory = await this.getCategoryRepo.findOne({ where: { categoryId } });
     return { message: "Category updated successfully", category: updatedCategory };
 };
 
-export const deleteCategory = async(categoryId:number)=>{
-    const isCategoryExist = await getCategoryRepo.findOne({ where: { categoryId } });
+ deleteCategory = async(categoryId:number)=>{
+    const isCategoryExist = await this.getCategoryRepo.findOne({ where: { categoryId } });
     if (!isCategoryExist) {
         throw new Error("Category does not exist");
     }
-    await getCategoryRepo.delete({categoryId});
+    await this.getCategoryRepo.delete({categoryId});
 
     return { message: "Category updated successfully" };
+}
+
 }
