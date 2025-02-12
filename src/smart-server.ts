@@ -9,6 +9,7 @@ import commonRoutes from "./common/routes/common-router";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import categoryRouter from "./store/routes/category.routers";
+import productRouter from "./store/routes/product.routers";
 dotenv.config();
 const app = express();
 
@@ -48,6 +49,7 @@ app.use("/smartjhola",commonRoutes);
 
 
 app.use("/smartjhola/store/category", categoryRouter);
+app.use("/smartjhola/store/product", productRouter);
 
 const port = process.env.PORT || 5500;
 app.listen(port, ()=>{

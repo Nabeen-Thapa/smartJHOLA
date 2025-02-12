@@ -11,7 +11,7 @@ export const addProductController = async(req:Request, res:Response)=>{
         res.status(StatusCodes.CREATED).json(createProductResult);
     } catch (error) {
         logger.error("Error during add product:", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error});
     }
 }
 
@@ -23,7 +23,7 @@ export const viewProductController =async(req:Request,  res:Response)=>{
         res.status(StatusCodes.OK).json(viewProductResult);
     } catch (error) {
         logger.error("Error during view product:", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error});
     }
 }
 
@@ -36,7 +36,7 @@ export const updateProductController =async (req:Request, res:Response)=>{
         res.status(StatusCodes.OK).json(updateProductResult);
     } catch (error) {
         logger.error("Error during view product:", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
     }
 }
 
@@ -47,6 +47,6 @@ export const deleteProductController = async(req:Request, res:Response)=>{
         const deleteProductResult = await deleteProduct(adminId,produtId);
     } catch (error) {
         logger.error("Error during view product:", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
     }
 }

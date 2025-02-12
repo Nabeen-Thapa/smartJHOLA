@@ -1,7 +1,10 @@
 import express from "express";
+import { addProductController, deleteProductController, updateProductController, viewProductController } from "../controllers/product.controllers";
 
 const productRouter =  express.Router();
-productRouter.post("/product/create", );
-productRouter.post("/product/view", readCategory);
-productRouter.post("/product/update", updatedCategord);
-productRouter.post("/product/update", deletedCategory);
+productRouter.post("/create", addProductController);
+productRouter.post("/view", viewProductController);
+productRouter.post("/update", updateProductController);
+productRouter.post("/update", deleteProductController);
+
+export default productRouter;
