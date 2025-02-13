@@ -17,7 +17,7 @@ viewMyDetail.get('/view', async(req:Request, res:Response):Promise<void>=>{
     try {
        const getUserRepo = smartConnection.getRepository(smartUser);
        isRegister(username, res);
-       isLoggedIn(username, res);
+       isLoggedIn(username, req, res);
 
        const userDetails = await getUserRepo.findOne({where : {username, password}})
        if(username !== userDetails?.username && password !==userDetails?.password){

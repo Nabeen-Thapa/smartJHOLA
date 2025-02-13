@@ -6,6 +6,8 @@ import { smartProduct } from "./produstDetails";
 @Unique(["categoryId", "categoryName"])
 export class smartCategory {
     @PrimaryGeneratedColumn()categoryId: number;
-    @Column({ type: "varchar"})categoryName: string;
-    @Column({ type: "varchar"})categoryDescription: string;@OneToMany(() => smartProduct, (product) => product.category)products: smartProduct[];
+    @Column({ type: "varchar", unique: true })categoryName: string;
+    @Column({ type: "varchar"})categoryDescription: string;
+    @OneToMany(() => smartProduct, (product) => product.category)
+    products: smartProduct[];
 }

@@ -128,6 +128,7 @@ smartUserLogin.post("/login", async (req: Request, res: Response): Promise<void>
         res.cookie("userId", userId, { httpOnly: true, maxAge: 3600000 });
 
         res.json({
+            session :req.session,
             message: "Login successful",
             name: username,
             accessToken,
