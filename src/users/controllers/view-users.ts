@@ -20,7 +20,7 @@ viewSmartUsers.get('/view', async(req:Request, res:Response):Promise<void>=>{
     try {
        const getAdminRepo = smartConnection.getRepository(smartAdmin);
        isRegister(username, res);
-       isLoggedIn(username, res);
+       isLoggedIn(username, req, res);
 
        const admin = await getAdminRepo.findOne({where : {username, password}})
        if(username !== admin?.username && password !==admin?.password){

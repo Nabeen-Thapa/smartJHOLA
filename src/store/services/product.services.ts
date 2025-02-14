@@ -8,7 +8,7 @@ import { smartProduct } from "../entities/produstDetails";
 
 
 //add Product
-export const addProduct = async (category:smartCategory, productName: string,
+export const addProduct = async (category:smartCategory | any, productName: string,
     price: string, brand: string, stockQuanity: number, productDescription: string,discount: string, image: string) => {
 
     if (!category || !productName || !productDescription || !price || !brand) {

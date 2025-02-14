@@ -19,7 +19,7 @@ viewAdmin.get("/view-admin", async(req:Request, res:Response):Promise<void>=>{
          const getAdminRepo = smartConnection.getRepository(smartAdmin);
        
         isRegister(username, res); //check register or not
-        isLoggedIn(username, res); //check logged or not
+        isLoggedIn(username,req, res); //check logged or not
 
         const adminDetail = await getAdminRepo.find();
         res.status(StatusCodes.OK).json({
