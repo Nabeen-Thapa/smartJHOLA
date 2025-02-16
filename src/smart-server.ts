@@ -52,6 +52,8 @@ app.use("/smartjhola",commonRoutes);
 app.use("/smartjhola/store/category", categoryRouter);
 app.use("/smartjhola/store/product", productRouter);
 app.use("/smartjhola/store/cart", CartRouter);
+app.use("/smartjhola/store/coupon", commonRoutes);
+
 
 const port = process.env.PORT || 5500;
 app.listen(port, ()=>{

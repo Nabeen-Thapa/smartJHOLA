@@ -4,7 +4,7 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique } from
 @Entity("smartCoupon")
 @Unique(['couponId', "couponCode"]);
 
-export class Coupon {
+export class smartCoupon{
     @PrimaryGeneratedColumn()
     couponId!:number;
 
