@@ -8,39 +8,51 @@ import { smartProduct } from "../entities/produstDetails";
 
 
 //add Product
-export const addProduct = async (category:smartCategory | any, productName: string,
-    price: string, brand: string, stockQuanity: number, productDescription: string,discount: string, image: string) => {
-
+export const addProduct = async (
+    category: smartCategory | any,
+    productName: string,
+    price: string,
+    brand: string,
+    stockQuanity: number,
+    productDescription: string,
+    discount: string,
+    image: string
+) => {
     if (!category || !productName || !productDescription || !price || !brand) {
         throw new Error("Product category, Product name, price, brand description are required");
     }
+
     const getCategoryRepo = smartConnection.getRepository(smartCategory);
     const getProductRepo = smartConnection.getRepository(smartProduct);
-    const categoryRepo = smartConnection.getRepository(smartCategory);
 
-    const isCategoryExist = await getCategoryRepo.findOne({where : {categoryId :category.categoryId}});
+    // Check if the category exists
+    const isCategoryExist = await getCategoryRepo.findOne({ where: { categoryId: category.categoryId } });
     if (!isCategoryExist) {
-        throw new Error("catregory is not exist");
+        throw new Error("Category does not exist");
     }
-    const isProductExist = await getProductRepo.findOne({ where: { productName }, });
+
+    // Check if the product already exists
+    const isProductExist = await getProductRepo.findOne({ where: { productName } });
     if (isProductExist) {
         throw new Error("Product with this name already exists");
     }
 
+    // Create the new product
     const newProduct = getProductRepo.create({
-        category,
+        category: isCategoryExist, 
         productName,
-        price,
+        price: parseFloat(price), 
         brand,
         stockQuanity,
         productDescription,
-        discount,
-        image
+        discount: parseFloat(discount),
+        image,
     });
 
     await getProductRepo.save(newProduct);
     return { message: "Product added successfully", Product: newProduct };
 };
+
 
 //view product
 export const viewProduct = async () => {

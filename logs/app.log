@@ -831,3 +831,39 @@
 [15:13:24]:smart jhola server is running at 5500
 [15:13:24]:connected to redis
 [15:13:24]:Database connected successfully!
+[16:48:11]:smart jhola server is running at 5500
+[16:48:11]:connected to redis
+[16:48:11]:Database connected successfully!
+[17:05:50]:smart jhola server is running at 5500
+[17:05:50]:connected to redis
+[17:05:50]:Database connected successfully!
+[17:06:10]:smart jhola server is running at 5500
+[17:06:10]:connected to redis
+[17:06:10]:Database connected successfully!
+[17:06:57]:smart jhola server is running at 5500
+[17:06:57]:connected to redis
+[17:06:57]:Database connected successfully!
+[17:34:59]:smart jhola server is running at 5500
+[17:34:59]:connected to redis
+[17:34:59]:Database connected successfully!
+[17:42:09]:smart jhola server is running at 5500
+[17:42:09]:connected to redis
+[17:42:10]:Database connected successfully!
+[17:42:25]:smart jhola server is running at 5500
+[17:42:25]:connected to redis
+[17:42:25]:Database connected successfully!
+[17:43:10]:smart jhola server is running at 5500
+[17:43:10]:connected to redis
+[17:43:10]:Database connected successfully!
+[22:10:49]:smart jhola server is running at 5500
+[22:10:49]:connected to redis
+[22:10:50]:Error during Data Source initialization: column "productCopuCode" of relation "smartProducts" contains null values
+[22:18:49]:smart jhola server is running at 5500
+[22:18:49]:connected to redis
+[22:18:49]:Database connected successfully!
+[22:21:08]:smart jhola server is running at 5500
+[22:21:08]:connected to redis
+[22:21:08]:Database connected successfully!
+[22:21:59]:smart jhola server is running at 5500
+[22:21:59]:connected to redis
+[22:21:59]:Database connected successfully!

@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import categoryRouter from "./store/routes/category.routers";
 import productRouter from "./store/routes/product.routers";
+import CartRouter from "./store/routes/cart.routers";
 dotenv.config();
 const app = express();
 
@@ -48,8 +49,9 @@ app.use("/smartjhola",commonRoutes);
 //app.use("/smartjhola",productRoutes);
 
 
-// app.use("/smartjhola/store/category", categoryRouter);
-// app.use("/smartjhola/store/product", productRouter);
+app.use("/smartjhola/store/category", categoryRouter);
+app.use("/smartjhola/store/product", productRouter);
+app.use("/smartjhola/store/cart", CartRouter);
 
 const port = process.env.PORT || 5500;
 app.listen(port, ()=>{
