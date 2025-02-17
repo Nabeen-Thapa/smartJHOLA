@@ -29,10 +29,10 @@ export const addCouponCode =async (couponCode:number,discountPrecentage:number, 
     }
 }
 
-// export const checkCouponCode =async(couponCode, totalAmount) =>{
-//     try {
+export const checkCouponCode =async(couponCode, totalAmount) =>{
+    try {
         
-//     } catch (error) {
+    } catch (error) {
         
-//     }
-// }
+    }
+}

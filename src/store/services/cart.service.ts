@@ -38,20 +38,23 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
 //view cart
 export const viewCart = async (user: smartUser) => {
     const getProductRepo = smartConnection.getRepository(smartProduct);
+    const getCartRepo =  smartConnection.getRepository(smartCart);
     const getTokenRepo = smartConnection.getRepository(smartToken);
     const isUserLoggedIn = await getTokenRepo.findOne({ where: { userId:user.userId } });
     if (!isUserLoggedIn) {
         throw new Error("you are not logged in");
     }
     //get cart items
-    const cartItems = await getProductRepo.find();
+    const cartItems = await getCartRepo.find({where:{user :{userId : user.userId}}});
     if (cartItems.length === 0) {
        throw new Error("No catagories found");
     }
+    const totalPrice = cartItems.reduce((sum, item) => sum + item.total_price, 0);
     //view items
     return {
         success: true,
-        data: cartItems
+        data: cartItems,
+        totalPrice :totalPrice
     };
 }
 
