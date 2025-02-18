@@ -24,6 +24,16 @@ export const addCouponCode =async (couponCode:number,discountPrecentage:number, 
             ExpireDate
         })
         await getCouponRepo.save(newCoupon);
+        
+         // Automatically delete the coupon after it expires
+         const expirationTime = new Date(ExpireDate).getTime() - Date.now();
+         if (expirationTime > 0) {
+             setTimeout(async () => {
+                 await getCouponRepo.delete({ couponCode });
+                 console.log(`Coupon ${couponCode} deleted after expiration`);
+             }, expirationTime);
+         }
+ 
         res.status(StatusCodes.ACCEPTED).json({message :"coupon added successfully"});
         return;
     } catch (error) {
