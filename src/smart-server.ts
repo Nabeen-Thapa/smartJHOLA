@@ -5,12 +5,12 @@ import userRoutes from "./users/routes/user-routes";
 import { smartConnection } from "./common/db/db-connection-config";
 import adminRoutes from "./admin/routes/admin-routes";
 import commonRoutes from "./common/routes/common-router";
-// import productRoutes from "./products/routers/product-routes";
 import cookieParser from "cookie-parser";
-import session from "express-session";
 import categoryRouter from "./store/routes/category.routers";
 import productRouter from "./store/routes/product.routers";
 import CartRouter from "./store/routes/cart.routers";
+import couponRoute from "./store/routes/coupon.route";
+import {sessionSetup } from "./common/utils/session.setup";
 dotenv.config();
 const app = express();
 
@@ -29,30 +29,19 @@ smartConnection.initialize()
     logger.error("Error during Data Source initialization:", error);
   });
 
-  app.use(
-    session({
-      secret: 'yourSecretKey', // Change this to a strong secret key
-      resave: false,
-      saveUninitialized: true,
-      cookie: {
-        httpOnly: true,
-        secure: false, // Set to true if using HTTPS
-        maxAge: 1000 * 60 * 60 * 24, // Session expiration (1 day)
-      },
-    })
-  );
+
+  app.use(sessionSetup);
   
   //routes
 app.use("/smartjhola", userRoutes);
 app.use("/smartjhola", adminRoutes);
 app.use("/smartjhola",commonRoutes);
-//app.use("/smartjhola",productRoutes);
 
 
 app.use("/smartjhola/store/category", categoryRouter);
 app.use("/smartjhola/store/product", productRouter);
 app.use("/smartjhola/store/cart", CartRouter);
-app.use("/smartjhola/store/coupon", commonRoutes);
+app.use("/smartjhola/store/coupon", couponRoute);
 
 
 const port = process.env.PORT || 5500;
