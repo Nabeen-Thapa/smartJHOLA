@@ -24,7 +24,7 @@ export const addCouponCode =async (couponCode:number,discountPrecentage:number, 
             ExpireDate
         })
         await getCouponRepo.save(newCoupon);
-        
+
          // Automatically delete the coupon after it expires
          const expirationTime = new Date(ExpireDate).getTime() - Date.now();
          if (expirationTime > 0) {
@@ -41,6 +41,7 @@ export const addCouponCode =async (couponCode:number,discountPrecentage:number, 
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: "internal server errro during add coupon: ", error});
     }
 }
+
 
 export const checkCouponCode =async(couponCode:number, totalAmount:number,user: smartUser, res:Response) =>{
     try {
