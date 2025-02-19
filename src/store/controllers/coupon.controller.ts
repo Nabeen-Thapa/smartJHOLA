@@ -17,3 +17,16 @@ export const addCouponController = async(req:Request, res:Response)=>{
 }
 
 
+export const checkCouponController = async(req:Request, res:Response)=>{
+     const {couponCode, totalAmount,user} = req.body;
+ 
+    try {
+     const checkCouponResult = await addCouponCode(couponCode, totalAmount,user, res);
+      res.status(StatusCodes.CREATED).json(checkCouponResult);
+    } catch (error) {
+         logger.error("Error during add coupon:", error);
+         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error});
+    }
+ }
+
+
