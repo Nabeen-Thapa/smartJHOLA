@@ -3,8 +3,8 @@ import { addToCartController, removeCartItemController, viewCartController } fro
 
 const CartRouter:Router = express.Router();
 
-CartRouter.post("cart/add", addToCartController);
-CartRouter.post("cart/view", viewCartController);
-CartRouter.post("cart/remove", removeCartItemController);
+CartRouter.post("/add", addToCartController);
+CartRouter.post("/view", viewCartController);
+CartRouter.post("/remove", removeCartItemController);
 
 export default CartRouter;

@@ -870,3 +870,76 @@
 [21:41:31]:smart jhola server is running at 5500
 [21:41:31]:connected to redis
 [21:41:31]:Database connected successfully!
+[13:28:42]:smart jhola server is running at 5500
+[13:28:42]:connected to redis
+[13:28:43]:Database connected successfully!
+[13:42:14]:smart jhola server is running at 5500
+[13:42:14]:connected to redis
+[13:42:14]:Database connected successfully!
+[13:47:24]:smart jhola server is running at 5500
+[13:47:24]:connected to redis
+[13:47:25]:Database connected successfully!
+[13:51:51]:smart jhola server is running at 5500
+[13:51:51]:connected to redis
+[13:51:51]:Database connected successfully!
+[13:54:12]:smart jhola server is running at 5500
+[13:54:12]:connected to redis
+[13:54:13]:Database connected successfully!
+[13:55:18]:smart jhola server is running at 5500
+[13:55:18]:connected to redis
+[13:55:19]:Database connected successfully!
+[14:00:11]:smart jhola server is running at 5500
+[14:00:11]:connected to redis
+[14:00:11]:Database connected successfully!
+[14:07:23]:Login error:  MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.
+[14:15:08]:smart jhola server is running at 5500
+[14:15:08]:connected to redis
+[14:15:08]:Database connected successfully!
+[14:15:36]:smart jhola server is running at 5500
+[14:15:36]:connected to redis
+[14:15:37]:Database connected successfully!
+[14:18:02]:smart jhola server is running at 5500
+[14:18:02]:connected to redis
+[14:18:02]:Database connected successfully!
+[14:19:27]:smart jhola server is running at 5500
+[14:19:27]:connected to redis
+[14:19:27]:Database connected successfully!
+[14:23:47]:smart jhola server is running at 5500
+[14:23:47]:connected to redis
+[14:23:47]:Database connected successfully!
+[14:25:16]:smart jhola server is running at 5500
+[14:25:16]:connected to redis
+[14:25:16]:Database connected successfully!
+[14:26:42]:smart jhola server is running at 5500
+[14:26:42]:connected to redis
+[14:26:43]:Database connected successfully!
+[14:29:36]:smart jhola server is running at 5500
+[14:29:36]:connected to redis
+[14:29:36]:Database connected successfully!
+[14:32:24]:smart jhola server is running at 5500
+[14:32:24]:connected to redis
+[14:32:24]:Database connected successfully!
+[14:35:00]:smart jhola server is running at 5500
+[14:35:00]:connected to redis
+[14:35:00]:Database connected successfully!
+[14:38:44]:smart jhola server is running at 5500
+[14:38:44]:connected to redis
+[14:38:44]:Database connected successfully!
+[14:48:52]:smart jhola server is running at 5500
+[14:48:52]:connected to redis
+[14:48:52]:Database connected successfully!
+[14:51:02]:smart jhola server is running at 5500
+[14:51:02]:connected to redis
+[14:51:02]:Database connected successfully!
+[14:57:03]:smart jhola server is running at 5500
+[14:57:03]:connected to redis
+[14:57:03]:Database connected successfully!
+[14:57:37]:smart jhola server is running at 5500
+[14:57:37]:connected to redis
+[14:57:37]:Database connected successfully!
+[15:00:33]:smart jhola server is running at 5500
+[15:00:33]:connected to redis
+[15:00:33]:Database connected successfully!
+[15:03:57]:smart jhola server is running at 5500
+[15:03:57]:connected to redis
+[15:03:57]:Database connected successfully!

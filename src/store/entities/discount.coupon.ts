@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique } from
 
 
 @Entity("smartCoupon")
-@Unique(['couponId', "couponCode"]);
+@Unique(['couponId', "couponCode"])
 
 export class smartCoupon{
     @PrimaryGeneratedColumn()

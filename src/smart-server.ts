@@ -10,7 +10,7 @@ import categoryRouter from "./store/routes/category.routers";
 import productRouter from "./store/routes/product.routers";
 import CartRouter from "./store/routes/cart.routers";
 import couponRoute from "./store/routes/coupon.route";
-import {sessionSetup } from "./common/utils/session.setup";
+//import {sessionSetup } from "./common/utils/session.setup";
 dotenv.config();
 const app = express();
 
@@ -30,13 +30,27 @@ smartConnection.initialize()
   });
 
 
-  app.use(sessionSetup);
+  // app.use(sessionSetup);
+  import session from "express-session";
+ 
+   const session_key = process.env.SESSION_SECRET || "session123";
+
+      session({
+        secret: 'session_key', // Change this to a strong secret key
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+          httpOnly: true,
+          secure: false, // Set to true if using HTTPS
+          maxAge: 1000 * 60 * 60 * 24, // Session expiration (1 day)
+        },
+      })
+
   
   //routes
 app.use("/smartjhola", userRoutes);
 app.use("/smartjhola", adminRoutes);
 app.use("/smartjhola",commonRoutes);
-
 
 app.use("/smartjhola/store/category", categoryRouter);
 app.use("/smartjhola/store/product", productRouter);

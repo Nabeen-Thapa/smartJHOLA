@@ -88,18 +88,7 @@ smartUserLogin.post("/login", async (req: Request, res: Response): Promise<void>
             refreshToken,
         };
 
-        // Store user data in Redis
-        await redisClient.set(
-            `username:${username}`,
-            JSON.stringify({
-                userId,
-                userEmail,
-                username,
-                accessToken,
-                refreshToken,
-            }),
-            { EX: 60 * 60 * 24 * 10 } // Expiry time: 10 days
-        );
+       
 
         const getdbToken = smartConnection.getRepository(smartToken);
         const isUserLoggedIn = await getdbToken.findOne({ where: { userId, username } });
@@ -113,19 +102,19 @@ smartUserLogin.post("/login", async (req: Request, res: Response): Promise<void>
         await getdbToken.save(newUserToken);
 
         // Check if session is available
-        if (!req.session) {
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Session is unavailable" });
-            return;
-        }
+        // if (!req.session) {
+        //     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Session is unavailable" });
+        //     return;
+        // }
 
-        // Store data in session
-        (req.session as any).userId = userId;
-        (req.session as any).username = username;
-        (req.session as any).userEmail = userEmail;
+        // // Store data in session
+        // (req.session as any).userId = userId;
+        // (req.session as any).username = username;
+        // (req.session as any).userEmail = userEmail;
 
-        // Store session data in cookies
-        res.cookie("username", username, { httpOnly: true, maxAge: 3600000 });
-        res.cookie("userId", userId, { httpOnly: true, maxAge: 3600000 });
+        // // Store session data in cookies
+        // res.cookie("username", username, { httpOnly: true, maxAge: 3600000 });
+        // res.cookie("userId", userId, { httpOnly: true, maxAge: 3600000 });
 
         res.json({
             session :req.session,
@@ -134,6 +123,18 @@ smartUserLogin.post("/login", async (req: Request, res: Response): Promise<void>
             accessToken,
             refreshToken,
         });
+         // Store user data in Redis
+         await redisClient.set(
+            `username:${username}`,
+            JSON.stringify({
+                userId,
+                userEmail,
+                username,
+                accessToken,
+                refreshToken,
+            }),
+            { EX: 60 * 60 * 24 * 10 } // Expiry time: 10 days
+        );
     } catch (error) {
         logger.error("Login error: ", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "An error occurred during login." });
