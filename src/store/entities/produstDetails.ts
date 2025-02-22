@@ -32,6 +32,9 @@ export class smartProduct{
 
     @Column({type:"float",  nullable: true, default: 0 })
     discount?:number;
+
+    @Column({type:"bigint",  nullable: true })
+    discountCoupon?:number;
     
     @Column({type:"varchar"})
     image!:string;

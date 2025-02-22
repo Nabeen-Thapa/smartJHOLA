@@ -58,7 +58,7 @@ app.use("/smartjhola/store/cart", CartRouter);
 app.use("/smartjhola/store/coupon", couponRoute);
 
 
-const port = process.env.PORT || 5500;
+const port = process.env.PORT || 5550;
 app.listen(port, ()=>{
     logger.info(`smart jhola server is running at ${port}`);
 });
