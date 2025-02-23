@@ -15,35 +15,37 @@ export class smartProduct{
     @JoinColumn({name: "categoryId"})
     category?: smartCategory;
 
-    @Column({type:"varchar"})
+    @Column()
     productName!:string;
 
-    @Column({ type: "int", nullable: false, default: "0" })
+    @Column({nullable: false, default: "0" })
     price!: number;
 
-    @Column({type:"varchar"})
-    brand!:string;
-
-    @Column({type:"int"})
-    stockQuanity!:number; 
-
-    @Column({type:"varchar"})
-    productDescription!:string;
-
-    @Column({type:"float",  nullable: true, default: 0 })
+    @Column({nullable: true, default: 0 })
     discount?:number;
 
-    @Column({type:"bigint",  nullable: true })
+
+    @Column({nullable: true })
     discountCoupon?:number;
     
-    @Column({type:"varchar"})
+    @Column({nullable: false, default: "0" })
+    sellingPrice!: number;
+
+    @Column()
+    brand!:string;
+
+    @Column()
+    stockQuanity!:number; 
+
+    @Column()
+    productDescription!:string;
+
+    @Column()
     image!:string;
 
     @OneToMany(()=>smartCart, (cartItem)=>cartItem.product)
     @JoinColumn({name :"categoryId"})
     cartItems!:smartCart[];
 
-    // @Column({type : "bigint"})
-    // productCopuCode : number;
    
 }

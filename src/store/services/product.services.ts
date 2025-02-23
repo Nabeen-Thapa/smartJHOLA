@@ -15,7 +15,8 @@ export const addProduct = async (
     brand: string,
     stockQuanity: number,
     productDescription: string,
-    discount: string,
+    discount: number,
+    discountCoupon: number | null,
     image: string
 ) => {
     if (!category || !productName || !productDescription || !price || !brand) {
@@ -37,15 +38,17 @@ export const addProduct = async (
         throw new Error("Product with this name already exists");
     }
 
-    // Create the new product
+    const sellingPrice: number = Math.round(parseFloat(price) * (1 - (discount/ 100)));    // Create the new product
     const newProduct = getProductRepo.create({
-        category: isCategoryExist, 
+        category: isCategoryExist,
         productName,
-        price: parseFloat(price), 
+        price: price, 
+        discount:discount,
+        discountCoupon: discountCoupon || undefined,
+        sellingPrice,
         brand,
         stockQuanity,
         productDescription,
-        discount: parseFloat(discount),
         image,
     });
 
