@@ -3,7 +3,7 @@ import { addProductController, deleteProductController, updateProductController,
 import productImage from "../middleware/productImageUpload";
 
 const productRouter =  express.Router();
-productRouter.post("/create",productImage.single("image"), addProductController);
+productRouter.post("/create",productImage.single("productImage"), addProductController);
 productRouter.post("/view", viewProductController);
 productRouter.post("/update", updateProductController);
 productRouter.post("/update", deleteProductController);

@@ -6,7 +6,7 @@ const storage = new CloudinaryStorage({
     cloudinary,
     params: async (req, file) => {
         return {
-            folder: "products", // Cloudinary folder name
+            folder: "products",
             format: file.mimetype.split("/")[1], // Extract format dynamically from MIME type
             public_id: `${Date.now()}-${file.originalname.replace(/\s+/g, "-")}`, // Clean filename
             resource_type: "image", // Ensures it's an image
@@ -16,6 +16,7 @@ const storage = new CloudinaryStorage({
 
 const productImage = multer({
     storage,
+    limits: { fileSize: 5 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
         const allowedFormats = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"];
         if (allowedFormats.includes(file.mimetype)) {

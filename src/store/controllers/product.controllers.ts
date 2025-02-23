@@ -6,6 +6,8 @@ import logger from "../../common/utils/logger";
 //add product
 export const addProductController = async(req:Request, res:Response): Promise<void>=>{
     const {category, productName,price, brand, stockQuanity,productDescription,discount,discountCoupon}= req.body;
+    console.log(req.body);  // Log the body
+    console.log(req.file);
     const image = req.file?.path;
     if (!image) {
         res.status(StatusCodes.BAD_REQUEST).json({ message: "Image upload failed" });
