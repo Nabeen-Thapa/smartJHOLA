@@ -4,11 +4,12 @@ import { StatusCodes } from "http-status-codes";
 import logger from "../../common/utils/logger";
 
 //add product
-export const addProductController = async(req:Request, res:Response)=>{
+export const addProductController = async(req:Request, res:Response): Promise<void>=>{
     const {category, productName,price, brand, stockQuanity,productDescription,discount,discountCoupon}= req.body;
     const image = req.file?.path;
     if (!image) {
-        return res.status(StatusCodes.BAD_REQUEST).json({ message: "Image upload failed" });
+        res.status(StatusCodes.BAD_REQUEST).json({ message: "Image upload failed" });
+        return;
     }
     try {
         const createProductResult = await addProduct(category, productName,price, brand, stockQuanity,productDescription,discount,discountCoupon, image);
