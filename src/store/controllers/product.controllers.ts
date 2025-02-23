@@ -5,9 +5,13 @@ import logger from "../../common/utils/logger";
 
 //add product
 export const addProductController = async(req:Request, res:Response)=>{
-    const {category, productName,price, brand, stockQuanity,productDescription,discount, image}= req.body;
+    const {category, productName,price, brand, stockQuanity,productDescription,discount,discountCoupon}= req.body;
+    const image = req.file?.path;
+    if (!image) {
+        return res.status(StatusCodes.BAD_REQUEST).json({ message: "Image upload failed" });
+    }
     try {
-        const createProductResult = await addProduct(category, productName,price, brand, stockQuanity,productDescription,discount, image);
+        const createProductResult = await addProduct(category, productName,price, brand, stockQuanity,productDescription,discount,discountCoupon, image);
         res.status(StatusCodes.CREATED).json(createProductResult);
     } catch (error) {
         logger.error("Error during add product:", error);

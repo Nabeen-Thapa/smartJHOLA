@@ -10,6 +10,7 @@ import categoryRouter from "./store/routes/category.routers";
 import productRouter from "./store/routes/product.routers";
 import CartRouter from "./store/routes/cart.routers";
 import couponRoute from "./store/routes/coupon.route";
+import "reflect-metadata";
 //import {sessionSetup } from "./common/utils/session.setup";
 dotenv.config();
 const app = express();
@@ -21,13 +22,13 @@ app.use(express.json());
 
 
 
-smartConnection.initialize()
-  .then(() => {
-    logger.info("Database connected successfully!");
-  })
-  .catch((error) => {
-    logger.error("Error during Data Source initialization:", error);
-  });
+// smartConnection.initialize()
+//   .then(() => {
+//     logger.info("Database connected successfully!");
+//   })
+//   .catch((error) => {
+//     logger.error("Error during Data Source initialization:", error);
+//   });
 
 
   // app.use(sessionSetup);

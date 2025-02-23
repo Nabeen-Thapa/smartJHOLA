@@ -18,7 +18,7 @@ export class smartProduct{
     @Column()
     productName!:string;
 
-    @Column({nullable: false, default: "0" })
+    @Column({nullable: false, default: 0 })
     price!: number;
 
     @Column({nullable: true, default: 0 })
@@ -28,7 +28,7 @@ export class smartProduct{
     @Column({nullable: true })
     discountCoupon?:number;
     
-    @Column({nullable: false, default: "0" })
+    @Column({nullable: false, default: 0 })
     sellingPrice!: number;
 
     @Column()

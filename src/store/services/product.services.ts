@@ -9,9 +9,9 @@ import { smartProduct } from "../entities/produstDetails";
 
 //add Product
 export const addProduct = async (
-    category: smartCategory | any,
+    category: smartCategory,
     productName: string,
-    price: string,
+    price: number,
     brand: string,
     stockQuanity: number,
     productDescription: string,
@@ -22,7 +22,9 @@ export const addProduct = async (
     if (!category || !productName || !productDescription || !price || !brand) {
         throw new Error("Product category, Product name, price, brand description are required");
     }
-
+    if (discount < 0 || discount > 100) {
+        throw new Error("Discount must be in precent (between 0 and 100)");
+    }
     const getCategoryRepo = smartConnection.getRepository(smartCategory);
     const getProductRepo = smartConnection.getRepository(smartProduct);
 
@@ -37,8 +39,12 @@ export const addProduct = async (
     if (isProductExist) {
         throw new Error("Product with this name already exists");
     }
+   
+    if (isNaN(price)) {
+        throw new Error("Price must be a valid number");
+    }
 
-    const sellingPrice: number = Math.round(parseFloat(price) * (1 - (discount/ 100)));    // Create the new product
+    const sellingPrice: number = price * Math.round(1 - (discount/ 100));    // Create the new product
     const newProduct = getProductRepo.create({
         category: isCategoryExist,
         productName,
@@ -52,7 +58,7 @@ export const addProduct = async (
         image,
     });
 
-    await getProductRepo.save(newProduct);
+    await getProductRepo.manager.save(newProduct);
     return { message: "Product added successfully", Product: newProduct };
 };
 
