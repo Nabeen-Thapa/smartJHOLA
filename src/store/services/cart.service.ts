@@ -22,14 +22,14 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
         throw new Error("you already have add this item");
     }
 
-    const productData = await getProductRepo.findOne({ where: { productId: product.productId }, });
+    const productData = await getProductRepo.findOne({ where: { productId: Number(product) }, });
     if(!productData){
         throw new Error("product is not found");
     }
-    const price = productData.price;
-    let total_price =price;
+    const price = productData.sellingPrice;
+    let final_price =price;
     if(discountCoupon){
-        total_price = price * Math.round(1 - (10/ 100));
+        final_price = price * Math.round(1 - (5/ 100));
     }
 
     // add to caddToCart table
@@ -39,13 +39,12 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
         product,
         quantity,
         price,
-        total_price,
+        total_price : final_price,
         added_at,
     });
     await getAddToCartRepo.save(newCartItem);
     return { message: "product is added to cart successfully" };
 }
-
 
 //view cart
 export const viewCart = async (user: smartUser) => {
@@ -56,13 +55,13 @@ export const viewCart = async (user: smartUser) => {
     if (!isUserLoggedIn) {
         throw new Error("you are not logged in");
     }
-    //get cart items
+ 
     const cartItems = await getCartRepo.find({where:{user :{userId : user.userId}}});
     if (cartItems.length === 0) {
        throw new Error("No catagories found");
     }
     const totalPrice = cartItems.reduce((sum, item) => sum + item.total_price, 0);
-    //view items
+    
     return {
         success: true,
         data: cartItems,
