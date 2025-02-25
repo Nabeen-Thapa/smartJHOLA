@@ -22,7 +22,6 @@ export class CategoryControllerClass {
     }
 }
 
-
  readCategory = async(req:Request, res:Response)=>{
     const {categoryId} =req.body;
    try {
@@ -30,7 +29,7 @@ export class CategoryControllerClass {
     res.status(StatusCodes.OK).json({
         success :true,
         category : category
-    })
+    });
    } catch (error) {
     logger.error("Error during view category:", error);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
@@ -50,7 +49,6 @@ export class CategoryControllerClass {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error});
    }
 }
-
 
  deletedCategory= async(req:Request, res:Response)=>{
     const {categoryId, categoryName, categoryDescription} =req.body;

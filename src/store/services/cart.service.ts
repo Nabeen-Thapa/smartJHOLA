@@ -6,10 +6,11 @@ import { smartCart } from "../entities/AddToCart";
 import { smartProduct } from "../entities/produstDetails";
 
 //add to cart
-export const AddToCart = async (user: smartUser, product: smartProduct, quantity: number, price: number, total_price: number) => {
+export const AddToCart = async (user: smartUser, product: smartProduct, quantity: number,  discountCoupon:number) => {
 
     const getAddToCartRepo = smartConnection.getRepository(smartCart);
     const getuserRepo = smartConnection.getRepository(smartUser);
+    const getProductRepo = smartConnection.getRepository(smartProduct);
     const isUserLoggedIn =await  getuserRepo.findOne({where : {userId :Number(user)}})
     if(!isUserLoggedIn){
        throw new Error("you are not logged in, login first");
@@ -19,6 +20,16 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
     const isProductExistOfSameUser = await getAddToCartRepo.findOne({ where: { user, product }, })
     if (isProductExistOfSameUser) {
         throw new Error("you already have add this item");
+    }
+
+    const productData = await getProductRepo.findOne({ where: { productId: product.productId }, });
+    if(!productData){
+        throw new Error("product is not found");
+    }
+    const price = productData.price;
+    let total_price =price;
+    if(discountCoupon){
+        total_price = price * Math.round(1 - (10/ 100));
     }
 
     // add to caddToCart table

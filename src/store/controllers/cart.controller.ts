@@ -4,10 +4,10 @@ import { StatusCodes } from "http-status-codes";
 
 
 export const addToCartController =async(req:Request, res:Response)=>{
-    const{userId, product, quantity, price, total_price}=req.body;
+    const{userId, product, quantity, discountCoupon}=req.body;
     try {
-       const  addToCartResult = await AddToCart(userId, product, quantity, price, total_price);
-       res.json({mesage:"rpoduct is added to cart success"});
+       const  addToCartResult = await AddToCart(userId, product, quantity, discountCoupon);
+       res.json({mesage:"product is added to cart success"});
     } catch (error) {
         console.log("add to cart error:", error);
     }

@@ -43,8 +43,11 @@ export const addProduct = async (
     if (isNaN(price)) {
         throw new Error("Price must be a valid number");
     }
+    let sellingPrice = price;
 
-    const sellingPrice: number = price * Math.round(1 - (discount/ 100));    // Create the new product
+    if(discount > 0){
+        sellingPrice = price * Math.round(1 - (discount/ 100));    // Create the new product
+    }
     const newProduct = getProductRepo.create({
         category: isCategoryExist,
         productName,
@@ -58,7 +61,7 @@ export const addProduct = async (
         image,
     });
 
-    await getProductRepo.manager.save(newProduct);
+    await getProductRepo.save(newProduct);
     return { message: "Product added successfully", Product: newProduct };
 };
 
