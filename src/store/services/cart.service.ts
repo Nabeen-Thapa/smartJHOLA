@@ -6,7 +6,7 @@ import { smartCart } from "../entities/AddToCart";
 import { smartProduct } from "../entities/produstDetails";
 
 //add to cart
-export const AddToCart = async (user: smartUser, product: smartProduct, quantity: number,  discountCoupon:number) => {
+export const AddToCart = async (user: smartUser, product: smartProduct, quantity: number, discountCoupon: number) => {
 
     const getAddToCartRepo = smartConnection.getRepository(smartCart);
     const getuserRepo = smartConnection.getRepository(smartUser);
@@ -16,45 +16,49 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
     const productId = Number(product);
     if (isNaN(userId) || isNaN(productId)) {
         throw new Error("Invalid user or product ID.");
-    }    
-
-    const isUserLoggedIn =await  getuserRepo.findOne({where : {userId :Number(user)}})
-    if(!isUserLoggedIn){
-       throw new Error("you are not logged in, login first");
-       
     }
 
-    const isProductExistOfSameUser = await getAddToCartRepo.findOne({ where: { user,  product }, })
+    // Check if user exists
+    const isUserLoggedIn = await getuserRepo.findOne({ where: { userId } });
+    if (!isUserLoggedIn) {
+        throw new Error("You are not logged in, login first");
+    }
+
+    // Check if product is already in the cart for the same user
+    const isProductExistOfSameUser = await getAddToCartRepo.findOne({ where: { user: {userId}, product: {productId} } });
     if (isProductExistOfSameUser) {
-        throw new Error("you already have add this item");
+        throw new Error("You already have added this item.");
     }
 
-    const productData = await getProductRepo.findOne({ where: { productId: Number(product) }, });
-    if(!productData){
-        throw new Error("product is not found");
-    }
-    const price = productData.sellingPrice;
-    console.log(price);
-    let final_price =price;
-    if(discountCoupon){
-        final_price = price * Math.round(1 - 5/ 100);
+    // Fetch product data
+    const productData = await getProductRepo.findOne({ where: { productId } });
+    if (!productData) {
+        throw new Error("Product is not found");
     }
 
-    // add to caddToCart table
+    // Calculate final price with discount
+    let final_price = productData?.sellingPrice;
+    if (discountCoupon) {
+        final_price = Math.round(final_price * (1 - 5 / 100)); 
+    }
+
+    // Add to cart
     const added_at = new Date();
     const newCartItem = getAddToCartRepo.create({
-        user,
-        product,
+        user: {userId},
+        product: {productId},
         quantity,
-        price,
-        total_price : final_price,
+        price: productData?.sellingPrice,
+        total_price: final_price,
         added_at,
     });
+
     await getAddToCartRepo.save(newCartItem);
-    return { message: "product is added to cart successfully",
-        addedItem : newCartItem
-     };
-}
+    return {
+        message: "Product is added to cart successfully",
+        addedItem: newCartItem
+    };
+};
 
 //view cart
 export const viewCart = async (user: smartUser) => {
