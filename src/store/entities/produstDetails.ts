@@ -1,8 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { smartCategory } from "./productsCategory";
 import { smartCart } from "./AddToCart";
-import { number } from "joi";
-
 
 @Entity("smartProducts")
 @Unique(["productId"])
@@ -11,7 +9,7 @@ export class smartProduct{
     @PrimaryGeneratedColumn()
     productId!:number;
 
-    @ManyToOne(()=>smartCategory, (category)=>category.products, {onDelete :"CASCADE", onUpdate: "CASCADE", eager: true })
+    @ManyToOne(()=>smartCategory, (category)=>category.products, {onDelete :"CASCADE", onUpdate: "CASCADE" })
     @JoinColumn({name: "categoryId"})
     category?: smartCategory;
 

@@ -11,13 +11,20 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
     const getAddToCartRepo = smartConnection.getRepository(smartCart);
     const getuserRepo = smartConnection.getRepository(smartUser);
     const getProductRepo = smartConnection.getRepository(smartProduct);
+
+    const userId = Number(user);
+    const productId = Number(product);
+    if (isNaN(userId) || isNaN(productId)) {
+        throw new Error("Invalid user or product ID.");
+    }    
+
     const isUserLoggedIn =await  getuserRepo.findOne({where : {userId :Number(user)}})
     if(!isUserLoggedIn){
        throw new Error("you are not logged in, login first");
        
     }
 
-    const isProductExistOfSameUser = await getAddToCartRepo.findOne({ where: { user, product }, })
+    const isProductExistOfSameUser = await getAddToCartRepo.findOne({ where: { user,  product }, })
     if (isProductExistOfSameUser) {
         throw new Error("you already have add this item");
     }
@@ -27,9 +34,10 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
         throw new Error("product is not found");
     }
     const price = productData.sellingPrice;
+    console.log(price);
     let final_price =price;
     if(discountCoupon){
-        final_price = price * Math.round(1 - (5/ 100));
+        final_price = price * Math.round(1 - 5/ 100);
     }
 
     // add to caddToCart table
@@ -43,7 +51,9 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
         added_at,
     });
     await getAddToCartRepo.save(newCartItem);
-    return { message: "product is added to cart successfully" };
+    return { message: "product is added to cart successfully",
+        addedItem : newCartItem
+     };
 }
 
 //view cart
