@@ -64,7 +64,7 @@ const Signup = () => {
           />
           <select
             name="gender"
-            className="w-3/4 p-3 border rounded"
+            className="w-3/4 p-3 border rounded text=-blue-300"
              onChange={handleChange} style={Style()}
           >
             <option value="">Select Gender</option>

@@ -21,16 +21,6 @@ app.use(cookieParser());
 app.use(express.json());
 
 
-
-// smartConnection.initialize()
-//   .then(() => {
-//     logger.info("Database connected successfully!");
-//   })
-//   .catch((error) => {
-//     logger.error("Error during Data Source initialization:", error);
-//   });
-
-
   // app.use(sessionSetup);
   import session from "express-session";
  
