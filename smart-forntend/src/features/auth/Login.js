@@ -1,11 +1,8 @@
 import React, { FormEvent } from 'react'
 
-interface LoginFormData {
-    username : string;
-    password : string;
-}
+
 const Login = () => {
-    const handleLogin=(e:FormEvent)=>{
+    const handleLogin=(e)=>{
         e.preventDefault();
         console.log("login success")
     }

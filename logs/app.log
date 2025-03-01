@@ -1153,3 +1153,52 @@
 [11:35:09]:smart jhola server is running at 5555
 [11:35:09]:connected to redis
 [11:35:09]:Database connected successfully!
+[17:47:30]:smart jhola server is running at 5555
+[17:47:30]:connected to redis
+[17:47:30]:Database connected successfully!
+[18:03:05]:smart jhola server is running at 5555
+[18:03:05]:connected to redis
+[18:03:05]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:03:48]:smart jhola server is running at 5555
+[18:03:48]:connected to redis
+[18:03:48]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:04:14]:smart jhola server is running at 5555
+[18:04:14]:connected to redis
+[18:04:15]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:04:39]:smart jhola server is running at 5555
+[18:04:39]:connected to redis
+[18:04:39]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:04:54]:smart jhola server is running at 5555
+[18:04:54]:connected to redis
+[18:04:54]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:05:27]:smart jhola server is running at 5555
+[18:05:27]:connected to redis
+[18:05:27]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:05:48]:smart jhola server is running at 5555
+[18:05:48]:connected to redis
+[18:05:48]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:06:49]:smart jhola server is running at 5555
+[18:06:49]:connected to redis
+[18:06:49]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:07:14]:smart jhola server is running at 5555
+[18:07:14]:connected to redis
+[18:07:15]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:08:16]:smart jhola server is running at 5555
+[18:08:16]:connected to redis
+[18:08:17]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:10:49]:smart jhola server is running at 5555
+[18:10:49]:connected to redis
+[18:10:49]:Error during Data Source initialization: Data type "Object" in "smartProduct.image" is not supported by "postgres" database.
+[18:11:34]:smart jhola server is running at 5555
+[18:11:34]:connected to redis
+[18:11:34]:Database connected successfully!
+[18:13:47]:smart jhola server is running at 5555
+[18:13:47]:connected to redis
+[18:13:47]:Database connected successfully!
+[18:44:09]:smart jhola server is running at 5555
+[18:44:09]:connected to redis
+[18:44:09]:Database connected successfully!
+[21:39:17]:smart jhola server is running at 5555
+[21:39:17]:connected to redis
+[21:39:17]:Database connected successfully!
+[21:39:24]:Error during add product: invalid input syntax for type integer: "null"

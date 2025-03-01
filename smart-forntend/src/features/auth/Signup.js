@@ -1,17 +1,10 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import Style from "../../Styles/Style.tsx";
+import Style from "../../Styles/Style.js";
 
-interface FormData {
-  name: string;
-  username: string;
-  email: string;
-  phone: string;
-  age: string;
-  gender: string;
-}
+
 
 const Signup = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: "",
     username: "",
     email: "",
@@ -20,11 +13,11 @@ const Signup = () => {
     gender: "",
   });
  
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Submitted", formData);
   };
