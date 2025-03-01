@@ -9,11 +9,10 @@ import Login from '../features/auth/Login.tsx';
 const AppRoutes = () => {
   return (
     <>
-     
       <Router>
       <Routes>
       <Route path='/' element={ <Signup/>}/>
-      <Route path='/login' element={ <Login}/>
+      <Route path='/login' element={ <Login/>}/>
       </Routes>
     </Router>
     </>
