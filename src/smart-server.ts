@@ -13,12 +13,27 @@ import couponRoute from "./store/routes/coupon.route";
 import "reflect-metadata";
 //import {sessionSetup } from "./common/utils/session.setup";
 dotenv.config();
+import cors from "cors";
 const app = express();
 
 
 app.use(express.urlencoded({ extended: true })); // For form data (URL-encoded)
 app.use(cookieParser());
 app.use(express.json());
+
+
+
+
+// app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true
+  }));
+//   app.use(cors({
+//     origin: 'http://localhost:3000', // Allow requests from this origin
+//     credentials: true // Allow cookies and credentials
+// }));
 
 
   // app.use(sessionSetup);
@@ -49,7 +64,7 @@ app.use("/smartjhola/store/cart", CartRouter);
 app.use("/smartjhola/store/coupon", couponRoute);
 
 
-const port = process.env.PORT || 5555;
+const port = process.env.PORT || 5500;
 app.listen(port, ()=>{
     logger.info(`smart jhola server is running at ${port}`);
 });

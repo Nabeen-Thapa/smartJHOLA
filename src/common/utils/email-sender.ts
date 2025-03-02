@@ -7,16 +7,17 @@ interface EmailOptions{
 }
 
 //sending function
+
 export const sendEmail = async (options: EmailOptions):Promise<void> =>{
     const transporter = nodeMailer.createTransport({
         service: "Gmail",
     auth: {
-      user: process.env.EMAIL, // Ensure this is set in your .env file
-      pass: process.env.EMAIL_PASSWORD, // Ensure this is set in your .env file
+      user: process.env.EMAIL ||  "nabeen2058@gmail.com", // Ensure this is set in your .env file
+      pass: process.env.EMAIL_PASSWORD ||"kvof ogic pgrj djdz" , // Ensure this is set in your .env file
     },
     });
     const mailOptions = {
-        from: process.env.EMAIL,
+        from: process.env.EMAIL ||  "nabeen2058@gmail.com",
         to: options.to,
         subject: options.subject,
         text: options.text,

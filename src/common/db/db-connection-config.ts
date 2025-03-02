@@ -17,7 +17,7 @@ export const smartConnection = new DataSource({
     host : process.env.HOST ||"localhost",
     port: 5432,
     username :"postgres",
-    password : process.env.password ,
+    password : process.env.password ||"Nt@post",
     database : process.env.database,
     synchronize: true,
     logging: false,

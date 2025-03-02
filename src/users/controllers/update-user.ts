@@ -53,8 +53,7 @@ updateUser.patch("/update", async(req:Request, res:Response):Promise<void>=>{
             email,
             phone,
             gender,
-            age,
-            image :undefined,
+            age
         });
         await getdbUserDetails.save(addNewUser);
 

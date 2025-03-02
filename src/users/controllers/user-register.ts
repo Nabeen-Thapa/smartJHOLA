@@ -22,17 +22,11 @@ interface userTypes {
     email: string,
     phone: string,
     age: number,
-    gender: string,
-    image?: string | null
+    gender: string
 }
-userRegister.post("/register",upload.single('image'), async (req: Request, res: Response): Promise<void> => {
-    const { name, username, password, email, phone, age, gender }: userTypes = req.body;
-    const image = req.file ? req.file.filename : null;  // Get the uploaded image filename
-
-    if (!image) {
-        res.status(StatusCodes.BAD_REQUEST).json({ message: 'Image is required.' });
-        return;
-    }
+userRegister.post("/register", async (req: Request, res: Response): Promise<void> => {
+    const { name, username, email, phone, age, gender }: userTypes = req.body;
+   
     if (!name || !username || !email || !phone) {
         res.status(StatusCodes.BAD_REQUEST).json({ message: "name, username, email phone number are required" });
             return;
@@ -73,8 +67,7 @@ userRegister.post("/register",upload.single('image'), async (req: Request, res: 
             email,
             phone,
             gender,
-            age,
-            image :undefined,
+            age
         });
         await getdbUserDetails.save(addNewUser);
 

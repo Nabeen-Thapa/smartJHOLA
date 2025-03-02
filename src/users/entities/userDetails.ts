@@ -15,7 +15,6 @@ export class smartUser {
     @Column({ type: "bigint" }) phone!: string;
     @Column({ type: "varchar" }) gender?: string;
     @Column({ type: "varchar" }) age?: number;
-    @Column({ nullable: true }) image?: string;
     @Column({ type: "varchar", default: "Deactive" }) status?: string;
     @OneToMany(() => smartCart, (cartItems) => cartItems.user) cartItems!: smartCart;
 }

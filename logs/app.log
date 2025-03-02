@@ -1202,3 +1202,11 @@
 [21:39:17]:connected to redis
 [21:39:17]:Database connected successfully!
 [21:39:24]:Error during add product: invalid input syntax for type integer: "null"
+[16:36:11]:smart jhola server is running at 5500
+[16:36:11]:connected to redis
+[16:36:11]:Database connected successfully!
+[16:36:51]:Email sending failed:
+[16:36:51]:error duirng registration:  Cannot set headers after they are sent to the client
+[16:41:04]:smart jhola server is running at 5500
+[16:41:04]:connected to redis
+[16:41:05]:Database connected successfully!

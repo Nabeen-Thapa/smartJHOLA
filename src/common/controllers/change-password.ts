@@ -37,7 +37,7 @@ changePassword.post("/changepwd", async(req:Request, res:Response):Promise<void>
         //delete form readis
         const checkInRedis = await redisClient.keys('username:*');
         let redisData;
-        let deleteFromRedis = null;
+        let deleteFromRedis:any = null;
 
         for (const key of checkInRedis) {
             // Retrieve data from Redis and parse it
