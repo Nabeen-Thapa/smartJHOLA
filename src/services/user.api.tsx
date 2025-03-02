@@ -1,6 +1,3 @@
-
-
-const host =`http://localhost:5500/smartjhola/user/register`;
 import axios from "axios";
 export const signup =async (FormData:{
     name: string;
@@ -10,15 +7,17 @@ export const signup =async (FormData:{
     age: string;
     gender: string;
 })=>{
+
+    const host =`http://localhost:5555/smartjhola`;
+
     try {
-        const userSignupResponce = await axios.post(`${host}//user/register`,FormData,{
+        const userSignupResponce = await axios.post(`http://localhost:5555/smartjhola/user/register`,FormData,{
             headers: {
                 "Content-Type": "application/json",
               },
-        })
+        });
     } catch (error) {
         console.error("Error during signup:", error);
         throw error;
     }
 }
-

@@ -1,0 +1,56 @@
+[11:39:49]:smart jhola server is running at 5555
+[11:39:49]:connected to redis
+[11:39:49]:Error during Data Source initialization: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[11:43:07]:smart jhola server is running at 5555
+[11:43:07]:connected to redis
+[11:43:07]:Error during Data Source initialization: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[11:57:45]:smart jhola server is running at 5555
+[11:57:45]:connected to redis
+[11:57:45]:Error during Data Source initialization: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[13:40:37]:smart jhola server is running at 5555
+[13:40:37]:connected to redis
+[13:40:37]:Error during Data Source initialization: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[13:53:40]:smart jhola server is running at 5555
+[13:53:40]:connected to redis
+[13:53:40]:Error during Data Source initialization: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[16:03:53]:smart jhola server is running at 5555
+[16:03:53]:connected to redis
+[16:03:53]:Error during Data Source initialization: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[16:07:27]:smart jhola server is running at 5555
+[16:07:27]:connected to redis
+[16:07:27]:Error during Data Source initialization: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[16:11:19]:smart jhola server is running at 5555
+[16:11:19]:connected to redis
+[16:11:19]:Error during Data Source initialization: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+[16:15:27]:smart jhola server is running at 5555
+[16:15:27]:connected to redis
+[16:15:28]:Database connected successfully!
+[16:16:07]:smart jhola server is running at 5555
+[16:16:07]:connected to redis
+[16:16:08]:Database connected successfully!
+[16:18:31]:smart jhola server is running at 5555
+[16:18:31]:connected to redis
+[16:18:31]:Database connected successfully!
+[16:19:49]:smart jhola server is running at 5555
+[16:19:49]:connected to redis
+[16:19:49]:Database connected successfully!
+[16:41:33]:smart jhola server is running at 5500
+[16:41:33]:connected to redis
+[16:41:33]:Database connected successfully!
+[16:42:05]:smart jhola server is running at 5500
+[16:42:05]:connected to redis
+[16:42:05]:Database connected successfully!
+[16:46:03]:smart jhola server is running at 5500
+[16:46:03]:connected to redis
+[16:46:03]:Database connected successfully!
+[16:49:45]:smart jhola server is running at 5500
+[16:49:45]:connected to redis
+[16:49:45]:Database connected successfully!
+[16:52:43]:smart jhola server is running at 5500
+[16:52:43]:connected to redis
+[16:52:43]:Database connected successfully!
+[16:53:19]:Email sending failed:
+[16:53:19]:error duirng registration:  Cannot set headers after they are sent to the client
+[16:56:33]:smart jhola server is running at 5500
+[16:56:33]:connected to redis
+[16:56:33]:Database connected successfully!

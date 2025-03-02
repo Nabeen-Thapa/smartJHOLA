@@ -1,19 +1,20 @@
 import React, { useState, ChangeEvent, FormEvent } from "react"; // ✅ Import Fixed
 import Style from "../../Styles/Style.tsx";
 import { signup } from "../../services/user.api.tsx";
+import axios from "axios";
 
 
-// interface SignupDataType {
-//   name: string;
-//   username: string;
-//   email: string;
-//   phone: string;
-//   age: string;
-//   gender: string;
-// }
+interface SignupDataType {
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  age: string;
+  gender: string;
+}
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState <SignupDataType>({
     name: "",
     username: "",
     email: "",
@@ -27,18 +28,30 @@ const Signup = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form Submitted", formData);
     try {
-      const data = await signup(formData); // Call the API function
-      console.log("Success:", data);
-      alert("Signup successful!");
+        const payload = {
+            ...formData,
+            age: Number(formData.age), // Convert age to a number
+        };
+        const userSignupResponce = await axios.post(
+            `http://localhost:5500/smartjhola/user/register`,
+            payload,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+        console.log("Success:", userSignupResponce.data);
+        alert("Signup successful!");
     } catch (error) {
-      console.error("Error:", error);
-      alert("Signup failed. Please try again.");
+        console.error("Error:", error);
+        alert("Signup failed. Please try again.");
     }
-  };
+};
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200 p-6">
