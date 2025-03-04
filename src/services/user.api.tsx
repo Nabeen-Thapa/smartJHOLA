@@ -9,24 +9,28 @@ export const signup =async (FormData:{
 })=>{
     const host =`http://localhost:5500/smartjhola`;
     try {
-        const payload = {
-            ...FormData,
-            age: Number(FormData.age), // Convert age to a number
-        };
-        // const userSignupResponce = await axios.post(`${host}/user/register`,payload,{
+        // const payload = {
+        //     ...FormData,
+        //     age: Number(FormData.age), // Convert age to a number
+        // };
+
+        // const userSignupResponce = await axios.post(`${host}/user/register`,FormData,{
         //     headers: {
         //         "Content-Type": "application/json",
         //       },
         // });
+
         const userSignupResponce = await fetch(`${host}/user/register`,{
             method : "POST",
             headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(payload),
+              body: JSON.stringify(FormData),
         });
     } catch (error) {
         console.error("Error during signup:", error);
         throw error;
     }
 }
+
+

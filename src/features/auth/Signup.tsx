@@ -19,7 +19,7 @@ const Signup = () => {
     username: "",
     email: "",
     phone: "",
-    age: "",
+    age: 0,
     gender: "",
   });
 
@@ -32,13 +32,14 @@ const Signup = () => {
     e.preventDefault();
     console.log("Form Submitted", formData);
     try {
+
         // const payload = {
         //     ...formData,
         //     age: Number(formData.age), // Convert age to a number
         // };
         // const userSignupResponce = await axios.post(
         //     `http://localhost:5500/smartjhola/user/register`,
-        //     payload,
+        //     formData,
         //     {
         //         headers: {
         //             "Content-Type": "application/json",

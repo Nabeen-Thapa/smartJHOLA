@@ -7,6 +7,7 @@ import {
   } from "react-router-dom";
 import Login from '../features/auth/Login.tsx';
 import Navbar from '../components/Navbar.tsx';
+import AddProductForm from '../layouts/admin.addProductForm.tsx';
 const AppRoutes = () => {
   return (
     <>
@@ -16,6 +17,7 @@ const AppRoutes = () => {
        
       <Route path='/signup' element={ <Signup/>}/>
       <Route path='/login' element={ <Login/>}/>
+      <Route path='/addProduct' element={ <AddProductForm/>}/>
       </Routes>
     </Router>
     </>
