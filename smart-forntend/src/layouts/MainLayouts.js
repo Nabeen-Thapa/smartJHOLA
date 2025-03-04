@@ -1,1 +1,0 @@
-//header, footer, and a dynamic content area
