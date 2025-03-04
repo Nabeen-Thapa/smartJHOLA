@@ -26,7 +26,7 @@ const AddProductForm = () => {
       };
     return (
         <>
-            <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
+            <div className="max-w-lg mx-auto mt-6 p-6 bg-white shadow-md rounded-lg">
                 <h1 className="text-2xl font-blod mb-6">Add product From</h1>
                 <form onSubmit={addProductSubmit} className="space-y-4">
                     <div>
@@ -48,6 +48,7 @@ const AddProductForm = () => {
                             type="text"
                             name="productName"
                             onChange={handleChange}
+                            placeholder="enter the product Name"
                             className="mt-1 block w-full p-2 v-border border-gray-300 rounders-md shadow-sm focus:ring-indogo-500 focus:border-indigo-500" />
                     </div>
                     <div>
@@ -55,6 +56,7 @@ const AddProductForm = () => {
                             type="number"
                             name="price"
                             onChange={handleChange}
+                             placeholder="enter the product price"
                             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             required
                         />
@@ -64,6 +66,7 @@ const AddProductForm = () => {
                             type="text"
                             name="brand"
                             onChange={handleChange}
+                             placeholder="enter the product Brand"
                             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         />
                     </div>
@@ -72,52 +75,56 @@ const AddProductForm = () => {
                             type="number"
                             name="stockQuantity"
                             onChange={handleChange}
+                            placeholder="enter the product stockQuantity"
                             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">
+                        {/* <label className="block text-sm font-medium text-gray-700">
                             Product Description
-                        </label>
+                        </label> */}
                         <textarea
                             name="productDescription"
                             onChange={handleChange}
+                             placeholder="enter the product description"
                             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             rows="3"
                         />
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">
+                            {/* <label className="block text-sm font-medium text-gray-700">
                                 Discount (%)
-                            </label>
+                            </label> */}
                             <input
                                 type="number"
                                 name="discount"
                                 onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                 placeholder="enter the product discount (in precentage)"
+                                className="mt-3 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">
+                            {/* <label className="block text-sm font-medium text-gray-700">
                                 Discount Coupon (optional)
-                            </label>
+                            </label> */}
                             <input
                                 type="number"
                                 name="discountCoupon"
                                 onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                 placeholder="enter the product discount coupon"
+                                className="mt-3 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">
+                            {/* <label className="block text-sm font-medium text-gray-700">
                                 Image URL
-                            </label>
+                            </label> */}
                             <input
-                                type="text"
+                                type="file"
                                 name="image"
                                 onChange={handleChange}
-                                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                className="mt-2 mb-6 block w-full p-2  border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                                 required
                             />
                         </div>
