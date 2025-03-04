@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react"; // ✅ Import Fixed
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import Style from "../../Styles/Style.tsx";
 import axios from "axios";
 import { signup } from "../../services/user.api.tsx";
