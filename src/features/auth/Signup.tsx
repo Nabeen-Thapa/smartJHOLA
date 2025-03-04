@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from "react"; // ✅ Import Fixed
 import Style from "../../Styles/Style.tsx";
-import { signup } from "../../services/user.api.tsx";
 import axios from "axios";
+import { signup } from "../../services/user.api.tsx";
 
 
 interface SignupDataType {
@@ -32,20 +32,23 @@ const Signup = () => {
     e.preventDefault();
     console.log("Form Submitted", formData);
     try {
-        const payload = {
-            ...formData,
-            age: Number(formData.age), // Convert age to a number
-        };
-        const userSignupResponce = await axios.post(
-            `http://localhost:5500/smartjhola/user/register`,
-            payload,
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-        console.log("Success:", userSignupResponce.data);
+        // const payload = {
+        //     ...formData,
+        //     age: Number(formData.age), // Convert age to a number
+        // };
+        // const userSignupResponce = await axios.post(
+        //     `http://localhost:5500/smartjhola/user/register`,
+        //     payload,
+        //     {
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //     }
+        // );
+        // console.log("Success:", userSignupResponce.data);
+
+        const data = await signup(formData);
+        console.log("Success:", data);
         alert("Signup successful!");
     } catch (error) {
         console.error("Error:", error);

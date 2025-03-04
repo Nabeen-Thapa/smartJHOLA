@@ -34,7 +34,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             {/* Login Button */}
             <a href="/login"
-              className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium"> Login</a>
+              className="bg-blue-500 text-white px-4 py-2 rounded-md text-lg font-medium hover:bg-blue-600 transition duration-300"> Login</a>
 
             {/* Sign Up Button */}
             <a href="/signup"
