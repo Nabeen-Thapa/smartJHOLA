@@ -29,6 +29,8 @@ const Navbar = () => {
                 className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">Contact</a>
                 <a href="/addProduct"
                 className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">Add product</a>
+                 <a href="/addCategory"
+                className="text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-lg font-medium">Add category</a>
             </div>
         </div>
 

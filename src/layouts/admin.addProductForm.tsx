@@ -22,7 +22,7 @@ const AddProductForm = () => {
     const addProductSubmit = (e) => {
         e.preventDefault();
         console.log("Form Data Submitted:", productData);
-        // Add your form submission logic here (e.g., API call)
+       
       };
     return (
         <>

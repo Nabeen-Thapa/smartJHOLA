@@ -8,6 +8,7 @@ import {
 import Login from '../features/auth/Login.tsx';
 import Navbar from '../components/user.Navbar.tsx';
 import AddProductForm from '../layouts/admin.addProductForm.tsx';
+import AddCategoryForm from '../layouts/admin.addCategoryForm.tsx';
 const AppRoutes = () => {
   return (
     <>
@@ -18,6 +19,7 @@ const AppRoutes = () => {
       <Route path='/signup' element={ <Signup/>}/>
       <Route path='/login' element={ <Login/>}/>
       <Route path='/addProduct' element={ <AddProductForm/>}/>
+      <Route path='/addCategory' element={ <AddCategoryForm/>}/>
       </Routes>
     </Router>
     </>
