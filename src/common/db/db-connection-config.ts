@@ -1,5 +1,4 @@
 import { DataSource } from "typeorm";
-
 import dotnev from "dotenv";
 import { smartUser } from "../../users/entities/userDetails";
 import { smartToken } from "../../users/entities/smartUserToken";
