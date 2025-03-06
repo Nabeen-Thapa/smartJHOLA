@@ -8,7 +8,7 @@ import multer from "multer";
 import logger from "../../common/utils/logger";
 import { sendEmail } from "../../common/utils/email-sender";
 import { userValidationSchema } from "../utils/user-register-validate";
-import { equal } from "joi";
+import { errorMessage } from "../../types/errorMessage.enum";
 
 const userRegister: Router = express.Router();
 const upload = multer({ dest: 'uploads/' });
@@ -39,7 +39,7 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
         const getdbUserDetails = smartConnection.getRepository(smartUser);
         const isExistUser = await getdbUserDetails.findOne({ where: { email} });
         if (isExistUser) {
-            res.status(StatusCodes.CONFLICT).json({ message: "this user is already exist" });
+            res.status(StatusCodes.CONFLICT).json({ message: errorMessage.ALREADY_EXIST});
             return;
         }
 
