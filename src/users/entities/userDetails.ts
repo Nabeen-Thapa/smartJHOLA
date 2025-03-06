@@ -1,6 +1,7 @@
 
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { smartCart } from "../../store/entities/AddToCart";
+import { userStatus } from "../../types/userStatus.enum";
 
 
 @Entity("smartUsers")
@@ -15,6 +16,6 @@ export class smartUser {
     @Column({ type: "bigint" }) phone!: string;
     @Column({ type: "varchar" }) gender?: string;
     @Column({ type: "int" }) age?: number;
-    @Column({ type: "varchar", default: "Active" }) status?: string;
+    @Column({ type: "varchar", default: userStatus.Active }) status?: userStatus;
     @OneToMany(() => smartCart, (cartItems) => cartItems.user) cartItems!: smartCart;
 }
