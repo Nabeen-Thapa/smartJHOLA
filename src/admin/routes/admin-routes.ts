@@ -6,8 +6,7 @@ import deleteAdmin from "../controllers/delete-admin";
 import changePassword from "../../common/controllers/change-password";
 import forgetPassword from "../../common/controllers/forget-password";
 import viewSmartUsers from "../../users/controllers/view-users";
-import { smartAdmin } from "../entities/adminDetails";
-import smartUserLogin from "../../common/controllers/smart-login";
+import smartUserLogin from "../controllers/admin.login";
 
 const adminRoutes:Router = express.Router();
 adminRoutes.use("/admin", smartUserLogin);

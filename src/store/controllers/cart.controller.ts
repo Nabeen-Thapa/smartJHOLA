@@ -1,17 +1,21 @@
 import { Request, Response } from "express";
 import { AddToCart, removeItemFromCart, viewCart } from "../services/cart.service";
 import { StatusCodes } from "http-status-codes";
+import { cartEvent } from "../../common/utils/event.emmiter";
 
 
 export const addToCartController =async(req:Request, res:Response)=>{
-    const{user, product, quantity, discountCoupon}=req.body;
+    const{user, productId, quantity, discountCoupon}=req.body;
     try {
-       const  addToCartResult = await AddToCart(user, product, quantity, discountCoupon);
+       await AddToCart(user, productId, quantity, discountCoupon);
        res.json({mesage:"product is added to cart success"});
+       cartEvent.emit("decreaseItemQuantity", {productId, quantity});
     } catch (error) {
         console.log("add to cart error:", error);
     }
 }
+
+
 
 export const viewCartController = async(req:Request, res:Response)=>{
     const {user}= req.body;
