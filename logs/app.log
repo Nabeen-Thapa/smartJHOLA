@@ -1213,3 +1213,44 @@
 [17:18:24]:smart jhola server is running at 5500
 [17:18:24]:connected to redis
 [17:18:24]:Database connected successfully!
+[11:46:51]:smart jhola server is running at 5500
+[11:46:52]:connected to redis
+[11:46:52]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[11:48:07]:smart jhola server is running at 5500
+[11:48:07]:connected to redis
+[11:48:07]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[11:49:20]:error duirng registration:  Driver not Connected
+[11:50:47]:smart jhola server is running at 5500
+[11:50:47]:connected to redis
+[11:50:47]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[11:50:52]:error duirng registration:  Driver not Connected
+[12:27:27]:smart jhola server is running at 5500
+[12:27:27]:connected to redis
+[12:27:28]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[12:54:26]:smart jhola server is running at 5500
+[12:54:26]:connected to redis
+[12:54:27]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[12:56:00]:smart jhola server is running at 5500
+[12:56:00]:connected to redis
+[12:56:00]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[12:56:59]:smart jhola server is running at 5500
+[12:56:59]:connected to redis
+[12:56:59]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[12:57:15]:smart jhola server is running at 5500
+[12:57:15]:connected to redis
+[12:57:15]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[12:57:37]:smart jhola server is running at 5500
+[12:57:37]:connected to redis
+[12:57:37]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[13:00:19]:smart jhola server is running at 5500
+[13:00:19]:connected to redis
+[13:00:19]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values
+[13:01:01]:smart jhola server is running at 5500
+[13:01:01]:connected to redis
+[13:01:33]:smart jhola server is running at 5500
+[13:01:33]:connected to redis
+[13:01:47]:smart jhola server is running at 5500
+[13:01:47]:connected to redis
+[13:02:29]:smart jhola server is running at 5500
+[13:02:29]:connected to redis
+[13:02:29]:Error during Data Source initialization: column "age" of relation "smartUsers" contains null values

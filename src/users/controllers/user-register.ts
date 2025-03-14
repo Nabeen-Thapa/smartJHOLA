@@ -11,7 +11,6 @@ import { userValidationSchema } from "../utils/user-register-validate";
 import { errorMessage } from "../../types/errorMessage.enum";
 
 const userRegister: Router = express.Router();
-const upload = multer({ dest: 'uploads/' });
 //user inputes type
 interface userTypes {
     name: string,
@@ -33,9 +32,7 @@ userRegister.post("/register", async (req: Request, res: Response): Promise<void
       });
       return;
     }
-    try {
-       
-        
+    try {    
         const getdbUserDetails = smartConnection.getRepository(smartUser);
         const isExistUser = await getdbUserDetails.findOne({ where: { email} });
         if (isExistUser) {

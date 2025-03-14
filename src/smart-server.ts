@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import logger from "./common/utils/logger";
 import userRoutes from "./users/routes/user-routes";
-import { smartConnection } from "./common/db/db-connection-config";
 import adminRoutes from "./admin/routes/admin-routes";
 import commonRoutes from "./common/routes/common-router";
 import cookieParser from "cookie-parser";
@@ -11,6 +10,7 @@ import productRouter from "./store/routes/product.routers";
 import CartRouter from "./store/routes/cart.routers";
 import couponRoute from "./store/routes/coupon.route";
 import "reflect-metadata";
+import session from "express-session";
 //import {sessionSetup } from "./common/utils/session.setup";
 dotenv.config();
 import cors from "cors";
@@ -21,26 +21,13 @@ app.use(express.urlencoded({ extended: true })); // For form data (URL-encoded)
 app.use(cookieParser());
 app.use(express.json());
 
-
-
-
-// app.use(cors());
 app.use(cors({
     origin: "http://localhost:3000",
     methods: "GET,POST,PUT,DELETE",
     credentials: true
   }));
-//   app.use(cors({
-//     origin: 'http://localhost:3000', // Allow requests from this origin
-//     credentials: true // Allow cookies and credentials
-// }));
 
-
-  // app.use(sessionSetup);
-  import session from "express-session";
- 
    const session_key = process.env.SESSION_SECRET || "session123";
-
       session({
         secret: 'session_key', // Change this to a strong secret key
         resave: false,
