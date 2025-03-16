@@ -42,8 +42,7 @@ export class smartProduct{
     image!:string;
 
     @OneToMany(()=>smartCart, (cartItem)=>cartItem.product)
-    @JoinColumn({name :"categoryId"})
+    @JoinColumn({name :"productId"})
     cartItems!:smartCart[];
-
    
 }

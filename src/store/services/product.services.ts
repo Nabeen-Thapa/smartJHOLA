@@ -35,11 +35,11 @@ export const addProduct = async (
     }
 
     // Check if the product already exists
-    const isProductExist = await getProductRepo.findOne({ where: { productName } });
-    if (isProductExist) {
+    const isProductExist = await getProductRepo.find({where:{productName}});
+    
+    if (isProductExist.length > 0) {
         throw new Error("Product with this name already exists");
     }
-   
     if (isNaN(price)) {
         throw new Error("Price must be a valid number");
     }
@@ -50,9 +50,9 @@ export const addProduct = async (
     }
     const newProduct = getProductRepo.create({
         category: isCategoryExist,
-        productName,
-        price: price, 
-        discount:discount,
+        productName: productName.trim(), 
+        price, 
+        discount,
         discountCoupon: discountCoupon || undefined,
         sellingPrice,
         brand,
@@ -60,6 +60,7 @@ export const addProduct = async (
         productDescription,
         image,
     });
+    
 
     await getProductRepo.save(newProduct);
     return { message: "Product added successfully", Product: newProduct };

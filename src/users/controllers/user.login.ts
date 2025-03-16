@@ -83,19 +83,19 @@ smartUserLogin.post("/login", async (req: Request, res: Response): Promise<void>
         await getdbToken.save(newUserToken);
 
         //Check if session is available
-        if (!req.session) {
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Session is unavailable" });
-            return;
-        }
+        // if (!req.session) {
+        //     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Session is unavailable" });
+        //     return;
+        // }
 
-        // Store data in session
-        (req.session as any).userId = userId;
-        (req.session as any).username = username;
-        (req.session as any).userEmail = userEmail;
+        // // Store data in session
+        // (req.session as any).userId = userId;
+        // (req.session as any).username = username;
+        // (req.session as any).userEmail = userEmail;
 
-        // Store session data in cookies
-        res.cookie("username", username, { httpOnly: true, maxAge: 3600000 });
-        res.cookie("userId", userId, { httpOnly: true, maxAge: 3600000 });
+        // // Store session data in cookies
+        // res.cookie("username", username, { httpOnly: true, maxAge: 3600000 });
+        // res.cookie("userId", userId, { httpOnly: true, maxAge: 3600000 });
 
         res.json({
             session :req.session,

@@ -5,11 +5,11 @@ import { cartEvent } from "../../common/utils/event.emmiter";
 
 
 export const addToCartController =async(req:Request, res:Response)=>{
-    const{user, productId, quantity, discountCoupon}=req.body;
+    const{user, product, quantity, discountCoupon}=req.body;
     try {
-       await AddToCart(user, productId, quantity, discountCoupon);
+       await AddToCart(user, product, quantity, discountCoupon);
        res.json({mesage:"product is added to cart success"});
-       cartEvent.emit("decreaseItemQuantity", {productId, quantity});
+       cartEvent.emit("decreaseItemQuantity", {product, quantity});
     } catch (error) {
         console.log("add to cart error:", error);
     }
