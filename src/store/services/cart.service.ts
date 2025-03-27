@@ -15,7 +15,6 @@ export const AddToCart = async (user: smartUser, product: smartProduct, quantity
     const userId = Number(user);
     const productId = Number(product);
 
-    console.log(user +","+ product);
 
     if (isNaN(userId) || isNaN(productId)) {
         throw new Error("Invalid user or product ID.");
